@@ -1,0 +1,504 @@
+/******************************************************************************/
+/*                                                                            */
+/*              Ostfalia Hochschule für angewandte Wissenschaften             */
+/*                        Fakultät für Fahrzeugtechnik                        */
+/*           Institut für Fahrzeuginformatik und Fahrzeugelektronik           */
+/*                             Fahrzeuginformatik                             */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+/* Paket:        ES_LAB                                                       */
+/* Modul:        ES_LAB_4                                                     */
+/* Projekt:      ES_LAB                                                       */
+/* Beschreibung: Labor 4.1 "          Grundsoftware für ein                   */
+/*                              Autonomes Modellfahrzeug mit mbed             */
+/******************************************************************************/
+/* Gruppe         : 06                                                        */
+/* Name           : EL Mahdaouy, Yassine                                      */
+/* Matrikelnummer : 70451808                                                  */
+/* Name           : Jörns, Pascal                                             */
+/* Matrikelnummer : 70426609                                                  */
+/******************************************************************************/
+
+//------------------------------------------------------------------------------
+//  Headerdateien:
+//------------------------------------------------------------------------------
+#include "Task.h"
+#include "mbed.h" 
+#include "LCD_Touch_ILI9328.h"
+#include "SRF08.h"
+#include "Touch.h"
+#include "Buttons.h"
+ 
+// Tasks Initialisierung  
+
+Thread thread_Task_1(osPriorityNormal,OS_STACK_SIZE,NULL,NULL); // Task 1 Sensoren Daten 
+Thread thread_Task_2(osPriorityNormal,OS_STACK_SIZE,NULL,NULL); // Task 2 LCD Ausgabe
+Thread thread_Task_3(osPriorityNormal,OS_STACK_SIZE,NULL,NULL); // Task 3 Abstandsreglung 
+Thread thread_Task_4(osPriorityNormal,OS_STACK_SIZE,NULL,NULL); // Task 4 Aktoren_Ansteuerung( Lenkung & Motor )
+
+// IR_Sensoren Initialisierung
+
+AnalogIn Abstand_H(P0_2);  // IR_Hinten
+AnalogIn Abstand_V(P1_31); // IR_Vorn
+AnalogIn Abstand_L(P0_26); // IR_Links
+AnalogIn Abstand_R(P1_30); // IR_Rechts
+
+
+// US_Sensoren Initialisierung 
+
+SRF08 US_Links(P0_27,P0_28,0xE0);    //  E0   Auto Nr 7 (Links E2 ,Rechts E4 ) 
+SRF08 US_Rechts(P0_27,P0_28, 0xE8);  //E8 
+
+
+//Initalisierung/Pin Lenkung
+PwmOut Lenkung(P1_20);
+
+//Initalisierung/Pin Motor
+PwmOut Motor(P1_21);
+
+//LCD Initalisierung
+BusOut dataBus( p26, p25, p24, p23, p22, p21, P2_6, P2_7); // 8 pins
+ILI9328_LCD lcd( P0_22, p15, P0_24, P0_21, P0_19, P0_20, &dataBus, P0_25 );// control pins and data bus  CS, RS, WR, DIR, EN, LE, DATA_PORT, RD
+TouchScreenADS7843 touch(p5, p6, p7, p8, P2_13, &lcd);     // ADS7843 -> mosi, miso, sclk, cs, irq, SPI_TFT
+
+int Status=0;       //Menü Auswahl 0=Startmenue, 1=Testmodus, 2=Folgefahrt
+int Start=0;        //Variable für Fzg Stillstand bis ein Objekt in 1m Entfernung erkannt wurde
+int PWM=1500;       //Variable für PWM Motor 1500 = Neutral
+int Lenk=1500;      //Variable Lenkung Neutral
+char str[100];      //Str. für die LCD Ausgabe
+char str1[100];
+double IR_Abstand1,IR_Abstand2,IR_Abstand3,IR_Abstand4,US_Abstand1,US_Abstand2,Abstand; //Variablen für die Sensorwerte
+float Null=0.00;
+
+Mutex ADC_Mutex,LCD_Mutex,IS_Sensor_Mutex,US_Sensor_Mutex,US_Mutex,Motor_Mutex,Lenkung_Mutex; // Mutex Definition  
+
+int main() {   
+       
+        //PWM-Init 
+        Lenkung.period_ms(22);
+        Lenkung.pulsewidth_us(1500);
+  
+        //PWM-Init
+        Motor.period_ms(22);
+        Motor.pulsewidth_us(1500);
+        wait_ms(3000);      
+        
+        //Parametrierung der Us_Sensoren ( max. Reichweite ((rangeVal x 43mm) + 43mm) = 1978mm )
+        US_Links.setRangeRegister(0x2D);
+        wait_ms(100);
+        US_Rechts.setRangeRegister(0x2D); 
+        
+        //Parametrierung der Us_Sensoren_Verstärkung 
+        wait_ms(100);
+        US_Links.setMaxGainRegister(0x00); 
+        wait_ms(100);
+        US_Rechts.setMaxGainRegister(0x00);
+         
+        // LCD Initiatisierung & Kalibrierung    
+        lcd.Initialize(PORTRAIT_REV);
+        lcd.FillScreen(COLOR_WHITE);
+        lcd.SetFont(&TerminusFont);
+        //touch.setCalibrationwithoutUser();
+        touch.TouchPanel_Calibrate(); 
+        
+        
+        //******************** Start Menu ************
+        //Buttons anlegen
+        lcd.FillScreen(COLOR_WHITE);
+        Button Test;
+        Test.Create("Test",10,20,&lcd,&touch,110,80);
+        
+        Button Folgefahrt;
+        Folgefahrt.Create("Folgefahrt",10,100,&lcd,&touch,110,160);
+        
+        Button Zurueck;
+        Zurueck.Create("Zurueck",130,20,&lcd,&touch,230,80);
+        
+        Button Stopp;
+        Stopp.Create("Stopp",130,100,&lcd,&touch,230,160);
+                
+        //Buttons zeichnen
+        Test.Draw();
+        Folgefahrt.Draw();
+        
+        //********************************************
+        // Task_1,Task_2 und Task_3 starten 
+        thread_Task_1.start(callback(Task_1,(void*)1 ));  
+        thread_Task_2.start(callback(Task_2,(void*)1 ));
+        thread_Task_4.start(callback(Task_4,(void*)1 ));     
+        //******************************************** 
+         
+while(1) {
+      
+     // Falls Button Test gedruckt --> starten wir das Testprogramm    
+     
+     if(Test.GetButton_touched()==1){ 
+        Status=1;                     // Status_1 : Testprogramm  
+        LCD_Mutex.lock(); 
+        lcd.FillScreen(COLOR_WHITE);
+        
+        //********************Test Menu ************              
+        //Buttons zeichnen
+        Test.Draw();
+        Zurueck.Draw();   
+        LCD_Mutex.unlock();         
+        //*********************************************
+        
+        
+        // Lenkung_Test 
+        
+        //********************************************
+        Lenkung_Mutex.lock();       
+        Lenk=1000; //Lenkeinschlag nach links
+        Lenkung_Mutex.unlock();
+        wait_ms(600);
+        Lenkung_Mutex.lock();
+        Lenk=2000;//Lenkeinschlag nach rechts
+        Lenkung_Mutex.unlock();
+        wait_ms(600);
+        Lenkung_Mutex.lock();
+        Lenk=1500;//Lenkung neutral
+        Lenkung_Mutex.unlock();
+        wait_ms(600);
+        //********************************************
+        
+        // Motor_Test 
+        
+        //********************************************
+        Motor_Mutex.lock();  
+        PWM=1000;  // Vollfahrt Rückwärts    
+        Motor_Mutex.unlock();  
+        wait_ms(800);
+        
+        Motor_Mutex.lock();  
+        PWM=2000;  // Vollfahrt Vorwärts 
+        Motor_Mutex.unlock(); 
+        wait_ms(800);
+        
+        Motor_Mutex.lock();    
+        PWM=1500;  // Stillstand 
+        Motor_Mutex.unlock();  
+        wait_ms(800);
+        //********************************************
+        }
+        
+        
+        // Falls Button_Zurueck gedrückt --> zurück zur Start-Menu  
+        
+       if(Zurueck.GetButton_touched()==1){
+        Status=0;  // Status 0 : Start_Bildschirm
+        LCD_Mutex.lock(); 
+        lcd.FillScreen(COLOR_WHITE);
+        
+        //********************Start Menu **************
+        //Buttons zeichnen
+        Test.Draw();
+        Folgefahrt.Draw();
+        LCD_Mutex.unlock(); 
+        //*********************************************
+        
+        }
+        
+       
+       // Falls Button_Folgefahrt gedrückt -->  Status Folgefahrt   
+        
+       if(Folgefahrt.GetButton_touched()==1){ 
+        Status=2;  // Status_Folgefahr aktivieren 
+        LCD_Mutex.lock(); 
+        lcd.FillScreen(COLOR_WHITE);
+        
+        //********************Folgefahrt Menu ************                     
+        //Buttons zeichnen     
+        Stopp.Draw();
+        Folgefahrt.Draw();
+        LCD_Mutex.unlock(); 
+        //*********************************************** 
+        
+        thread_Task_3.start(callback(Task_3,(void*)1 )); // Task_3 starten 
+        
+        }
+        
+        // Falls Button_Stopp gedrückt --> Folgefahrt beenden 
+        if(Stopp.GetButton_touched()==1){
+            
+        Status=0; // Start_Menu    
+        Start=0;   
+        
+        LCD_Mutex.lock(); 
+        
+        Motor_Mutex.lock();
+        PWM=1500;
+        Motor_Mutex.unlock(); 
+        
+        lcd.FillScreen(COLOR_WHITE);
+        
+        //********************Start Menu **************  
+        //Buttons zeichnen
+        Test.Draw();
+        Folgefahrt.Draw();
+        LCD_Mutex.unlock(); 
+        //********************************************* 
+        
+        }    
+    }
+
+}
+
+//ende Main
+
+
+// Tasks  
+
+// Task_1 : Sensoren_Daten  
+//******************************************** 
+
+    void Task_1(void const *args)  
+{
+    while(1){
+        
+        IS_Sensor_Mutex.lock();
+        IR_Abstand1=Abstand_H.read();
+        IS_Sensor_Mutex.unlock();
+         
+        
+        IS_Sensor_Mutex.lock();
+        IR_Abstand2=Abstand_V.read();
+        IS_Sensor_Mutex.unlock();
+        
+        IS_Sensor_Mutex.lock();
+        IR_Abstand3=Abstand_L.read();
+        IS_Sensor_Mutex.unlock();
+        
+        IS_Sensor_Mutex.lock();
+        IR_Abstand4=Abstand_R.read();
+        IS_Sensor_Mutex.unlock();
+        
+    
+        US_Mutex.lock();
+        US_Abstand1=US_Links.getRange();
+        US_Links.startRanging(); 
+        
+        US_Abstand2=US_Rechts.getRange();
+        US_Rechts.startRanging();
+        
+        Abstand=((US_Abstand1-16)+US_Abstand2)/2;
+        US_Mutex.unlock();
+        
+        ThisThread::sleep_for(100); 
+               
+        }
+}
+    
+//********************************************
+
+
+//Task_2: LCD_Ausgabe
+//********************************************
+
+  void Task_2(void const *args) 
+{
+    while(1){
+        
+        if(Status==1 || Status==2 ) {
+        
+        LCD_Mutex.lock(); 
+        ADC_Mutex.lock();
+        sprintf(str, " IR Sensor hinten : %.2f ",IR_Abstand1);
+        lcd.Print(str,1,180);
+        ADC_Mutex.unlock();
+        
+        ADC_Mutex.lock();
+        sprintf(str, " IR Sensor vorn : %.2f ",IR_Abstand2);
+        lcd.Print(str,1,190);
+        ADC_Mutex.unlock();
+               
+        ADC_Mutex.lock();
+        sprintf(str, " IR Sensor links : %.2f ",IR_Abstand3);
+        lcd.Print(str,1,200);
+        ADC_Mutex.unlock();
+        
+        ADC_Mutex.lock();
+        sprintf(str, " IR Sensor rechts : %.2f ",IR_Abstand4);
+        lcd.Print(str,1,210);
+        ADC_Mutex.unlock();
+         
+        US_Mutex.lock();
+        
+        if (US_Abstand1<=0){
+            sprintf(str, " US Sensor Links : %.2f ",Null);
+            lcd.Print(str,1,220);
+            US_Mutex.unlock();
+            }
+        
+        else {
+            sprintf(str, " US Sensor Links : %.2f ",US_Abstand1-16);
+            lcd.Print(str,1,220);
+            US_Mutex.unlock(); }
+         
+        US_Mutex.lock();
+        sprintf(str, " US Sensor Rechts : %.2f ",US_Abstand2);
+        lcd.Print(str,1,230);
+        US_Mutex.unlock();
+        
+        LCD_Mutex.unlock(); 
+        ThisThread::sleep_for(500);
+        
+        }
+          
+        }
+}
+
+//********************************************
+
+
+// Task_3: Abstandsreglung 
+//********************************************
+
+  void Task_3(void const *args) 
+{
+    while(1){
+        if(Status==2) {    
+        LCD_Mutex.lock();
+        US_Mutex.lock();
+        
+        if(Abstand<=0){
+            sprintf(str1, " Abstand : %.2f ",Null);
+            lcd.Print(str1,1,260);
+            }
+            
+        else { 
+        sprintf(str1, " Abstand : %.2f ",Abstand);
+        lcd.Print(str1,1,260);
+        }
+        
+        
+        if( Abstand >= 90 && Abstand <= 110){
+            Start=1;
+            } 
+        
+        
+        if(Start==1){ 
+        
+        if( Abstand <= 20 ){                    
+            Motor_Mutex.lock();
+            PWM=1500;
+            Motor_Mutex.unlock();
+            }
+        
+        if( Abstand >20 && Abstand <= 30 ){
+            Motor_Mutex.lock();
+            PWM=1650;
+            Motor_Mutex.unlock();
+            }
+            
+         if( Abstand >30 && Abstand <= 40 ){
+            Motor_Mutex.lock();
+            PWM=1690;
+            Motor_Mutex.unlock();
+            }
+            
+            
+         if( Abstand >40 && Abstand <= 50 ){
+            Motor_Mutex.lock();
+            PWM=1730;
+            Motor_Mutex.unlock();
+            }
+            
+         if( Abstand >50 && Abstand <= 60 ){
+            Motor_Mutex.lock();
+            PWM=1770;
+            Motor_Mutex.unlock();
+            }   
+        
+        if( Abstand >60 && Abstand <= 70 ){
+            Motor_Mutex.lock();
+            PWM=1810;
+            Motor_Mutex.unlock();
+            }
+        
+        if( Abstand >70 && Abstand <= 80 ){
+            Motor_Mutex.lock();
+            PWM=1850;
+            Motor_Mutex.unlock();
+            }
+        
+        if( Abstand >80 && Abstand <= 90 ){
+            Motor_Mutex.lock();
+            PWM=1890;
+            Motor_Mutex.unlock();
+            }
+            
+        if( Abstand >90 && Abstand <100 ){
+            Motor_Mutex.lock();
+            PWM=1950;
+            Motor_Mutex.unlock();
+            }
+            
+        if( Abstand >= 100 ){
+            Motor_Mutex.lock();
+            PWM=2000;
+            Motor_Mutex.unlock();
+            }
+            
+        }
+        
+       US_Mutex.unlock();
+       LCD_Mutex.unlock();
+      }
+}
+
+}
+
+//********************************************
+
+
+// Task_4: Aktoren_Ansteuerung  
+//********************************************
+
+  void Task_4(void const *args) 
+{
+    while(1){
+             
+        Motor_Mutex.lock();    
+        Motor.pulsewidth_us(PWM);  
+        Motor_Mutex.unlock();          
+        
+        Lenkung_Mutex.lock();
+        Lenkung.pulsewidth_us(Lenk);
+        Lenkung_Mutex.unlock();
+        wait_ms(20);
+    }
+}
+//********************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

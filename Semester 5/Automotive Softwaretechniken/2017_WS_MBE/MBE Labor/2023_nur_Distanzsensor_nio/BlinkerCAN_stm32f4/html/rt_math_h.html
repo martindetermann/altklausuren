@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="ct">/* Copyright 2010 The MathWorks, Inc. */</span></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td><span class="pp">#ifndef</span> <a id="2c9" class="tk">RTW_HEADER_rt_math_h_</a></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="pp">#define</span> <a id="3c9" class="tk">RTW_HEADER_rt_math_h_</a></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td><span class="pp">#define</span> <a id="5c9" class="tk">rt_MAXf_snf</a>(<a id="5c21" class="tk">a</a>, <a id="5c24" class="tk">b</a>)              (( ((<a id="5c45" class="tk">a</a>) <a id="5c48" class="tk">&gt;=</a> (<a id="5c52" class="tk">b</a>)) <a id="5c56" class="tk">||</a> <a id="5c59" class="tk">rtIsNaNF</a>(<a id="5c68" class="tk">b</a>) ) <a id="5c73" class="tk">?</a> (<a id="5c76" class="tk">a</a>) <a id="5c79" class="tk">:</a> (<a id="5c82" class="tk">b</a>))</td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="pp">#define</span> <a id="6c9" class="tk">rt_MAXd_snf</a>(<a id="6c21" class="tk">a</a>, <a id="6c24" class="tk">b</a>)              (( ((<a id="6c45" class="tk">a</a>) <a id="6c48" class="tk">&gt;=</a> (<a id="6c52" class="tk">b</a>)) <a id="6c56" class="tk">||</a> <a id="6c59" class="tk">rtIsNaN</a>(<a id="6c67" class="tk">b</a>) ) <a id="6c72" class="tk">?</a> (<a id="6c75" class="tk">a</a>) <a id="6c78" class="tk">:</a> (<a id="6c81" class="tk">b</a>))</td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td><span class="pp">#define</span> <a id="7c9" class="tk">rt_MAXf</a>(<a id="7c17" class="tk">a</a>, <a id="7c20" class="tk">b</a>)                  (((<a id="7c43" class="tk">a</a>) <a id="7c46" class="tk">&gt;=</a> (<a id="7c50" class="tk">b</a>)) <a id="7c54" class="tk">?</a> (<a id="7c57" class="tk">a</a>) <a id="7c60" class="tk">:</a> (<a id="7c63" class="tk">b</a>))</td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="pp">#define</span> <a id="8c9" class="tk">rt_MAXd</a>(<a id="8c17" class="tk">a</a>, <a id="8c20" class="tk">b</a>)                  (((<a id="8c43" class="tk">a</a>) <a id="8c46" class="tk">&gt;=</a> (<a id="8c50" class="tk">b</a>)) <a id="8c54" class="tk">?</a> (<a id="8c57" class="tk">a</a>) <a id="8c60" class="tk">:</a> (<a id="8c63" class="tk">b</a>))</td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td><span class="pp">#define</span> <a id="9c9" class="tk">rt_MAX</a>(<a id="9c16" class="tk">a</a>, <a id="9c19" class="tk">b</a>)                   (((<a id="9c43" class="tk">a</a>) <a id="9c46" class="tk">&gt;=</a> (<a id="9c50" class="tk">b</a>)) <a id="9c54" class="tk">?</a> (<a id="9c57" class="tk">a</a>) <a id="9c60" class="tk">:</a> (<a id="9c63" class="tk">b</a>))</td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td></td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td><span class="pp">#define</span> <a id="11c9" class="tk">rt_MINf_snf</a>(<a id="11c21" class="tk">a</a>, <a id="11c24" class="tk">b</a>)              (( ((<a id="11c45" class="tk">a</a>) <a id="11c48" class="tk">&lt;=</a> (<a id="11c52" class="tk">b</a>)) <a id="11c56" class="tk">||</a> <a id="11c59" class="tk">rtIsNaNF</a>(<a id="11c68" class="tk">b</a>) ) <a id="11c73" class="tk">?</a> (<a id="11c76" class="tk">a</a>) <a id="11c79" class="tk">:</a> (<a id="11c82" class="tk">b</a>))</td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td><span class="pp">#define</span> <a id="12c9" class="tk">rt_MINd_snf</a>(<a id="12c21" class="tk">a</a>, <a id="12c24" class="tk">b</a>)              (( ((<a id="12c45" class="tk">a</a>) <a id="12c48" class="tk">&lt;=</a> (<a id="12c52" class="tk">b</a>)) <a id="12c56" class="tk">||</a> <a id="12c59" class="tk">rtIsNaN</a>(<a id="12c67" class="tk">b</a>) ) <a id="12c72" class="tk">?</a> (<a id="12c75" class="tk">a</a>) <a id="12c78" class="tk">:</a> (<a id="12c81" class="tk">b</a>))</td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td><span class="pp">#define</span> <a id="13c9" class="tk">rt_MINf</a>(<a id="13c17" class="tk">a</a>, <a id="13c20" class="tk">b</a>)                  (((<a id="13c43" class="tk">a</a>) <a id="13c46" class="tk">&lt;=</a> (<a id="13c50" class="tk">b</a>)) <a id="13c54" class="tk">?</a> (<a id="13c57" class="tk">a</a>) <a id="13c60" class="tk">:</a> (<a id="13c63" class="tk">b</a>))</td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td><span class="pp">#define</span> <a id="14c9" class="tk">rt_MINd</a>(<a id="14c17" class="tk">a</a>, <a id="14c20" class="tk">b</a>)                  (((<a id="14c43" class="tk">a</a>) <a id="14c46" class="tk">&lt;=</a> (<a id="14c50" class="tk">b</a>)) <a id="14c54" class="tk">?</a> (<a id="14c57" class="tk">a</a>) <a id="14c60" class="tk">:</a> (<a id="14c63" class="tk">b</a>))</td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td><span class="pp">#define</span> <a id="15c9" class="tk">rt_MIN</a>(<a id="15c16" class="tk">a</a>, <a id="15c19" class="tk">b</a>)                   (((<a id="15c43" class="tk">a</a>) <a id="15c46" class="tk">&lt;=</a> (<a id="15c50" class="tk">b</a>)) <a id="15c54" class="tk">?</a> (<a id="15c57" class="tk">a</a>) <a id="15c60" class="tk">:</a> (<a id="15c63" class="tk">b</a>))</td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td></td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td><span class="pp">#define</span> <a id="17c9" class="tk">rt_SIGNf_snf</a>(<a id="17c22" class="tk">a</a>)                ( ((<a id="17c44" class="tk">a</a>) <a id="17c47" class="tk">&lt;</a> 0.0F) <a id="17c55" class="tk">?</a> <a id="17c57" class="tk">-</a>1.0F <a id="17c63" class="tk">:</a> ((<a id="17c67" class="tk">a</a>) <a id="17c70" class="tk">&gt;</a> 0.0F) <a id="17c78" class="tk">?</a> 1.0F <a id="17c85" class="tk">:</a> ((<a id="17c89" class="tk">a</a>) <a id="17c92" class="tk">==</a> 0.0F) <a id="17c101" class="tk">?</a> 0.0F <a id="17c108" class="tk">:</a> (<a id="17c111" class="tk">rtNaNF</a>) )</td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td><span class="pp">#define</span> <a id="18c9" class="tk">rt_SIGNd_snf</a>(<a id="18c22" class="tk">a</a>)                ( ((<a id="18c44" class="tk">a</a>) <a id="18c47" class="tk">&lt;</a> 0.0) <a id="18c54" class="tk">?</a> <a id="18c56" class="tk">-</a>1.0 <a id="18c61" class="tk">:</a> ((<a id="18c65" class="tk">a</a>) <a id="18c68" class="tk">&gt;</a> 0.0) <a id="18c75" class="tk">?</a> 1.0 <a id="18c81" class="tk">:</a> ((<a id="18c85" class="tk">a</a>) <a id="18c88" class="tk">==</a> 0.0) <a id="18c96" class="tk">?</a> 0.0 <a id="18c102" class="tk">:</a> (<a id="18c105" class="tk">rtNaN</a>) )</td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td><span class="pp">#define</span> <a id="19c9" class="tk">rt_SIGNf</a>(<a id="19c18" class="tk">a</a>)                    ( ((<a id="19c44" class="tk">a</a>) <a id="19c47" class="tk">&lt;</a> 0.0F) <a id="19c55" class="tk">?</a> <a id="19c57" class="tk">-</a>1.0F <a id="19c63" class="tk">:</a> ((<a id="19c67" class="tk">a</a>) <a id="19c70" class="tk">&gt;</a> 0.0F) <a id="19c78" class="tk">?</a> 1.0F <a id="19c85" class="tk">:</a> 0.0F )</td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td><span class="pp">#define</span> <a id="20c9" class="tk">rt_SIGNd</a>(<a id="20c18" class="tk">a</a>)                    ( ((<a id="20c44" class="tk">a</a>) <a id="20c47" class="tk">&lt;</a> 0.0) <a id="20c54" class="tk">?</a> <a id="20c56" class="tk">-</a>1.0 <a id="20c61" class="tk">:</a> ((<a id="20c65" class="tk">a</a>) <a id="20c68" class="tk">&gt;</a> 0.0) <a id="20c75" class="tk">?</a> 1.0 <a id="20c81" class="tk">:</a> 0.0 )</td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td><span class="pp">#define</span> <a id="21c9" class="tk">rt_SGN</a>(<a id="21c16" class="tk">a</a>)                      ( ((<a id="21c44" class="tk">a</a>) <a id="21c47" class="tk">&lt;</a> 0) <a id="21c52" class="tk">?</a> <a id="21c54" class="tk">-</a>1 <a id="21c57" class="tk">:</a> ((<a id="21c61" class="tk">a</a>) <a id="21c64" class="tk">&gt;</a> 0) <a id="21c69" class="tk">?</a> 1 <a id="21c73" class="tk">:</a> 0 )</td></tr>
+<tr name="22" id="22">
+<td><a id="l22" class='ln'>22</a></td><td><span class="pp">#define</span> <a id="22c9" class="tk">rt_UNSGN</a>(<a id="22c18" class="tk">a</a>)                    ( ((<a id="22c44" class="tk">a</a>) <a id="22c47" class="tk">&gt;</a> 0U) <a id="22c53" class="tk">?</a> 1U <a id="22c58" class="tk">:</a> 0U )</td></tr>
+<tr name="23" id="23">
+<td><a id="l23" class='ln'>23</a></td><td></td></tr>
+<tr name="24" id="24">
+<td><a id="l24" class='ln'>24</a></td><td><span class="pp">#define</span> <a id="24c9" class="tk">rt_SATURATE</a>(<a id="24c21" class="tk">sig</a>,<a id="24c25" class="tk">ll</a>,<a id="24c28" class="tk">ul</a>)         (((<a id="24c43" class="tk">sig</a>) <a id="24c48" class="tk">&gt;=</a> (<a id="24c52" class="tk">ul</a>)) <a id="24c57" class="tk">?</a> (<a id="24c60" class="tk">ul</a>) <a id="24c64" class="tk">:</a> (((<a id="24c69" class="tk">sig</a>) <a id="24c74" class="tk">&lt;=</a> (<a id="24c78" class="tk">ll</a>)) <a id="24c83" class="tk">?</a> (<a id="24c86" class="tk">ll</a>) <a id="24c90" class="tk">:</a> (<a id="24c93" class="tk">sig</a>)) )</td></tr>
+<tr name="25" id="25">
+<td><a id="l25" class='ln'>25</a></td><td></td></tr>
+<tr name="26" id="26">
+<td><a id="l26" class='ln'>26</a></td><td><span class="pp">#define</span> <a id="26c9" class="tk">rt_ABS</a>(<a id="26c16" class="tk">a</a>)                      ( ((<a id="26c44" class="tk">a</a>) <a id="26c47" class="tk">&gt;=</a> 0) <a id="26c53" class="tk">?</a> (<a id="26c56" class="tk">a</a>) <a id="26c59" class="tk">:</a> <a id="26c61" class="tk">-</a>(<a id="26c63" class="tk">a</a>) )</td></tr>
+<tr name="27" id="27">
+<td><a id="l27" class='ln'>27</a></td><td></td></tr>
+<tr name="28" id="28">
+<td><a id="l28" class='ln'>28</a></td><td><span class="pp">#endif</span>                                 <span class="ct">/* RTW_HEADER_rt_math_h_ */</span></td></tr>
+<tr name="29" id="29">
+<td><a id="l29" class='ln'>29</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

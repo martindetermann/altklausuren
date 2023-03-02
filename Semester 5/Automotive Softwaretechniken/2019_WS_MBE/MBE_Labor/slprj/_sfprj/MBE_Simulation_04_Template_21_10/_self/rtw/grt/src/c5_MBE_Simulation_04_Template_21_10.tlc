@@ -1,0 +1,95 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   11 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "is_active_c5_MBE_Simulation_04_Template_21_10"\
+      Description  "StateIsActive"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_c5_MBE_Simulation_04_Template_21_10"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_State_MotorWischen1"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "State_MotorWischen1"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "wisher_delay"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "wisher_delay"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "wisher_cnt"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "wisher_cnt"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "frequency"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "frequency"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "counter"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "counter"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "linkslauf"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "linkslauf"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "wischen"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "wischen"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "WischWaschActive"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "WischWaschActive"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i1"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

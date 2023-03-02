@@ -1,0 +1,53 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   5 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "is_active_c2_SchlossBox"\
+      Description  "StateIsActive"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Schliessanlage"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Schliessanlage"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Alarmanlage"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Alarmanlage"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_ON"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Alarmanlage.ON"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i1"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

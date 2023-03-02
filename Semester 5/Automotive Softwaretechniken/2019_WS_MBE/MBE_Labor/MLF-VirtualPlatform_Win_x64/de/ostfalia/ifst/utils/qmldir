@@ -1,0 +1,8 @@
+module de.ostfalia.ifst.utils
+AspectRatioItem 0.1 AspectRatioItem.qml
+CenteredItem 0.1 CenteredItem.qml
+ClickableArea 0.1 ClickableArea.qml
+MouseClickDebugArea 0.1 MouseClickDebugArea.qml
+MultilayerImage 0.1 MultilayerImage.qml
+SwitchableImage 0.1 SwitchableImage.qml
+VectorImage 0.1 VectorImage.qml

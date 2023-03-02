@@ -1,0 +1,84 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+VAL_TABLE_ TempwarnungTabelle 1 "Aktiv" 0 "Nicht Aktiv" ;
+VAL_TABLE_ Lichtknopftab 1 "AN" 0 "AUS" ;
+
+
+BO_ 256 Temperaturstatus: 1 Vector__XXX
+ SG_ Temperaturwarnung : 7|4@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1544 Leuchtknopf: 1 Vector__XXX
+ SG_ Lichtknopf : 7|8@0+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1541 Temperaturen: 8 Vector__XXX
+ SG_ Temp2 : 23|16@0+ (0.00390625,0) [0|65535] "C" Vector__XXX
+ SG_ Temp1 : 7|16@0+ (0.00390625,0) [0|65535] "C" Vector__XXX
+
+BO_ 1536 Drehknopf: 8 Vector__XXX
+ SG_ Drehwinkel : 7|8@0+ (1.8,0) [0|255] "DEG" Vector__XXX
+
+
+
+BA_DEF_ BO_  "CANFD_BRS" ENUM  "0","1";
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","StandardCAN_FD","ExtendedCAN_FD";
+BA_DEF_DEF_  "CANFD_BRS" "1";
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+BA_DEF_DEF_  "VFrameFormat" "StandardCAN";
+BA_ "BusType" "CAN FD";
+BA_ "DBName" "goses_datenbank";
+BA_ "VFrameFormat" BO_ 256 14;
+BA_ "VFrameFormat" BO_ 1544 14;
+BA_ "VFrameFormat" BO_ 1541 14;
+BA_ "VFrameFormat" BO_ 1536 14;
+VAL_ 256 Temperaturwarnung 1 "Aktiv" 0 "Nicht Aktiv" ;
+VAL_ 1544 Lichtknopf 1 "AN" 0 "AUS" ;
+

@@ -1,0 +1,1403 @@
+Archive member included to satisfy reference by file (symbol)
+
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+                              BlinkerCAN.o (__aeabi_dadd)
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+                              BlinkerCAN.o (__aeabi_dcmpeq)
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+                              waijung_hwdrvlib.o (memcpy)
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memset.o)
+                              BlinkerCAN.o (memset)
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+                              syscalls.o (errno)
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-strncmp.o)
+                              waijung_hwdrvlib.o (strncmp)
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+                              c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o) (_free_r)
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-impure.o)
+                              c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o) (_impure_ptr)
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                              c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o) (__malloc_current_mallinfo)
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mlock.o)
+                              c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o) (__malloc_lock)
+c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-sbrkr.o)
+                              c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o) (_sbrk_r)
+
+Allocating common symbols
+Common symbol       size              file
+
+CANReceive3_Msg     0x14              waijung_hwdrvlib.o
+CANReceive1_filter_number
+                    0x1               waijung_hwdrvlib.o
+CANReceive2_Msg_Buffer
+                    0xa0              waijung_hwdrvlib.o
+CANReceive4_FilterInitStructure
+                    0xe               waijung_hwdrvlib.o
+CANReceive_data     0x4               waijung_hwdrvlib.o
+errno               0x4               c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+CANReceive2_data    0x4               waijung_hwdrvlib.o
+CANReceive_Msg_Buffer
+                    0xa0              waijung_hwdrvlib.o
+CANReceive3_FilterInitStructure
+                    0xe               waijung_hwdrvlib.o
+CANReceive_Msg      0x14              waijung_hwdrvlib.o
+CANReceive4_data    0x4               waijung_hwdrvlib.o
+CANReceive4_Msg_Buffer
+                    0xa0              waijung_hwdrvlib.o
+CANReceive1_data    0x4               waijung_hwdrvlib.o
+CANReceive1_Msg_Buffer
+                    0xa0              waijung_hwdrvlib.o
+BlinkerCAN_DW       0x20              BlinkerCAN.o
+CANReceive2_Msg     0x14              waijung_hwdrvlib.o
+CANReceive3_Msg_Buffer
+                    0xa0              waijung_hwdrvlib.o
+CANReceive1_FilterInitStructure
+                    0xe               waijung_hwdrvlib.o
+CANReceive3_data    0x4               waijung_hwdrvlib.o
+CANReceive4_filter_number
+                    0x1               waijung_hwdrvlib.o
+CANReceive1_Msg     0x14              waijung_hwdrvlib.o
+UART2_Temp_Buffer   0x200             waijung_hwdrvlib.o
+CANReceive4_Msg     0x14              waijung_hwdrvlib.o
+UART2_Tx_Buffer     0x200             waijung_hwdrvlib.o
+CANReceive3_filter_number
+                    0x1               waijung_hwdrvlib.o
+UARTSetup_Tx_State  0x1               waijung_hwdrvlib.o
+CANReceive_FilterInitStructure
+                    0xe               waijung_hwdrvlib.o
+UART2_Rx_Buffer     0x200             waijung_hwdrvlib.o
+CANReceive_filter_number
+                    0x1               waijung_hwdrvlib.o
+CANReceive2_filter_number
+                    0x1               waijung_hwdrvlib.o
+CANReceive2_FilterInitStructure
+                    0xe               waijung_hwdrvlib.o
+UARTSetup_DMA_Init  0x3c              waijung_hwdrvlib.o
+BlinkerCAN_M_       0x4               BlinkerCAN.o
+BlinkerCAN_B        0x2c              BlinkerCAN.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00100000         xr
+RAM              0x20000000         0x00020000         xrw
+AUX_RAM          0x2001c000         0x00004000         xrw
+CCM_RAM          0x10000000         0x00010000         rw
+BKP_RAM          0x40024000         0x00001000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD startup_stm32f4xx.o
+LOAD stm32f4xx_syscfg.o
+LOAD stm32f4xx_it.o
+LOAD stm32f4xx_pwr.o
+LOAD stm32f4xx_rcc.o
+LOAD stm32f4xx_usart.o
+LOAD syscalls.o
+LOAD stm32f4xx_can.o
+LOAD main.o
+LOAD waijung_hwdrvlib.o
+LOAD misc.o
+LOAD BlinkerCAN.o
+LOAD system_stm32f4xx.o
+LOAD stm32f4xx_dma.o
+LOAD BlinkerCAN_can_isr.o
+LOAD stm32f4xx_gpio.o
+LOAD c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libstdc++.a
+LOAD c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libm.a
+START GROUP
+LOAD c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a
+LOAD c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a
+LOAD c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a
+END GROUP
+START GROUP
+LOAD c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a
+LOAD c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a
+LOAD c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libnosys.a
+END GROUP
+
+.text           0x08000000     0x5004
+ *(.isr_vector)
+ .isr_vector    0x08000000      0x188 startup_stm32f4xx.o
+                0x08000000                __isr_vector
+ *(.text*)
+ .text          0x08000188      0x104 startup_stm32f4xx.o
+                0x08000188                Reset_Handler
+                0x080001e6                WWDG_IRQHandler
+                0x080001e8                PVD_IRQHandler
+                0x080001ea                TAMP_STAMP_IRQHandler
+                0x080001ec                RTC_WKUP_IRQHandler
+                0x080001ee                FLASH_IRQHandler
+                0x080001f0                RCC_IRQHandler
+                0x080001f2                EXTI0_IRQHandler
+                0x080001f4                EXTI1_IRQHandler
+                0x080001f6                EXTI2_IRQHandler
+                0x080001f8                EXTI3_IRQHandler
+                0x080001fa                EXTI4_IRQHandler
+                0x080001fc                DMA1_Stream0_IRQHandler
+                0x080001fe                DMA1_Stream1_IRQHandler
+                0x08000200                DMA1_Stream2_IRQHandler
+                0x08000202                DMA1_Stream3_IRQHandler
+                0x08000204                DMA1_Stream4_IRQHandler
+                0x08000206                DMA1_Stream5_IRQHandler
+                0x08000208                DMA1_Stream6_IRQHandler
+                0x0800020a                ADC_IRQHandler
+                0x0800020c                CAN1_TX_IRQHandler
+                0x08000210                CAN1_RX1_IRQHandler
+                0x08000212                CAN1_SCE_IRQHandler
+                0x08000214                EXTI9_5_IRQHandler
+                0x08000216                TIM1_BRK_TIM9_IRQHandler
+                0x08000218                TIM1_UP_TIM10_IRQHandler
+                0x0800021a                TIM1_TRG_COM_TIM11_IRQHandler
+                0x0800021c                TIM1_CC_IRQHandler
+                0x0800021e                TIM2_IRQHandler
+                0x08000220                TIM3_IRQHandler
+                0x08000222                TIM4_IRQHandler
+                0x08000224                I2C1_EV_IRQHandler
+                0x08000226                I2C1_ER_IRQHandler
+                0x08000228                I2C2_EV_IRQHandler
+                0x0800022a                I2C2_ER_IRQHandler
+                0x0800022c                SPI1_IRQHandler
+                0x0800022e                SPI2_IRQHandler
+                0x08000230                USART1_IRQHandler
+                0x08000232                USART2_IRQHandler
+                0x08000234                USART3_IRQHandler
+                0x08000236                EXTI15_10_IRQHandler
+                0x08000238                RTC_Alarm_IRQHandler
+                0x0800023a                OTG_FS_WKUP_IRQHandler
+                0x0800023c                TIM8_BRK_TIM12_IRQHandler
+                0x0800023e                TIM8_UP_TIM13_IRQHandler
+                0x08000240                TIM8_TRG_COM_TIM14_IRQHandler
+                0x08000242                TIM8_CC_IRQHandler
+                0x08000244                DMA1_Stream7_IRQHandler
+                0x08000246                FSMC_IRQHandler
+                0x08000248                SDIO_IRQHandler
+                0x0800024a                TIM5_IRQHandler
+                0x0800024c                SPI3_IRQHandler
+                0x0800024e                UART4_IRQHandler
+                0x08000250                UART5_IRQHandler
+                0x08000252                TIM6_DAC_IRQHandler
+                0x08000254                TIM7_IRQHandler
+                0x08000256                DMA2_Stream0_IRQHandler
+                0x08000258                DMA2_Stream1_IRQHandler
+                0x0800025a                DMA2_Stream2_IRQHandler
+                0x0800025c                DMA2_Stream3_IRQHandler
+                0x0800025e                DMA2_Stream4_IRQHandler
+                0x08000260                ETH_IRQHandler
+                0x08000262                ETH_WKUP_IRQHandler
+                0x08000264                CAN2_TX_IRQHandler
+                0x08000266                CAN2_RX0_IRQHandler
+                0x08000268                CAN2_RX1_IRQHandler
+                0x0800026a                CAN2_SCE_IRQHandler
+                0x0800026c                OTG_FS_IRQHandler
+                0x0800026e                DMA2_Stream5_IRQHandler
+                0x08000270                DMA2_Stream6_IRQHandler
+                0x08000272                DMA2_Stream7_IRQHandler
+                0x08000274                USART6_IRQHandler
+                0x08000276                I2C3_EV_IRQHandler
+                0x08000278                I2C3_ER_IRQHandler
+                0x0800027a                OTG_HS_EP1_OUT_IRQHandler
+                0x0800027c                OTG_HS_EP1_IN_IRQHandler
+                0x0800027e                OTG_HS_WKUP_IRQHandler
+                0x08000280                OTG_HS_IRQHandler
+                0x08000282                DCMI_IRQHandler
+                0x08000284                CRYP_IRQHandler
+                0x08000286                HASH_RNG_IRQHandler
+                0x08000288                FPU_IRQHandler
+ .text          0x0800028c       0x8c stm32f4xx_syscfg.o
+                0x0800028c                SYSCFG_DeInit
+                0x080002a8                SYSCFG_MemoryRemapConfig
+                0x080002b4                SYSCFG_MemorySwappingBank
+                0x080002c0                SYSCFG_EXTILineConfig
+                0x080002f0                SYSCFG_ETH_MediaInterfaceConfig
+                0x080002fc                SYSCFG_CompensationCellCmd
+                0x08000308                SYSCFG_GetCompensationCellStatus
+ .text          0x08000318       0x38 stm32f4xx_it.o
+                0x08000318                NMI_Handler
+                0x0800031c                MemManage_Handler
+                0x08000320                BusFault_Handler
+                0x08000338                HardFault_Handler
+                0x08000340                UsageFault_Handler
+                0x08000344                SVC_Handler
+                0x08000348                DebugMon_Handler
+                0x0800034c                PendSV_Handler
+ .text          0x08000350      0x178 stm32f4xx_pwr.o
+                0x08000350                PWR_DeInit
+                0x0800036c                PWR_BackupAccessCmd
+                0x08000378                PWR_PVDLevelConfig
+                0x0800038c                PWR_PVDCmd
+                0x08000398                PWR_WakeUpPinCmd
+                0x080003a4                PWR_BackupRegulatorCmd
+                0x080003b0                PWR_MainRegulatorModeConfig
+                0x080003c4                PWR_OverDriveCmd
+                0x080003d0                PWR_OverDriveSWCmd
+                0x080003dc                PWR_UnderDriveCmd
+                0x080003f8                PWR_FlashPowerDownCmd
+                0x08000404                PWR_EnterSTOPMode
+                0x08000444                PWR_EnterUnderDriveSTOPMode
+                0x08000484                PWR_EnterSTANDBYMode
+                0x080004a4                PWR_GetFlagStatus
+                0x080004b8                PWR_ClearFlag
+ .text          0x080004c8      0x598 stm32f4xx_rcc.o
+                0x080004c8                RCC_DeInit
+                0x08000518                RCC_HSEConfig
+                0x08000528                RCC_WaitForHSEStartUp
+                0x0800055c                RCC_AdjustHSICalibrationValue
+                0x08000570                RCC_HSICmd
+                0x0800057c                RCC_LSEConfig
+                0x0800059c                RCC_LSICmd
+                0x080005a8                RCC_PLLConfig
+                0x080005cc                RCC_PLLCmd
+                0x080005d8                RCC_PLLI2SConfig
+                0x080005ec                RCC_PLLI2SCmd
+                0x080005f8                RCC_PLLSAIConfig
+                0x08000610                RCC_PLLSAICmd
+                0x0800061c                RCC_ClockSecuritySystemCmd
+                0x08000628                RCC_MCO1Config
+                0x0800063c                RCC_MCO2Config
+                0x08000650                RCC_SYSCLKConfig
+                0x08000664                RCC_GetSYSCLKSource
+                0x08000674                RCC_HCLKConfig
+                0x08000688                RCC_PCLK1Config
+                0x0800069c                RCC_PCLK2Config
+                0x080006b0                RCC_GetClocksFreq
+                0x08000748                RCC_RTCCLKConfig
+                0x08000778                RCC_RTCCLKCmd
+                0x08000784                RCC_BackupResetCmd
+                0x08000790                RCC_I2SCLKConfig
+                0x0800079c                RCC_SAIBlockACLKConfig
+                0x080007b4                RCC_SAIBlockBCLKConfig
+                0x080007cc                RCC_SAIPLLI2SClkDivConfig
+                0x080007e4                RCC_SAIPLLSAIClkDivConfig
+                0x08000800                RCC_LTDCCLKDivConfig
+                0x08000818                RCC_TIMCLKPresConfig
+                0x08000824                RCC_AHB1PeriphClockCmd
+                0x08000840                RCC_AHB2PeriphClockCmd
+                0x0800085c                RCC_AHB3PeriphClockCmd
+                0x08000878                RCC_APB1PeriphClockCmd
+                0x08000894                RCC_APB2PeriphClockCmd
+                0x080008b0                RCC_AHB1PeriphResetCmd
+                0x080008cc                RCC_AHB2PeriphResetCmd
+                0x080008e8                RCC_AHB3PeriphResetCmd
+                0x08000904                RCC_APB1PeriphResetCmd
+                0x08000920                RCC_APB2PeriphResetCmd
+                0x0800093c                RCC_AHB1PeriphClockLPModeCmd
+                0x08000958                RCC_AHB2PeriphClockLPModeCmd
+                0x08000974                RCC_AHB3PeriphClockLPModeCmd
+                0x08000990                RCC_APB1PeriphClockLPModeCmd
+                0x080009ac                RCC_APB2PeriphClockLPModeCmd
+                0x080009c8                RCC_LSEModeConfig
+                0x080009e0                RCC_ITConfig
+                0x080009fc                RCC_GetFlagStatus
+                0x08000a30                RCC_ClearFlag
+                0x08000a40                RCC_GetITStatus
+                0x08000a54                RCC_ClearITPendingBit
+ .text          0x08000a60      0x478 stm32f4xx_usart.o
+                0x08000a60                USART_DeInit
+                0x08000b6c                USART_Init
+                0x08000c30                USART_StructInit
+                0x08000c48                USART_ClockInit
+                0x08000c6c                USART_ClockStructInit
+                0x08000c78                USART_Cmd
+                0x08000c94                USART_SetPrescaler
+                0x08000ca8                USART_OverSampling8Cmd
+                0x08000cc4                USART_OneBitMethodCmd
+                0x08000ce0                USART_SendData
+                0x08000ce8                USART_ReceiveData
+                0x08000cf0                USART_SetAddress
+                0x08000d08                USART_ReceiverWakeUpCmd
+                0x08000d24                USART_WakeUpConfig
+                0x08000d3c                USART_LINBreakDetectLengthConfig
+                0x08000d54                USART_LINCmd
+                0x08000d70                USART_SendBreak
+                0x08000d7c                USART_HalfDuplexCmd
+                0x08000d98                USART_SetGuardTime
+                0x08000dac                USART_SmartCardCmd
+                0x08000dc8                USART_SmartCardNACKCmd
+                0x08000de4                USART_IrDAConfig
+                0x08000dfc                USART_IrDACmd
+                0x08000e18                USART_DMACmd
+                0x08000e2c                USART_ITConfig
+                0x08000e68                USART_GetFlagStatus
+                0x08000e74                USART_ClearFlag
+                0x08000e7c                USART_GetITStatus
+                0x08000ec8                USART_ClearITPendingBit
+ .text          0x08000ed8       0xd0 syscalls.o
+                0x08000ed8                _exit
+                0x08000edc                _close
+                0x08000ee4                _execve
+                0x08000ef4                _fork
+                0x08000f04                _fstat
+                0x08000f10                _getpid
+                0x08000f14                _isatty
+                0x08000f18                _kill
+                0x08000f28                _link
+                0x08000f38                _lseek
+                0x08000f3c                _sbrk
+                0x08000f74                _read
+                0x08000f78                _stat
+                0x08000f84                _unlink
+                0x08000f94                _wait
+                0x08000fa4                _write
+ .text          0x08000fa8      0x808 stm32f4xx_can.o
+                0x08000fa8                CAN_DeInit
+                0x08000fe4                CAN_Init
+                0x080010d0                CAN_FilterInit
+                0x080011c4                CAN_StructInit
+                0x080011ec                CAN_SlaveStartBank
+                0x08001228                CAN_DBGFreeze
+                0x0800123c                CAN_TTComModeCmd
+                0x08001298                CAN_Transmit
+                0x08001344                CAN_TransmitStatus
+                0x08001394                CAN_CancelTransmit
+                0x080013c0                CAN_Receive
+                0x08001460                CAN_FIFORelease
+                0x08001478                CAN_MessagePending
+                0x08001490                CAN_OperatingModeRequest
+                0x08001544                CAN_Sleep
+                0x08001564                CAN_WakeUp
+                0x08001590                CAN_GetLastErrorCode
+                0x08001598                CAN_GetReceiveErrorCounter
+                0x080015a0                CAN_GetLSBTransmitErrorCounter
+                0x080015a8                CAN_ITConfig
+                0x080015bc                CAN_GetFlagStatus
+                0x08001610                CAN_ClearFlag
+                0x08001640                CAN_GetITStatus
+                0x08001724                CAN_ClearITPendingBit
+ .text          0x080017b0       0x20 main.o
+                0x080017b0                rt_OneStep
+                0x080017c0                SysTick_Handler
+ .text.startup  0x080017d0       0x4c main.o
+                0x080017d0                main
+ .text          0x0800181c     0x196c waijung_hwdrvlib.o
+                0x0800181c                CANReceive_filter_isr
+                0x0800187c                CANReceive1_filter_isr
+                0x080018dc                CANReceive2_filter_isr
+                0x0800193c                CANReceive3_filter_isr
+                0x0800199c                CANReceive4_filter_isr
+                0x08001c24                UART2_RestoreBytes
+                0x08001c54                UART2_Read
+                0x08001cc0                UART2_ReadEx
+                0x08001dac                UART2_ReadLine
+                0x08001f78                UART2_ReadBinary
+                0x080021c0                UART2_FlushTxBuffer
+                0x08002218                UART2_Write
+                0x080022b0                UART2_TxUpdate
+                0x08002338                waijung_usart2_initial
+                0x08002348                enable_UARTSetup
+                0x08002358                SysTimer_Start
+                0x08002380                SysTimer_IsTimeout
+                0x080023a0                SysTimer_uS_Start
+                0x080023c4                SysTimer_uS_IsTimeout
+                0x08002434                SysTimer_delay_us
+                0x08002490                SysTimer_delay_ms
+                0x080024d8                CANx_Transmit
+                0x0800259c                CAN1_Filter_Hook
+                0x08002638                CAN1_Filter_Free
+                0x0800264c                CAN1_RX0_IRQHandler
+                0x0800268c                CANReceive_Msg_Buffer_Count
+                0x080026d8                CANReceive_GetMsg
+                0x08002760                enable_CANReceive
+                0x08002878                disable_CANReceive
+                0x080028ac                CANReceive1_Msg_Buffer_Count
+                0x080028f8                CANReceive1_GetMsg
+                0x08002980                enable_CANReceive1
+                0x08002a98                disable_CANReceive1
+                0x08002acc                CANReceive2_Msg_Buffer_Count
+                0x08002b18                CANReceive2_GetMsg
+                0x08002ba0                enable_CANReceive2
+                0x08002cb8                disable_CANReceive2
+                0x08002cec                CANReceive3_Msg_Buffer_Count
+                0x08002d38                CANReceive3_GetMsg
+                0x08002dc0                enable_CANReceive3
+                0x08002ed8                disable_CANReceive3
+                0x08002f0c                CANReceive4_Msg_Buffer_Count
+                0x08002f58                CANReceive4_GetMsg
+                0x08002fe0                enable_CANReceive4
+                0x080030f8                disable_CANReceive4
+                0x0800312c                enable_DigitalOutput
+                0x08003164                waijung_can1_initial
+                0x08003174                enable_CANSetup
+                0x08003184                disable_CANSetup
+ .text          0x08003188       0xc8 misc.o
+                0x08003188                NVIC_PriorityGroupConfig
+                0x0800319c                NVIC_Init
+                0x0800320c                NVIC_SetVectorTable
+                0x08003220                NVIC_SystemLPConfig
+                0x08003238                SysTick_CLKSourceConfig
+ .text          0x08003250      0x668 BlinkerCAN.o
+                0x08003250                BlinkerCAN_BitShift4
+                0x08003258                BlinkerCAN_BitShift5
+                0x0800325c                BlinkerCAN_BitShift4_n
+                0x08003264                BlinkerCAN_BitShift5_c
+                0x08003268                BlinkerCAN_BitShift3
+                0x0800326c                BlinkerCAN_step
+                0x08003854                BlinkerCAN_initialize
+                0x080038b4                BlinkerCAN_terminate
+ .text          0x080038b8      0x174 system_stm32f4xx.o
+                0x080038b8                SystemInit
+                0x080039b8                SystemCoreClockUpdate
+ .text          0x08003a2c      0x378 stm32f4xx_dma.o
+                0x08003a2c                DMA_DeInit
+                0x08003b5c                DMA_Init
+                0x08003bb4                DMA_StructInit
+                0x08003bd8                DMA_Cmd
+                0x08003bec                DMA_PeriphIncOffsetSizeConfig
+                0x08003c00                DMA_FlowControllerConfig
+                0x08003c14                DMA_SetCurrDataCounter
+                0x08003c18                DMA_GetCurrDataCounter
+                0x08003c20                DMA_DoubleBufferModeConfig
+                0x08003c38                DMA_DoubleBufferModeCmd
+                0x08003c4c                DMA_MemoryTargetConfig
+                0x08003c58                DMA_GetCurrentMemoryTarget
+                0x08003c60                DMA_GetCmdStatus
+                0x08003c68                DMA_GetFIFOStatus
+                0x08003c70                DMA_GetFlagStatus
+                0x08003cac                DMA_ClearFlag
+                0x08003ce0                DMA_ITConfig
+                0x08003d20                DMA_GetITStatus
+                0x08003d70                DMA_ClearITPendingBit
+ .text          0x08003da4        0x0 BlinkerCAN_can_isr.o
+ .text          0x08003da4      0x2ac stm32f4xx_gpio.o
+                0x08003da4                GPIO_DeInit
+                0x08003f00                GPIO_Init
+                0x08003fa4                GPIO_StructInit
+                0x08003fb8                GPIO_PinLockConfig
+                0x08003fdc                GPIO_ReadInputDataBit
+                0x08003fe8                GPIO_ReadInputData
+                0x08003ff0                GPIO_ReadOutputDataBit
+                0x08003ffc                GPIO_ReadOutputData
+                0x08004004                GPIO_SetBits
+                0x08004008                GPIO_ResetBits
+                0x0800400c                GPIO_WriteBit
+                0x08004018                GPIO_Write
+                0x0800401c                GPIO_ToggleBits
+                0x08004024                GPIO_PinAFConfig
+ .text          0x08004050      0x370 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+                0x08004050                __aeabi_drsub
+                0x08004058                __aeabi_dsub
+                0x08004058                __subdf3
+                0x0800405c                __aeabi_dadd
+                0x0800405c                __adddf3
+                0x080042d4                __floatunsidf
+                0x080042d4                __aeabi_ui2d
+                0x080042f4                __floatsidf
+                0x080042f4                __aeabi_i2d
+                0x08004318                __aeabi_f2d
+                0x08004318                __extendsfdf2
+                0x08004354                __floatundidf
+                0x08004354                __aeabi_ul2d
+                0x08004364                __floatdidf
+                0x08004364                __aeabi_l2d
+ .text          0x080043c0      0x110 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+                0x080043c0                __gtdf2
+                0x080043c0                __gedf2
+                0x080043c8                __ltdf2
+                0x080043c8                __ledf2
+                0x080043d0                __nedf2
+                0x080043d0                __eqdf2
+                0x080043d0                __cmpdf2
+                0x0800444c                __aeabi_cdrcmple
+                0x0800445c                __aeabi_cdcmpeq
+                0x0800445c                __aeabi_cdcmple
+                0x0800446c                __aeabi_dcmpeq
+                0x08004480                __aeabi_dcmplt
+                0x08004494                __aeabi_dcmple
+                0x080044a8                __aeabi_dcmpge
+                0x080044bc                __aeabi_dcmpgt
+ .text          0x080044d0      0x134 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+                0x080044d0                memcpy
+ .text          0x08004604        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memset.o)
+ .text.memset   0x08004604       0x9c c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memset.o)
+                0x08004604                memset
+ .text          0x080046a0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+ .text.cleanup_glue
+                0x080046a0       0x1c c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+                0x080046a0                cleanup_glue
+ .text._reclaim_reent
+                0x080046bc       0x88 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+                0x080046bc                _reclaim_reent
+ .text          0x08004744        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-strncmp.o)
+ .text.strncmp  0x08004744       0xa0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-strncmp.o)
+                0x08004744                strncmp
+ .text          0x080047e4        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+ .text._malloc_trim_r
+                0x080047e4       0x9c c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+                0x080047e4                _malloc_trim_r
+ .text._free_r  0x08004880      0x1d0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+                0x08004880                _free_r
+ .text          0x08004a50        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-impure.o)
+ .text          0x08004a50        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+ .text._malloc_r
+                0x08004a50      0x570 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                0x08004a50                _malloc_r
+ .text          0x08004fc0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mlock.o)
+ .text.__malloc_lock
+                0x08004fc0        0x4 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mlock.o)
+                0x08004fc0                __malloc_lock
+ .text.__malloc_unlock
+                0x08004fc4        0x4 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mlock.o)
+                0x08004fc4                __malloc_unlock
+ .text          0x08004fc8        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-sbrkr.o)
+ .text._sbrk_r  0x08004fc8       0x24 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-sbrkr.o)
+                0x08004fc8                _sbrk_r
+ *(.init)
+ *(.fini)
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+ *(.rodata*)
+ .rodata        0x08004fec       0x10 waijung_hwdrvlib.o
+ .rodata        0x08004ffc        0x4 BlinkerCAN.o
+                0x08004ffc                BlinkerCAN_M
+ .rodata._global_impure_ptr
+                0x08005000        0x4 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-impure.o)
+                0x08005000                _global_impure_ptr
+ *(.eh_frame*)
+
+.glue_7         0x08005004        0x0
+ .glue_7        0x08005004        0x0 linker stubs
+
+.glue_7t        0x08005004        0x0
+ .glue_7t       0x08005004        0x0 linker stubs
+
+.vfp11_veneer   0x08005004        0x0
+ .vfp11_veneer  0x08005004        0x0 linker stubs
+
+.v4_bx          0x08005004        0x0
+ .v4_bx         0x08005004        0x0 linker stubs
+
+.iplt           0x08005004        0x0
+ .iplt          0x08005004        0x0 startup_stm32f4xx.o
+
+.rel.dyn        0x08005004        0x0
+ .rel.iplt      0x08005004        0x0 startup_stm32f4xx.o
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x08005004                __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x08005004                __exidx_end = .
+                0x08005004                __etext = .
+
+.data           0x20000000      0x86c load address 0x08005004
+                0x20000000                __data_start__ = .
+ *(vtable)
+ *(.data*)
+ .data          0x20000000        0x0 startup_stm32f4xx.o
+ .data          0x20000000        0x0 stm32f4xx_syscfg.o
+ .data          0x20000000        0x0 stm32f4xx_it.o
+ .data          0x20000000        0x0 stm32f4xx_pwr.o
+ .data          0x20000000       0x10 stm32f4xx_rcc.o
+ .data          0x20000010        0x0 stm32f4xx_usart.o
+ .data          0x20000010        0x4 syscalls.o
+                0x20000010                environ
+ .data          0x20000014        0x0 stm32f4xx_can.o
+ .data          0x20000014        0x4 main.o
+                0x20000014                systick_count
+ .data          0x20000018        0x0 waijung_hwdrvlib.o
+ .data          0x20000018        0x0 misc.o
+ .data          0x20000018        0x0 BlinkerCAN.o
+ .data          0x20000018       0x14 system_stm32f4xx.o
+                0x20000018                AHBPrescTable
+                0x20000028                SystemCoreClock
+ .data          0x2000002c        0x0 stm32f4xx_dma.o
+ .data          0x2000002c        0x0 BlinkerCAN_can_isr.o
+ .data          0x2000002c        0x0 stm32f4xx_gpio.o
+ .data          0x2000002c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+ .data          0x2000002c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+ .data          0x2000002c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+ .data          0x2000002c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memset.o)
+ .data          0x2000002c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+ .data          0x2000002c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-strncmp.o)
+ .data          0x2000002c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+ .data          0x2000002c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-impure.o)
+ *fill*         0x2000002c        0x4 
+ .data.impure_data
+                0x20000030      0x428 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-impure.o)
+ .data._impure_ptr
+                0x20000458        0x4 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-impure.o)
+                0x20000458                _impure_ptr
+ .data          0x2000045c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+ .data.__malloc_av_
+                0x2000045c      0x408 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                0x2000045c                __malloc_av_
+ .data.__malloc_trim_threshold
+                0x20000864        0x4 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                0x20000864                __malloc_trim_threshold
+ .data.__malloc_sbrk_base
+                0x20000868        0x4 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                0x20000868                __malloc_sbrk_base
+ .data          0x2000086c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mlock.o)
+ .data          0x2000086c        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-sbrkr.o)
+                0x2000086c                . = ALIGN (0x4)
+                [!provide]                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                [!provide]                PROVIDE (__preinit_array_end, .)
+                0x2000086c                . = ALIGN (0x4)
+                [!provide]                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                [!provide]                PROVIDE (__init_array_end, .)
+                0x2000086c                . = ALIGN (0x4)
+                [!provide]                PROVIDE (__fini_array_start, .)
+ *(SORT(.fini_array.*))
+ *(.fini_array)
+                [!provide]                PROVIDE (__fini_array_end, .)
+ *(.jcr*)
+                0x2000086c                . = ALIGN (0x4)
+                0x2000086c                __data_end__ = .
+
+.igot.plt       0x2000086c        0x0 load address 0x08005870
+ .igot.plt      0x2000086c        0x0 startup_stm32f4xx.o
+
+.bss            0x20000870      0xb2c load address 0x08005878
+                0x20000870                . = ALIGN (0x4)
+                0x20000870                __bss_start__ = .
+ *(.bss*)
+ .bss           0x20000870        0x0 startup_stm32f4xx.o
+ .bss           0x20000870        0x0 stm32f4xx_syscfg.o
+ .bss           0x20000870        0x0 stm32f4xx_it.o
+ .bss           0x20000870        0x0 stm32f4xx_pwr.o
+ .bss           0x20000870        0x0 stm32f4xx_rcc.o
+ .bss           0x20000870        0x0 stm32f4xx_usart.o
+ .bss           0x20000870        0x8 syscalls.o
+                0x20000874                __env
+ .bss           0x20000878        0x0 stm32f4xx_can.o
+ .bss           0x20000878        0x4 main.o
+ .bss           0x2000087c       0x64 waijung_hwdrvlib.o
+                0x2000087c                CANReceive_Msg_Buffer_WIndex
+                0x2000087e                CANReceive_Msg_Buffer_RIndex
+                0x20000880                CANReceive1_Msg_Buffer_WIndex
+                0x20000882                CANReceive1_Msg_Buffer_RIndex
+                0x20000884                CANReceive2_Msg_Buffer_WIndex
+                0x20000886                CANReceive2_Msg_Buffer_RIndex
+                0x20000888                CANReceive3_Msg_Buffer_WIndex
+                0x2000088a                CANReceive3_Msg_Buffer_RIndex
+                0x2000088c                CANReceive4_Msg_Buffer_WIndex
+                0x2000088e                CANReceive4_Msg_Buffer_RIndex
+                0x20000894                CAN1_FilterList
+ .bss           0x200008e0        0x0 misc.o
+ .bss           0x200008e0        0x0 BlinkerCAN.o
+ .bss           0x200008e0        0x0 system_stm32f4xx.o
+ .bss           0x200008e0        0x0 stm32f4xx_dma.o
+ .bss           0x200008e0        0x0 BlinkerCAN_can_isr.o
+ .bss           0x200008e0        0x0 stm32f4xx_gpio.o
+ .bss           0x200008e0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+ .bss           0x200008e0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+ .bss           0x200008e0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+ .bss           0x200008e0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memset.o)
+ .bss           0x200008e0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+ .bss           0x200008e0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-strncmp.o)
+ .bss           0x200008e0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+ .bss           0x200008e0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-impure.o)
+ .bss           0x200008e0        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+ .bss.__malloc_max_total_mem
+                0x200008e0        0x4 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                0x200008e0                __malloc_max_total_mem
+ .bss.__malloc_max_sbrked_mem
+                0x200008e4        0x4 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                0x200008e4                __malloc_max_sbrked_mem
+ .bss.__malloc_top_pad
+                0x200008e8        0x4 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                0x200008e8                __malloc_top_pad
+ .bss.__malloc_current_mallinfo
+                0x200008ec       0x28 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                0x200008ec                __malloc_current_mallinfo
+ .bss           0x20000914        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mlock.o)
+ .bss           0x20000914        0x0 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-sbrkr.o)
+ *(COMMON)
+ COMMON         0x20000914      0xa34 waijung_hwdrvlib.o
+                0x20000914                CANReceive3_Msg
+                0x20000928                CANReceive1_filter_number
+                0x2000092c                CANReceive2_Msg_Buffer
+                0x200009cc                CANReceive4_FilterInitStructure
+                0x200009dc                CANReceive_data
+                0x200009e0                CANReceive2_data
+                0x200009e4                CANReceive_Msg_Buffer
+                0x20000a84                CANReceive3_FilterInitStructure
+                0x20000a94                CANReceive_Msg
+                0x20000aa8                CANReceive4_data
+                0x20000aac                CANReceive4_Msg_Buffer
+                0x20000b4c                CANReceive1_data
+                0x20000b50                CANReceive1_Msg_Buffer
+                0x20000bf0                CANReceive2_Msg
+                0x20000c04                CANReceive3_Msg_Buffer
+                0x20000ca4                CANReceive1_FilterInitStructure
+                0x20000cb4                CANReceive3_data
+                0x20000cb8                CANReceive4_filter_number
+                0x20000cbc                CANReceive1_Msg
+                0x20000cd0                UART2_Temp_Buffer
+                0x20000ed0                CANReceive4_Msg
+                0x20000ee4                UART2_Tx_Buffer
+                0x200010e4                CANReceive3_filter_number
+                0x200010e5                UARTSetup_Tx_State
+                0x200010e8                CANReceive_FilterInitStructure
+                0x200010f8                UART2_Rx_Buffer
+                0x200012f8                CANReceive_filter_number
+                0x200012f9                CANReceive2_filter_number
+                0x200012fc                CANReceive2_FilterInitStructure
+                0x2000130c                UARTSetup_DMA_Init
+ COMMON         0x20001348       0x50 BlinkerCAN.o
+                0x20001348                BlinkerCAN_DW
+                0x20001368                BlinkerCAN_M_
+                0x2000136c                BlinkerCAN_B
+ COMMON         0x20001398        0x4 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+                0x20001398                errno
+                0x2000139c                . = ALIGN (0x4)
+                0x2000139c                __bss_end__ = .
+
+.heap           0x200013a0     0x2000
+                0x200013a0                __end__ = .
+                0x200013a0                end = __end__
+ *(.heap*)
+ .heap          0x200013a0     0x2000 startup_stm32f4xx.o
+                0x200013a0                __HeapBase
+                0x200033a0                __HeapLimit = .
+
+.stack_dummy    0x200013a0     0x2000
+ *(.stack*)
+ .stack         0x200013a0     0x2000 startup_stm32f4xx.o
+                0x20020000                __StackTop = (ORIGIN (RAM) + LENGTH (RAM))
+                0x2001e000                __StackLimit = (__StackTop - SIZEOF (.stack_dummy))
+                [!provide]                PROVIDE (__stack, __StackTop)
+                0x00000001                ASSERT ((__StackLimit >= __HeapLimit), region RAM overflowed with stack)
+OUTPUT(BlinkerCAN.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x35
+ .ARM.attributes
+                0x00000000       0x1f startup_stm32f4xx.o
+ .ARM.attributes
+                0x0000001f       0x35 stm32f4xx_syscfg.o
+ .ARM.attributes
+                0x00000054       0x35 stm32f4xx_it.o
+ .ARM.attributes
+                0x00000089       0x35 stm32f4xx_pwr.o
+ .ARM.attributes
+                0x000000be       0x35 stm32f4xx_rcc.o
+ .ARM.attributes
+                0x000000f3       0x35 stm32f4xx_usart.o
+ .ARM.attributes
+                0x00000128       0x35 syscalls.o
+ .ARM.attributes
+                0x0000015d       0x35 stm32f4xx_can.o
+ .ARM.attributes
+                0x00000192       0x35 main.o
+ .ARM.attributes
+                0x000001c7       0x35 waijung_hwdrvlib.o
+ .ARM.attributes
+                0x000001fc       0x35 misc.o
+ .ARM.attributes
+                0x00000231       0x35 BlinkerCAN.o
+ .ARM.attributes
+                0x00000266       0x35 system_stm32f4xx.o
+ .ARM.attributes
+                0x0000029b       0x35 stm32f4xx_dma.o
+ .ARM.attributes
+                0x000002d0       0x35 BlinkerCAN_can_isr.o
+ .ARM.attributes
+                0x00000305       0x35 stm32f4xx_gpio.o
+ .ARM.attributes
+                0x0000033a       0x22 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+ .ARM.attributes
+                0x0000035c       0x22 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+ .ARM.attributes
+                0x0000037e       0x20 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x0000039e       0x34 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memset.o)
+ .ARM.attributes
+                0x000003d2       0x34 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+ .ARM.attributes
+                0x00000406       0x34 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-strncmp.o)
+ .ARM.attributes
+                0x0000043a       0x34 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+ .ARM.attributes
+                0x0000046e       0x34 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-impure.o)
+ .ARM.attributes
+                0x000004a2       0x34 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+ .ARM.attributes
+                0x000004d6       0x34 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mlock.o)
+ .ARM.attributes
+                0x0000050a       0x34 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-sbrkr.o)
+
+.comment        0x00000000       0x6e
+ .comment       0x00000000       0x6e stm32f4xx_syscfg.o
+                                 0x6f (size before relaxing)
+ .comment       0x0000006e       0x6f stm32f4xx_it.o
+ .comment       0x0000006e       0x6f stm32f4xx_pwr.o
+ .comment       0x0000006e       0x6f stm32f4xx_rcc.o
+ .comment       0x0000006e       0x6f stm32f4xx_usart.o
+ .comment       0x0000006e       0x6f syscalls.o
+ .comment       0x0000006e       0x6f stm32f4xx_can.o
+ .comment       0x0000006e       0x6f main.o
+ .comment       0x0000006e       0x6f waijung_hwdrvlib.o
+ .comment       0x0000006e       0x6f misc.o
+ .comment       0x0000006e       0x6f BlinkerCAN.o
+ .comment       0x0000006e       0x6f system_stm32f4xx.o
+ .comment       0x0000006e       0x6f stm32f4xx_dma.o
+ .comment       0x0000006e       0x6f BlinkerCAN_can_isr.o
+ .comment       0x0000006e       0x6f stm32f4xx_gpio.o
+
+.debug_frame    0x00000000      0x208
+ .debug_frame   0x00000000       0x34 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memset.o)
+ .debug_frame   0x00000034       0x58 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+ .debug_frame   0x0000008c       0x54 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-strncmp.o)
+ .debug_frame   0x000000e0       0x74 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+ .debug_frame   0x00000154       0x58 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+ .debug_frame   0x000001ac       0x30 c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mlock.o)
+ .debug_frame   0x000001dc       0x2c c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-sbrkr.o)
+
+Cross Reference Table
+
+Symbol                                            File
+ADC_IRQHandler                                    startup_stm32f4xx.o
+AHBPrescTable                                     system_stm32f4xx.o
+BlinkerCAN_B                                      BlinkerCAN.o
+BlinkerCAN_BitShift3                              BlinkerCAN.o
+BlinkerCAN_BitShift4                              BlinkerCAN.o
+BlinkerCAN_BitShift4_n                            BlinkerCAN.o
+BlinkerCAN_BitShift5                              BlinkerCAN.o
+BlinkerCAN_BitShift5_c                            BlinkerCAN.o
+BlinkerCAN_DW                                     BlinkerCAN.o
+BlinkerCAN_M                                      BlinkerCAN.o
+BlinkerCAN_M_                                     BlinkerCAN.o
+BlinkerCAN_initialize                             BlinkerCAN.o
+                                                  main.o
+BlinkerCAN_step                                   BlinkerCAN.o
+                                                  main.o
+BlinkerCAN_terminate                              BlinkerCAN.o
+BusFault_Handler                                  stm32f4xx_it.o
+                                                  startup_stm32f4xx.o
+CAN1_FilterList                                   waijung_hwdrvlib.o
+CAN1_Filter_Free                                  waijung_hwdrvlib.o
+CAN1_Filter_Hook                                  waijung_hwdrvlib.o
+CAN1_RX0_IRQHandler                               waijung_hwdrvlib.o
+                                                  startup_stm32f4xx.o
+CAN1_RX1_IRQHandler                               startup_stm32f4xx.o
+CAN1_SCE_IRQHandler                               startup_stm32f4xx.o
+CAN1_TX_IRQHandler                                startup_stm32f4xx.o
+CAN2_RX0_IRQHandler                               startup_stm32f4xx.o
+CAN2_RX1_IRQHandler                               startup_stm32f4xx.o
+CAN2_SCE_IRQHandler                               startup_stm32f4xx.o
+CAN2_TX_IRQHandler                                startup_stm32f4xx.o
+CANReceive1_FilterInitStructure                   waijung_hwdrvlib.o
+CANReceive1_GetMsg                                waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive1_Msg                                   waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive1_Msg_Buffer                            waijung_hwdrvlib.o
+CANReceive1_Msg_Buffer_Count                      waijung_hwdrvlib.o
+CANReceive1_Msg_Buffer_RIndex                     waijung_hwdrvlib.o
+CANReceive1_Msg_Buffer_WIndex                     waijung_hwdrvlib.o
+CANReceive1_data                                  waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive1_filter_isr                            waijung_hwdrvlib.o
+CANReceive1_filter_number                         waijung_hwdrvlib.o
+CANReceive2_FilterInitStructure                   waijung_hwdrvlib.o
+CANReceive2_GetMsg                                waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive2_Msg                                   waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive2_Msg_Buffer                            waijung_hwdrvlib.o
+CANReceive2_Msg_Buffer_Count                      waijung_hwdrvlib.o
+CANReceive2_Msg_Buffer_RIndex                     waijung_hwdrvlib.o
+CANReceive2_Msg_Buffer_WIndex                     waijung_hwdrvlib.o
+CANReceive2_data                                  waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive2_filter_isr                            waijung_hwdrvlib.o
+CANReceive2_filter_number                         waijung_hwdrvlib.o
+CANReceive3_FilterInitStructure                   waijung_hwdrvlib.o
+CANReceive3_GetMsg                                waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive3_Msg                                   waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive3_Msg_Buffer                            waijung_hwdrvlib.o
+CANReceive3_Msg_Buffer_Count                      waijung_hwdrvlib.o
+CANReceive3_Msg_Buffer_RIndex                     waijung_hwdrvlib.o
+CANReceive3_Msg_Buffer_WIndex                     waijung_hwdrvlib.o
+CANReceive3_data                                  waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive3_filter_isr                            waijung_hwdrvlib.o
+CANReceive3_filter_number                         waijung_hwdrvlib.o
+CANReceive4_FilterInitStructure                   waijung_hwdrvlib.o
+CANReceive4_GetMsg                                waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive4_Msg                                   waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive4_Msg_Buffer                            waijung_hwdrvlib.o
+CANReceive4_Msg_Buffer_Count                      waijung_hwdrvlib.o
+CANReceive4_Msg_Buffer_RIndex                     waijung_hwdrvlib.o
+CANReceive4_Msg_Buffer_WIndex                     waijung_hwdrvlib.o
+CANReceive4_data                                  waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive4_filter_isr                            waijung_hwdrvlib.o
+CANReceive4_filter_number                         waijung_hwdrvlib.o
+CANReceive_FilterInitStructure                    waijung_hwdrvlib.o
+CANReceive_GetMsg                                 waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive_Msg                                    waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive_Msg_Buffer                             waijung_hwdrvlib.o
+CANReceive_Msg_Buffer_Count                       waijung_hwdrvlib.o
+CANReceive_Msg_Buffer_RIndex                      waijung_hwdrvlib.o
+CANReceive_Msg_Buffer_WIndex                      waijung_hwdrvlib.o
+CANReceive_data                                   waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+CANReceive_filter_isr                             waijung_hwdrvlib.o
+CANReceive_filter_number                          waijung_hwdrvlib.o
+CAN_CancelTransmit                                stm32f4xx_can.o
+CAN_ClearFlag                                     stm32f4xx_can.o
+CAN_ClearITPendingBit                             stm32f4xx_can.o
+CAN_DBGFreeze                                     stm32f4xx_can.o
+CAN_DeInit                                        stm32f4xx_can.o
+CAN_FIFORelease                                   stm32f4xx_can.o
+CAN_FilterInit                                    stm32f4xx_can.o
+                                                  waijung_hwdrvlib.o
+CAN_GetFlagStatus                                 stm32f4xx_can.o
+CAN_GetITStatus                                   stm32f4xx_can.o
+CAN_GetLSBTransmitErrorCounter                    stm32f4xx_can.o
+CAN_GetLastErrorCode                              stm32f4xx_can.o
+CAN_GetReceiveErrorCounter                        stm32f4xx_can.o
+CAN_ITConfig                                      stm32f4xx_can.o
+                                                  waijung_hwdrvlib.o
+CAN_Init                                          stm32f4xx_can.o
+                                                  waijung_hwdrvlib.o
+CAN_MessagePending                                stm32f4xx_can.o
+                                                  waijung_hwdrvlib.o
+CAN_OperatingModeRequest                          stm32f4xx_can.o
+CAN_Receive                                       stm32f4xx_can.o
+                                                  waijung_hwdrvlib.o
+CAN_SlaveStartBank                                stm32f4xx_can.o
+CAN_Sleep                                         stm32f4xx_can.o
+CAN_StructInit                                    stm32f4xx_can.o
+CAN_TTComModeCmd                                  stm32f4xx_can.o
+CAN_Transmit                                      stm32f4xx_can.o
+                                                  waijung_hwdrvlib.o
+CAN_TransmitStatus                                stm32f4xx_can.o
+                                                  waijung_hwdrvlib.o
+CAN_WakeUp                                        stm32f4xx_can.o
+CANx_Transmit                                     waijung_hwdrvlib.o
+CRYP_IRQHandler                                   startup_stm32f4xx.o
+DCMI_IRQHandler                                   startup_stm32f4xx.o
+DMA1_Stream0_IRQHandler                           startup_stm32f4xx.o
+DMA1_Stream1_IRQHandler                           startup_stm32f4xx.o
+DMA1_Stream2_IRQHandler                           startup_stm32f4xx.o
+DMA1_Stream3_IRQHandler                           startup_stm32f4xx.o
+DMA1_Stream4_IRQHandler                           startup_stm32f4xx.o
+DMA1_Stream5_IRQHandler                           startup_stm32f4xx.o
+DMA1_Stream6_IRQHandler                           startup_stm32f4xx.o
+DMA1_Stream7_IRQHandler                           startup_stm32f4xx.o
+DMA2_Stream0_IRQHandler                           startup_stm32f4xx.o
+DMA2_Stream1_IRQHandler                           startup_stm32f4xx.o
+DMA2_Stream2_IRQHandler                           startup_stm32f4xx.o
+DMA2_Stream3_IRQHandler                           startup_stm32f4xx.o
+DMA2_Stream4_IRQHandler                           startup_stm32f4xx.o
+DMA2_Stream5_IRQHandler                           startup_stm32f4xx.o
+DMA2_Stream6_IRQHandler                           startup_stm32f4xx.o
+DMA2_Stream7_IRQHandler                           startup_stm32f4xx.o
+DMA_ClearFlag                                     stm32f4xx_dma.o
+                                                  waijung_hwdrvlib.o
+DMA_ClearITPendingBit                             stm32f4xx_dma.o
+DMA_Cmd                                           stm32f4xx_dma.o
+                                                  waijung_hwdrvlib.o
+DMA_DeInit                                        stm32f4xx_dma.o
+DMA_DoubleBufferModeCmd                           stm32f4xx_dma.o
+DMA_DoubleBufferModeConfig                        stm32f4xx_dma.o
+DMA_FlowControllerConfig                          stm32f4xx_dma.o
+DMA_GetCmdStatus                                  stm32f4xx_dma.o
+DMA_GetCurrDataCounter                            stm32f4xx_dma.o
+DMA_GetCurrentMemoryTarget                        stm32f4xx_dma.o
+DMA_GetFIFOStatus                                 stm32f4xx_dma.o
+DMA_GetFlagStatus                                 stm32f4xx_dma.o
+                                                  waijung_hwdrvlib.o
+DMA_GetITStatus                                   stm32f4xx_dma.o
+DMA_ITConfig                                      stm32f4xx_dma.o
+DMA_Init                                          stm32f4xx_dma.o
+                                                  waijung_hwdrvlib.o
+DMA_MemoryTargetConfig                            stm32f4xx_dma.o
+DMA_PeriphIncOffsetSizeConfig                     stm32f4xx_dma.o
+DMA_SetCurrDataCounter                            stm32f4xx_dma.o
+DMA_StructInit                                    stm32f4xx_dma.o
+DebugMon_Handler                                  stm32f4xx_it.o
+                                                  startup_stm32f4xx.o
+Default_Handler                                   startup_stm32f4xx.o
+ETH_IRQHandler                                    startup_stm32f4xx.o
+ETH_WKUP_IRQHandler                               startup_stm32f4xx.o
+EXTI0_IRQHandler                                  startup_stm32f4xx.o
+EXTI15_10_IRQHandler                              startup_stm32f4xx.o
+EXTI1_IRQHandler                                  startup_stm32f4xx.o
+EXTI2_IRQHandler                                  startup_stm32f4xx.o
+EXTI3_IRQHandler                                  startup_stm32f4xx.o
+EXTI4_IRQHandler                                  startup_stm32f4xx.o
+EXTI9_5_IRQHandler                                startup_stm32f4xx.o
+FLASH_IRQHandler                                  startup_stm32f4xx.o
+FPU_IRQHandler                                    startup_stm32f4xx.o
+FSMC_IRQHandler                                   startup_stm32f4xx.o
+GPIO_DeInit                                       stm32f4xx_gpio.o
+GPIO_Init                                         stm32f4xx_gpio.o
+                                                  waijung_hwdrvlib.o
+GPIO_PinAFConfig                                  stm32f4xx_gpio.o
+                                                  waijung_hwdrvlib.o
+GPIO_PinLockConfig                                stm32f4xx_gpio.o
+GPIO_ReadInputData                                stm32f4xx_gpio.o
+GPIO_ReadInputDataBit                             stm32f4xx_gpio.o
+GPIO_ReadOutputData                               stm32f4xx_gpio.o
+GPIO_ReadOutputDataBit                            stm32f4xx_gpio.o
+GPIO_ResetBits                                    stm32f4xx_gpio.o
+GPIO_SetBits                                      stm32f4xx_gpio.o
+GPIO_StructInit                                   stm32f4xx_gpio.o
+GPIO_ToggleBits                                   stm32f4xx_gpio.o
+GPIO_Write                                        stm32f4xx_gpio.o
+GPIO_WriteBit                                     stm32f4xx_gpio.o
+HASH_RNG_IRQHandler                               startup_stm32f4xx.o
+HardFault_Handler                                 stm32f4xx_it.o
+                                                  startup_stm32f4xx.o
+I2C1_ER_IRQHandler                                startup_stm32f4xx.o
+I2C1_EV_IRQHandler                                startup_stm32f4xx.o
+I2C2_ER_IRQHandler                                startup_stm32f4xx.o
+I2C2_EV_IRQHandler                                startup_stm32f4xx.o
+I2C3_ER_IRQHandler                                startup_stm32f4xx.o
+I2C3_EV_IRQHandler                                startup_stm32f4xx.o
+MemManage_Handler                                 stm32f4xx_it.o
+                                                  startup_stm32f4xx.o
+NMI_Handler                                       stm32f4xx_it.o
+                                                  startup_stm32f4xx.o
+NVIC_Init                                         misc.o
+                                                  waijung_hwdrvlib.o
+NVIC_PriorityGroupConfig                          misc.o
+NVIC_SetVectorTable                               misc.o
+NVIC_SystemLPConfig                               misc.o
+OTG_FS_IRQHandler                                 startup_stm32f4xx.o
+OTG_FS_WKUP_IRQHandler                            startup_stm32f4xx.o
+OTG_HS_EP1_IN_IRQHandler                          startup_stm32f4xx.o
+OTG_HS_EP1_OUT_IRQHandler                         startup_stm32f4xx.o
+OTG_HS_IRQHandler                                 startup_stm32f4xx.o
+OTG_HS_WKUP_IRQHandler                            startup_stm32f4xx.o
+PVD_IRQHandler                                    startup_stm32f4xx.o
+PWR_BackupAccessCmd                               stm32f4xx_pwr.o
+PWR_BackupRegulatorCmd                            stm32f4xx_pwr.o
+PWR_ClearFlag                                     stm32f4xx_pwr.o
+PWR_DeInit                                        stm32f4xx_pwr.o
+PWR_EnterSTANDBYMode                              stm32f4xx_pwr.o
+PWR_EnterSTOPMode                                 stm32f4xx_pwr.o
+PWR_EnterUnderDriveSTOPMode                       stm32f4xx_pwr.o
+PWR_FlashPowerDownCmd                             stm32f4xx_pwr.o
+PWR_GetFlagStatus                                 stm32f4xx_pwr.o
+PWR_MainRegulatorModeConfig                       stm32f4xx_pwr.o
+PWR_OverDriveCmd                                  stm32f4xx_pwr.o
+PWR_OverDriveSWCmd                                stm32f4xx_pwr.o
+PWR_PVDCmd                                        stm32f4xx_pwr.o
+PWR_PVDLevelConfig                                stm32f4xx_pwr.o
+PWR_UnderDriveCmd                                 stm32f4xx_pwr.o
+PWR_WakeUpPinCmd                                  stm32f4xx_pwr.o
+PendSV_Handler                                    stm32f4xx_it.o
+                                                  startup_stm32f4xx.o
+RCC_AHB1PeriphClockCmd                            stm32f4xx_rcc.o
+                                                  waijung_hwdrvlib.o
+RCC_AHB1PeriphClockLPModeCmd                      stm32f4xx_rcc.o
+RCC_AHB1PeriphResetCmd                            stm32f4xx_rcc.o
+                                                  stm32f4xx_gpio.o
+RCC_AHB2PeriphClockCmd                            stm32f4xx_rcc.o
+RCC_AHB2PeriphClockLPModeCmd                      stm32f4xx_rcc.o
+RCC_AHB2PeriphResetCmd                            stm32f4xx_rcc.o
+RCC_AHB3PeriphClockCmd                            stm32f4xx_rcc.o
+RCC_AHB3PeriphClockLPModeCmd                      stm32f4xx_rcc.o
+RCC_AHB3PeriphResetCmd                            stm32f4xx_rcc.o
+RCC_APB1PeriphClockCmd                            stm32f4xx_rcc.o
+                                                  waijung_hwdrvlib.o
+                                                  stm32f4xx_it.o
+RCC_APB1PeriphClockLPModeCmd                      stm32f4xx_rcc.o
+RCC_APB1PeriphResetCmd                            stm32f4xx_rcc.o
+                                                  stm32f4xx_can.o
+                                                  stm32f4xx_usart.o
+                                                  stm32f4xx_pwr.o
+RCC_APB2PeriphClockCmd                            stm32f4xx_rcc.o
+RCC_APB2PeriphClockLPModeCmd                      stm32f4xx_rcc.o
+RCC_APB2PeriphResetCmd                            stm32f4xx_rcc.o
+                                                  stm32f4xx_usart.o
+                                                  stm32f4xx_syscfg.o
+RCC_AdjustHSICalibrationValue                     stm32f4xx_rcc.o
+RCC_BackupResetCmd                                stm32f4xx_rcc.o
+RCC_ClearFlag                                     stm32f4xx_rcc.o
+RCC_ClearITPendingBit                             stm32f4xx_rcc.o
+RCC_ClockSecuritySystemCmd                        stm32f4xx_rcc.o
+RCC_DeInit                                        stm32f4xx_rcc.o
+RCC_GetClocksFreq                                 stm32f4xx_rcc.o
+                                                  stm32f4xx_usart.o
+RCC_GetFlagStatus                                 stm32f4xx_rcc.o
+RCC_GetITStatus                                   stm32f4xx_rcc.o
+RCC_GetSYSCLKSource                               stm32f4xx_rcc.o
+RCC_HCLKConfig                                    stm32f4xx_rcc.o
+RCC_HSEConfig                                     stm32f4xx_rcc.o
+RCC_HSICmd                                        stm32f4xx_rcc.o
+RCC_I2SCLKConfig                                  stm32f4xx_rcc.o
+RCC_IRQHandler                                    startup_stm32f4xx.o
+RCC_ITConfig                                      stm32f4xx_rcc.o
+RCC_LSEConfig                                     stm32f4xx_rcc.o
+RCC_LSEModeConfig                                 stm32f4xx_rcc.o
+RCC_LSICmd                                        stm32f4xx_rcc.o
+RCC_LTDCCLKDivConfig                              stm32f4xx_rcc.o
+RCC_MCO1Config                                    stm32f4xx_rcc.o
+RCC_MCO2Config                                    stm32f4xx_rcc.o
+RCC_PCLK1Config                                   stm32f4xx_rcc.o
+RCC_PCLK2Config                                   stm32f4xx_rcc.o
+RCC_PLLCmd                                        stm32f4xx_rcc.o
+RCC_PLLConfig                                     stm32f4xx_rcc.o
+RCC_PLLI2SCmd                                     stm32f4xx_rcc.o
+RCC_PLLI2SConfig                                  stm32f4xx_rcc.o
+RCC_PLLSAICmd                                     stm32f4xx_rcc.o
+RCC_PLLSAIConfig                                  stm32f4xx_rcc.o
+RCC_RTCCLKCmd                                     stm32f4xx_rcc.o
+RCC_RTCCLKConfig                                  stm32f4xx_rcc.o
+RCC_SAIBlockACLKConfig                            stm32f4xx_rcc.o
+RCC_SAIBlockBCLKConfig                            stm32f4xx_rcc.o
+RCC_SAIPLLI2SClkDivConfig                         stm32f4xx_rcc.o
+RCC_SAIPLLSAIClkDivConfig                         stm32f4xx_rcc.o
+RCC_SYSCLKConfig                                  stm32f4xx_rcc.o
+RCC_TIMCLKPresConfig                              stm32f4xx_rcc.o
+RCC_WaitForHSEStartUp                             stm32f4xx_rcc.o
+RTC_Alarm_IRQHandler                              startup_stm32f4xx.o
+RTC_WKUP_IRQHandler                               startup_stm32f4xx.o
+Reset_Handler                                     startup_stm32f4xx.o
+SDIO_IRQHandler                                   startup_stm32f4xx.o
+SPI1_IRQHandler                                   startup_stm32f4xx.o
+SPI2_IRQHandler                                   startup_stm32f4xx.o
+SPI3_IRQHandler                                   startup_stm32f4xx.o
+SVC_Handler                                       stm32f4xx_it.o
+                                                  startup_stm32f4xx.o
+SYSCFG_CompensationCellCmd                        stm32f4xx_syscfg.o
+SYSCFG_DeInit                                     stm32f4xx_syscfg.o
+SYSCFG_ETH_MediaInterfaceConfig                   stm32f4xx_syscfg.o
+SYSCFG_EXTILineConfig                             stm32f4xx_syscfg.o
+SYSCFG_GetCompensationCellStatus                  stm32f4xx_syscfg.o
+SYSCFG_MemoryRemapConfig                          stm32f4xx_syscfg.o
+SYSCFG_MemorySwappingBank                         stm32f4xx_syscfg.o
+SysTick_CLKSourceConfig                           misc.o
+SysTick_Handler                                   main.o
+                                                  startup_stm32f4xx.o
+SysTimer_IsTimeout                                waijung_hwdrvlib.o
+SysTimer_Start                                    waijung_hwdrvlib.o
+SysTimer_delay_ms                                 waijung_hwdrvlib.o
+SysTimer_delay_us                                 waijung_hwdrvlib.o
+SysTimer_uS_IsTimeout                             waijung_hwdrvlib.o
+SysTimer_uS_Start                                 waijung_hwdrvlib.o
+SystemCoreClock                                   system_stm32f4xx.o
+SystemCoreClockUpdate                             system_stm32f4xx.o
+SystemInit                                        system_stm32f4xx.o
+                                                  startup_stm32f4xx.o
+TAMP_STAMP_IRQHandler                             startup_stm32f4xx.o
+TIM1_BRK_TIM9_IRQHandler                          startup_stm32f4xx.o
+TIM1_CC_IRQHandler                                startup_stm32f4xx.o
+TIM1_TRG_COM_TIM11_IRQHandler                     startup_stm32f4xx.o
+TIM1_UP_TIM10_IRQHandler                          startup_stm32f4xx.o
+TIM2_IRQHandler                                   startup_stm32f4xx.o
+TIM3_IRQHandler                                   startup_stm32f4xx.o
+TIM4_IRQHandler                                   startup_stm32f4xx.o
+TIM5_IRQHandler                                   startup_stm32f4xx.o
+TIM6_DAC_IRQHandler                               startup_stm32f4xx.o
+TIM7_IRQHandler                                   startup_stm32f4xx.o
+TIM8_BRK_TIM12_IRQHandler                         startup_stm32f4xx.o
+TIM8_CC_IRQHandler                                startup_stm32f4xx.o
+TIM8_TRG_COM_TIM14_IRQHandler                     startup_stm32f4xx.o
+TIM8_UP_TIM13_IRQHandler                          startup_stm32f4xx.o
+UART2_FlushTxBuffer                               waijung_hwdrvlib.o
+UART2_Read                                        waijung_hwdrvlib.o
+UART2_ReadBinary                                  waijung_hwdrvlib.o
+UART2_ReadEx                                      waijung_hwdrvlib.o
+UART2_ReadLine                                    waijung_hwdrvlib.o
+UART2_RestoreBytes                                waijung_hwdrvlib.o
+UART2_Rx_Buffer                                   waijung_hwdrvlib.o
+UART2_Temp_Buffer                                 waijung_hwdrvlib.o
+UART2_TxUpdate                                    waijung_hwdrvlib.o
+UART2_Tx_Buffer                                   waijung_hwdrvlib.o
+UART2_Write                                       waijung_hwdrvlib.o
+UART4_IRQHandler                                  startup_stm32f4xx.o
+UART5_IRQHandler                                  startup_stm32f4xx.o
+UARTSetup_DMA_Init                                waijung_hwdrvlib.o
+UARTSetup_Tx_State                                waijung_hwdrvlib.o
+USART1_IRQHandler                                 startup_stm32f4xx.o
+USART2_IRQHandler                                 startup_stm32f4xx.o
+USART3_IRQHandler                                 startup_stm32f4xx.o
+USART6_IRQHandler                                 startup_stm32f4xx.o
+USART_ClearFlag                                   stm32f4xx_usart.o
+                                                  waijung_hwdrvlib.o
+USART_ClearITPendingBit                           stm32f4xx_usart.o
+USART_ClockInit                                   stm32f4xx_usart.o
+USART_ClockStructInit                             stm32f4xx_usart.o
+USART_Cmd                                         stm32f4xx_usart.o
+                                                  waijung_hwdrvlib.o
+USART_DMACmd                                      stm32f4xx_usart.o
+                                                  waijung_hwdrvlib.o
+USART_DeInit                                      stm32f4xx_usart.o
+USART_GetFlagStatus                               stm32f4xx_usart.o
+                                                  waijung_hwdrvlib.o
+USART_GetITStatus                                 stm32f4xx_usart.o
+USART_HalfDuplexCmd                               stm32f4xx_usart.o
+USART_ITConfig                                    stm32f4xx_usart.o
+USART_Init                                        stm32f4xx_usart.o
+                                                  waijung_hwdrvlib.o
+USART_IrDACmd                                     stm32f4xx_usart.o
+USART_IrDAConfig                                  stm32f4xx_usart.o
+USART_LINBreakDetectLengthConfig                  stm32f4xx_usart.o
+USART_LINCmd                                      stm32f4xx_usart.o
+USART_OneBitMethodCmd                             stm32f4xx_usart.o
+USART_OverSampling8Cmd                            stm32f4xx_usart.o
+                                                  waijung_hwdrvlib.o
+USART_ReceiveData                                 stm32f4xx_usart.o
+USART_ReceiverWakeUpCmd                           stm32f4xx_usart.o
+USART_SendBreak                                   stm32f4xx_usart.o
+USART_SendData                                    stm32f4xx_usart.o
+USART_SetAddress                                  stm32f4xx_usart.o
+USART_SetGuardTime                                stm32f4xx_usart.o
+USART_SetPrescaler                                stm32f4xx_usart.o
+USART_SmartCardCmd                                stm32f4xx_usart.o
+USART_SmartCardNACKCmd                            stm32f4xx_usart.o
+USART_StructInit                                  stm32f4xx_usart.o
+USART_WakeUpConfig                                stm32f4xx_usart.o
+UsageFault_Handler                                stm32f4xx_it.o
+                                                  startup_stm32f4xx.o
+WWDG_IRQHandler                                   startup_stm32f4xx.o
+__HeapBase                                        startup_stm32f4xx.o
+__HeapLimit                                       startup_stm32f4xx.o
+__StackLimit                                      startup_stm32f4xx.o
+__StackTop                                        startup_stm32f4xx.o
+__adddf3                                          c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__aeabi_cdcmpeq                                   c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__aeabi_cdcmple                                   c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__aeabi_cdrcmple                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__aeabi_dadd                                      c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+                                                  BlinkerCAN.o
+__aeabi_dcmpeq                                    c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+                                                  BlinkerCAN.o
+__aeabi_dcmpge                                    c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__aeabi_dcmpgt                                    c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+                                                  BlinkerCAN.o
+__aeabi_dcmple                                    c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__aeabi_dcmplt                                    c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+                                                  BlinkerCAN.o
+__aeabi_drsub                                     c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__aeabi_dsub                                      c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__aeabi_f2d                                       c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__aeabi_i2d                                       c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__aeabi_l2d                                       c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__aeabi_ui2d                                      c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__aeabi_ul2d                                      c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__bss_end__                                       syscalls.o
+                                                  startup_stm32f4xx.o
+__bss_start__                                     startup_stm32f4xx.o
+__cmpdf2                                          c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__data_end__                                      startup_stm32f4xx.o
+__data_start__                                    startup_stm32f4xx.o
+__env                                             syscalls.o
+__eqdf2                                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__etext                                           startup_stm32f4xx.o
+__extendsfdf2                                     c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__floatdidf                                       c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__floatsidf                                       c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__floatundidf                                     c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__floatunsidf                                     c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+__gedf2                                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__gtdf2                                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__isr_vector                                      startup_stm32f4xx.o
+__ledf2                                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__ltdf2                                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__malloc_av_                                      c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+__malloc_current_mallinfo                         c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+__malloc_lock                                     c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mlock.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+__malloc_max_sbrked_mem                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+__malloc_max_total_mem                            c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+__malloc_sbrk_base                                c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+__malloc_top_pad                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+__malloc_trim_threshold                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+__malloc_unlock                                   c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mlock.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+__nedf2                                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+__subdf3                                          c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+_close                                            syscalls.o
+_execve                                           syscalls.o
+_exit                                             syscalls.o
+_fork                                             syscalls.o
+_free_r                                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+_fstat                                            syscalls.o
+_getpid                                           syscalls.o
+_global_impure_ptr                                c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-impure.o)
+_impure_ptr                                       c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-impure.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+_isatty                                           syscalls.o
+_kill                                             syscalls.o
+_link                                             syscalls.o
+_lseek                                            syscalls.o
+_malloc_r                                         c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+_malloc_trim_r                                    c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+_read                                             syscalls.o
+_reclaim_reent                                    c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+_sbrk                                             syscalls.o
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-sbrkr.o)
+_sbrk_r                                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-sbrkr.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-mallocr.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-freer.o)
+_stat                                             syscalls.o
+_unlink                                           syscalls.o
+_wait                                             syscalls.o
+_write                                            syscalls.o
+cleanup_glue                                      c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+disable_CANReceive                                waijung_hwdrvlib.o
+disable_CANReceive1                               waijung_hwdrvlib.o
+disable_CANReceive2                               waijung_hwdrvlib.o
+disable_CANReceive3                               waijung_hwdrvlib.o
+disable_CANReceive4                               waijung_hwdrvlib.o
+disable_CANSetup                                  waijung_hwdrvlib.o
+enable_CANReceive                                 waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+enable_CANReceive1                                waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+enable_CANReceive2                                waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+enable_CANReceive3                                waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+enable_CANReceive4                                waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+enable_CANSetup                                   waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+enable_DigitalOutput                              waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+enable_UARTSetup                                  waijung_hwdrvlib.o
+                                                  BlinkerCAN.o
+environ                                           syscalls.o
+errno                                             c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-reent.o)
+                                                  c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-sbrkr.o)
+                                                  syscalls.o
+main                                              main.o
+                                                  startup_stm32f4xx.o
+memcpy                                            c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+                                                  waijung_hwdrvlib.o
+memset                                            c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memset.o)
+                                                  BlinkerCAN.o
+rt_OneStep                                        main.o
+strncmp                                           c:/users/labuser/desktop/waijung17_03a/utils/gnu_tools_arm_embedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-strncmp.o)
+                                                  waijung_hwdrvlib.o
+systick_count                                     main.o
+                                                  waijung_hwdrvlib.o
+waijung_can1_initial                              waijung_hwdrvlib.o
+waijung_usart2_initial                            waijung_hwdrvlib.o

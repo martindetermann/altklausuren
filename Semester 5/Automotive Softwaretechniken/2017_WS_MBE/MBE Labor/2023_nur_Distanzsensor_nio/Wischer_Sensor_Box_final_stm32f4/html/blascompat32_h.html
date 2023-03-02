@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td><span class="ct"> * CONFIDENTIAL AND CONTAINING PROPRIETARY TRADE SECRETS</span></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="ct"> * Copyright 1984-2012 The MathWorks, Inc.</span></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td><span class="ct"> * The source code contained in this listing contains proprietary and</span></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td><span class="ct"> * confidential trade secrets of The MathWorks, Inc.   The use, modification,</span></td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="ct"> * or development of derivative work based on the code or ideas obtained</span></td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td><span class="ct"> * from the code is prohibited without the express written permission of The</span></td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="ct"> * MathWorks, Inc.  The disclosure of this code to any party not authorized</span></td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td><span class="ct"> * by The MathWorks, Inc. is strictly forbidden.</span></td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td><span class="ct"> * CONFIDENTIAL AND CONTAINING PROPRIETARY TRADE SECRETS</span></td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td></td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td><span class="ct"> *  32-bit API wrapper for libmwblas</span></td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td><span class="ct"> *  WARNING: This module is a temporary module specifically designed to </span></td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td><span class="ct"> *           bridge the incompatiblity between Embedded MATLAB (which lacks</span></td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td><span class="ct"> *           a 64-bit integer type) and 64-bit BLAS only.</span></td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td><span class="ct"> *           Do not link to this module otherwise.</span></td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td><span class="ct"> *           Link to libmwblas instead.</span></td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td><span class="ct"> */</span>   </td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td><span class="pp">#if</span> <a id="21c5" class="tk">defined</a>(<a id="21c13" class="tk">_MSC_VER</a>)</td></tr>
+<tr name="22" id="22">
+<td><a id="l22" class='ln'>22</a></td><td><span class="pp"># pragma</span> <a id="22c10" class="tk">once</a></td></tr>
+<tr name="23" id="23">
+<td><a id="l23" class='ln'>23</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="24" id="24">
+<td><a id="l24" class='ln'>24</a></td><td><span class="pp">#if</span> <a id="24c5" class="tk">defined</a>(<a id="24c13" class="tk">__GNUC__</a>) <a id="24c23" class="tk">&amp;&amp;</a> (<a id="24c27" class="tk">__GNUC__</a> <a id="24c36" class="tk">&gt;</a> 3 <a id="24c40" class="tk">||</a> (<a id="24c44" class="tk">__GNUC__</a> <a id="24c53" class="tk">==</a> 3 <a id="24c58" class="tk">&amp;&amp;</a> <a id="24c61" class="tk">__GNUC_MINOR__</a> <a id="24c76" class="tk">&gt;</a> 3))</td></tr>
+<tr name="25" id="25">
+<td><a id="l25" class='ln'>25</a></td><td><span class="pp"># pragma</span> <a id="25c10" class="tk">once</a></td></tr>
+<tr name="26" id="26">
+<td><a id="l26" class='ln'>26</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="27" id="27">
+<td><a id="l27" class='ln'>27</a></td><td></td></tr>
+<tr name="28" id="28">
+<td><a id="l28" class='ln'>28</a></td><td><span class="pp">#ifndef</span> <a id="28c9" class="tk">blascompat32_h</a></td></tr>
+<tr name="29" id="29">
+<td><a id="l29" class='ln'>29</a></td><td><span class="pp">#define</span> <a id="29c9" class="tk">blascompat32_h</a></td></tr>
+<tr name="30" id="30">
+<td><a id="l30" class='ln'>30</a></td><td></td></tr>
+<tr name="31" id="31">
+<td><a id="l31" class='ln'>31</a></td><td><span class="pp">#ifndef</span> <a id="31c9" class="tk">EXTERN_C</a></td></tr>
+<tr name="32" id="32">
+<td><a id="l32" class='ln'>32</a></td><td><span class="pp">#ifdef</span> <a id="32c8" class="tk">__cplusplus</a></td></tr>
+<tr name="33" id="33">
+<td><a id="l33" class='ln'>33</a></td><td>  <span class="pp">#define</span> <a id="33c11" class="tk">EXTERN_C</a> <span class="kw">extern</span> "C"</td></tr>
+<tr name="34" id="34">
+<td><a id="l34" class='ln'>34</a></td><td><span class="pp">#else</span></td></tr>
+<tr name="35" id="35">
+<td><a id="l35" class='ln'>35</a></td><td>  <span class="pp">#define</span> <a id="35c11" class="tk">EXTERN_C</a> <span class="kw">extern</span></td></tr>
+<tr name="36" id="36">
+<td><a id="l36" class='ln'>36</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="37" id="37">
+<td><a id="l37" class='ln'>37</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="38" id="38">
+<td><a id="l38" class='ln'>38</a></td><td></td></tr>
+<tr name="39" id="39">
+<td><a id="l39" class='ln'>39</a></td><td><span class="pp">#ifndef</span> <a id="39c9" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="40" id="40">
+<td><a id="l40" class='ln'>40</a></td><td>  <span class="pp">#define</span> <a id="40c11" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="41" id="41">
+<td><a id="l41" class='ln'>41</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="42" id="42">
+<td><a id="l42" class='ln'>42</a></td><td></td></tr>
+<tr name="43" id="43">
+<td><a id="l43" class='ln'>43</a></td><td><span class="pp">#include &lt;tmwtypes.h&gt;</span></td></tr>
+<tr name="44" id="44">
+<td><a id="l44" class='ln'>44</a></td><td></td></tr>
+<tr name="45" id="45">
+<td><a id="l45" class='ln'>45</a></td><td><span class="pp">#if</span> <a id="45c5" class="tk">defined</a>(<a id="45c13" class="tk">_WIN32</a>) </td></tr>
+<tr name="46" id="46">
+<td><a id="l46" class='ln'>46</a></td><td><span class="pp">#define</span> <a id="46c9" class="tk">FORTRAN_WRAPPER</a>(<a id="46c25" class="tk">x</a>) <a id="46c28" class="tk">x</a></td></tr>
+<tr name="47" id="47">
+<td><a id="l47" class='ln'>47</a></td><td><span class="pp">#else</span></td></tr>
+<tr name="48" id="48">
+<td><a id="l48" class='ln'>48</a></td><td><span class="pp">#define</span> <a id="48c9" class="tk">FORTRAN_WRAPPER</a>(<a id="48c25" class="tk">x</a>) <a id="48c28" class="tk">x</a> ## <a id="48c33" class="tk">_</a></td></tr>
+<tr name="49" id="49">
+<td><a id="l49" class='ln'>49</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="50" id="50">
+<td><a id="l50" class='ln'>50</a></td><td></td></tr>
+<tr name="51" id="51">
+<td><a id="l51" class='ln'>51</a></td><td><span class="pp">#ifndef</span> <a id="51c9" class="tk">COMPLEX_TYPES</a></td></tr>
+<tr name="52" id="52">
+<td><a id="l52" class='ln'>52</a></td><td><span class="pp">#define</span> <a id="52c9" class="tk">COMPLEX_TYPES</a></td></tr>
+<tr name="53" id="53">
+<td><a id="l53" class='ln'>53</a></td><td>  <span class="kw">typedef</span> <span class="kw">struct</span><span class="br">{</span><span class="kw">float</span> <a id="53c24" class="tk">r</a>,<a id="53c26" class="tk">i</a>;<span class="br">}</span> <a id="53c30" class="tk">complex</a>;</td></tr>
+<tr name="54" id="54">
+<td><a id="l54" class='ln'>54</a></td><td>  <span class="kw">typedef</span> <span class="kw">struct</span><span class="br">{</span><span class="kw">double</span> <a id="54c25" class="tk">r</a>,<a id="54c27" class="tk">i</a>;<span class="br">}</span> <a id="54c31" class="tk">doublecomplex</a>;</td></tr>
+<tr name="55" id="55">
+<td><a id="l55" class='ln'>55</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="56" id="56">
+<td><a id="l56" class='ln'>56</a></td><td>  </td></tr>
+<tr name="57" id="57">
+<td><a id="l57" class='ln'>57</a></td><td><a id="57c1" class="tk">EXTERN_C</a> <a id="57c10" class="tk">LIBMWBLASCOMPAT32_API</a> </td></tr>
+<tr name="58" id="58">
+<td><a id="l58" class='ln'>58</a></td><td><span class="pp">#define</span> <a id="58c9" class="tk">isamax32</a> <a id="58c18" class="tk">FORTRAN_WRAPPER</a>(<a id="58c34" class="tk">isamax32</a>)</td></tr>
+<tr name="59" id="59">
+<td><a id="l59" class='ln'>59</a></td><td><span class="kw">int</span> <a id="59c5" class="tk">isamax32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="59c24" class="tk">*</a><a id="59c25" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">float</span>  <a id="59c43" class="tk">*</a><a id="59c44" class="tk">sx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="59c58" class="tk">*</a><a id="59c59" class="tk">incx32</a>);</td></tr>
+<tr name="60" id="60">
+<td><a id="l60" class='ln'>60</a></td><td></td></tr>
+<tr name="61" id="61">
+<td><a id="l61" class='ln'>61</a></td><td><a id="61c1" class="tk">EXTERN_C</a> <a id="61c10" class="tk">LIBMWBLASCOMPAT32_API</a> </td></tr>
+<tr name="62" id="62">
+<td><a id="l62" class='ln'>62</a></td><td><span class="pp">#define</span> <a id="62c9" class="tk">idamax32</a> <a id="62c18" class="tk">FORTRAN_WRAPPER</a>(<a id="62c34" class="tk">idamax32</a>)</td></tr>
+<tr name="63" id="63">
+<td><a id="l63" class='ln'>63</a></td><td><span class="kw">int</span> <a id="63c5" class="tk">idamax32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="63c24" class="tk">*</a><a id="63c25" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="63c43" class="tk">*</a><a id="63c44" class="tk">dx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="63c58" class="tk">*</a><a id="63c59" class="tk">incx32</a>);</td></tr>
+<tr name="64" id="64">
+<td><a id="l64" class='ln'>64</a></td><td></td></tr>
+<tr name="65" id="65">
+<td><a id="l65" class='ln'>65</a></td><td><a id="65c1" class="tk">EXTERN_C</a> <a id="65c10" class="tk">LIBMWBLASCOMPAT32_API</a> </td></tr>
+<tr name="66" id="66">
+<td><a id="l66" class='ln'>66</a></td><td><span class="pp">#define</span> <a id="66c9" class="tk">icamax32</a> <a id="66c18" class="tk">FORTRAN_WRAPPER</a>(<a id="66c34" class="tk">icamax32</a>)</td></tr>
+<tr name="67" id="67">
+<td><a id="l67" class='ln'>67</a></td><td><span class="kw">int</span> <a id="67c5" class="tk">icamax32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="67c24" class="tk">*</a><a id="67c25" class="tk">n32</a>, <span class="kw">const</span> <a id="67c36" class="tk">creal32_T</a> <a id="67c46" class="tk">*</a><a id="67c47" class="tk">cx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="67c61" class="tk">*</a><a id="67c62" class="tk">incx32</a>);</td></tr>
+<tr name="68" id="68">
+<td><a id="l68" class='ln'>68</a></td><td></td></tr>
+<tr name="69" id="69">
+<td><a id="l69" class='ln'>69</a></td><td><a id="69c1" class="tk">EXTERN_C</a> <a id="69c10" class="tk">LIBMWBLASCOMPAT32_API</a> </td></tr>
+<tr name="70" id="70">
+<td><a id="l70" class='ln'>70</a></td><td><span class="pp">#define</span> <a id="70c9" class="tk">izamax32</a> <a id="70c18" class="tk">FORTRAN_WRAPPER</a>(<a id="70c34" class="tk">izamax32</a>)</td></tr>
+<tr name="71" id="71">
+<td><a id="l71" class='ln'>71</a></td><td><span class="kw">int</span> <a id="71c5" class="tk">izamax32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="71c24" class="tk">*</a><a id="71c25" class="tk">n32</a>, <span class="kw">const</span> <a id="71c36" class="tk">creal_T</a> <a id="71c44" class="tk">*</a><a id="71c45" class="tk">zx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="71c59" class="tk">*</a><a id="71c60" class="tk">incx32</a>);</td></tr>
+<tr name="72" id="72">
+<td><a id="l72" class='ln'>72</a></td><td></td></tr>
+<tr name="73" id="73">
+<td><a id="l73" class='ln'>73</a></td><td><a id="73c1" class="tk">EXTERN_C</a> <a id="73c10" class="tk">LIBMWBLASCOMPAT32_API</a> </td></tr>
+<tr name="74" id="74">
+<td><a id="l74" class='ln'>74</a></td><td><span class="pp">#define</span> <a id="74c9" class="tk">sasum32</a> <a id="74c17" class="tk">FORTRAN_WRAPPER</a>(<a id="74c33" class="tk">sasum32</a>)</td></tr>
+<tr name="75" id="75">
+<td><a id="l75" class='ln'>75</a></td><td><span class="kw">float</span> <a id="75c7" class="tk">sasum32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="75c25" class="tk">*</a><a id="75c26" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">float</span>  <a id="75c44" class="tk">*</a><a id="75c45" class="tk">sx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="75c59" class="tk">*</a><a id="75c60" class="tk">incx32</a>);</td></tr>
+<tr name="76" id="76">
+<td><a id="l76" class='ln'>76</a></td><td></td></tr>
+<tr name="77" id="77">
+<td><a id="l77" class='ln'>77</a></td><td><a id="77c1" class="tk">EXTERN_C</a> <a id="77c10" class="tk">LIBMWBLASCOMPAT32_API</a> </td></tr>
+<tr name="78" id="78">
+<td><a id="l78" class='ln'>78</a></td><td><span class="pp">#define</span> <a id="78c9" class="tk">dasum32</a> <a id="78c17" class="tk">FORTRAN_WRAPPER</a>(<a id="78c33" class="tk">dasum32</a>)</td></tr>
+<tr name="79" id="79">
+<td><a id="l79" class='ln'>79</a></td><td><span class="kw">double</span> <a id="79c8" class="tk">dasum32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="79c26" class="tk">*</a><a id="79c27" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="79c45" class="tk">*</a><a id="79c46" class="tk">dx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="79c60" class="tk">*</a><a id="79c61" class="tk">incx32</a>);</td></tr>
+<tr name="80" id="80">
+<td><a id="l80" class='ln'>80</a></td><td></td></tr>
+<tr name="81" id="81">
+<td><a id="l81" class='ln'>81</a></td><td><a id="81c1" class="tk">EXTERN_C</a> <a id="81c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="82" id="82">
+<td><a id="l82" class='ln'>82</a></td><td><span class="pp">#define</span> <a id="82c9" class="tk">saxpy32</a> <a id="82c17" class="tk">FORTRAN_WRAPPER</a>(<a id="82c33" class="tk">saxpy32</a>)</td></tr>
+<tr name="83" id="83">
+<td><a id="l83" class='ln'>83</a></td><td><span class="kw">void</span> <a id="83c6" class="tk">saxpy32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="83c24" class="tk">*</a><a id="83c25" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="83c42" class="tk">*</a><a id="83c43" class="tk">sa</a>, <span class="kw">const</span> <span class="kw">float</span>  <a id="83c60" class="tk">*</a><a id="83c61" class="tk">sx</a>,</td></tr>
+<tr name="84" id="84">
+<td><a id="l84" class='ln'>84</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="84c24" class="tk">*</a><a id="84c25" class="tk">incx32</a>, <span class="kw">float</span> <a id="84c39" class="tk">*</a><a id="84c40" class="tk">sy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="84c54" class="tk">*</a><a id="84c55" class="tk">incy32</a>);</td></tr>
+<tr name="85" id="85">
+<td><a id="l85" class='ln'>85</a></td><td></td></tr>
+<tr name="86" id="86">
+<td><a id="l86" class='ln'>86</a></td><td><a id="86c1" class="tk">EXTERN_C</a> <a id="86c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="87" id="87">
+<td><a id="l87" class='ln'>87</a></td><td><span class="pp">#define</span> <a id="87c9" class="tk">daxpy32</a> <a id="87c17" class="tk">FORTRAN_WRAPPER</a>(<a id="87c33" class="tk">daxpy32</a>)</td></tr>
+<tr name="88" id="88">
+<td><a id="l88" class='ln'>88</a></td><td><span class="kw">void</span> <a id="88c6" class="tk">daxpy32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="88c24" class="tk">*</a><a id="88c25" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="88c43" class="tk">*</a><a id="88c44" class="tk">da</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="88c61" class="tk">*</a><a id="88c62" class="tk">dx</a>,</td></tr>
+<tr name="89" id="89">
+<td><a id="l89" class='ln'>89</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="89c24" class="tk">*</a><a id="89c25" class="tk">incx32</a>, <span class="kw">double</span> <a id="89c40" class="tk">*</a><a id="89c41" class="tk">dy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="89c55" class="tk">*</a><a id="89c56" class="tk">incy32</a>);</td></tr>
+<tr name="90" id="90">
+<td><a id="l90" class='ln'>90</a></td><td></td></tr>
+<tr name="91" id="91">
+<td><a id="l91" class='ln'>91</a></td><td><a id="91c1" class="tk">EXTERN_C</a> <a id="91c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="92" id="92">
+<td><a id="l92" class='ln'>92</a></td><td><span class="pp">#define</span> <a id="92c9" class="tk">caxpy32</a> <a id="92c17" class="tk">FORTRAN_WRAPPER</a>(<a id="92c33" class="tk">caxpy32</a>)</td></tr>
+<tr name="93" id="93">
+<td><a id="l93" class='ln'>93</a></td><td><span class="kw">void</span> <a id="93c6" class="tk">caxpy32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="93c24" class="tk">*</a><a id="93c25" class="tk">n32</a>, <span class="kw">const</span> <a id="93c36" class="tk">creal32_T</a> <a id="93c46" class="tk">*</a><a id="93c47" class="tk">ca</a>, <span class="kw">const</span> <a id="93c57" class="tk">creal32_T</a> <a id="93c67" class="tk">*</a><a id="93c68" class="tk">cx</a>,</td></tr>
+<tr name="94" id="94">
+<td><a id="l94" class='ln'>94</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="94c24" class="tk">*</a><a id="94c25" class="tk">incx32</a>, <a id="94c33" class="tk">creal32_T</a> <a id="94c43" class="tk">*</a><a id="94c44" class="tk">cy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="94c58" class="tk">*</a><a id="94c59" class="tk">incy32</a>);</td></tr>
+<tr name="95" id="95">
+<td><a id="l95" class='ln'>95</a></td><td></td></tr>
+<tr name="96" id="96">
+<td><a id="l96" class='ln'>96</a></td><td><a id="96c1" class="tk">EXTERN_C</a> <a id="96c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="97" id="97">
+<td><a id="l97" class='ln'>97</a></td><td><span class="pp">#define</span> <a id="97c9" class="tk">zaxpy32</a> <a id="97c17" class="tk">FORTRAN_WRAPPER</a>(<a id="97c33" class="tk">zaxpy32</a>)</td></tr>
+<tr name="98" id="98">
+<td><a id="l98" class='ln'>98</a></td><td><span class="kw">void</span> <a id="98c6" class="tk">zaxpy32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="98c24" class="tk">*</a><a id="98c25" class="tk">n32</a>, <span class="kw">const</span> <a id="98c36" class="tk">creal_T</a> <a id="98c44" class="tk">*</a><a id="98c45" class="tk">za</a>, <span class="kw">const</span> <a id="98c55" class="tk">creal_T</a> <a id="98c63" class="tk">*</a><a id="98c64" class="tk">zx</a>,</td></tr>
+<tr name="99" id="99">
+<td><a id="l99" class='ln'>99</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="99c24" class="tk">*</a><a id="99c25" class="tk">incx32</a>, <a id="99c33" class="tk">creal_T</a> <a id="99c41" class="tk">*</a><a id="99c42" class="tk">zy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="99c56" class="tk">*</a><a id="99c57" class="tk">incy32</a>);</td></tr>
+<tr name="100" id="100">
+<td><a id="l100" class='ln'>100</a></td><td></td></tr>
+<tr name="101" id="101">
+<td><a id="l101" class='ln'>101</a></td><td><a id="101c1" class="tk">EXTERN_C</a> <a id="101c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="102" id="102">
+<td><a id="l102" class='ln'>102</a></td><td><span class="pp">#define</span> <a id="102c9" class="tk">scopy32</a> <a id="102c17" class="tk">FORTRAN_WRAPPER</a>(<a id="102c33" class="tk">scopy32</a>)</td></tr>
+<tr name="103" id="103">
+<td><a id="l103" class='ln'>103</a></td><td><span class="kw">void</span> <a id="103c6" class="tk">scopy32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="103c24" class="tk">*</a><a id="103c25" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="103c42" class="tk">*</a><a id="103c43" class="tk">sx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="103c57" class="tk">*</a><a id="103c58" class="tk">incx32</a>, </td></tr>
+<tr name="104" id="104">
+<td><a id="l104" class='ln'>104</a></td><td>             <span class="kw">float</span> <a id="104c20" class="tk">*</a><a id="104c21" class="tk">sy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="104c35" class="tk">*</a><a id="104c36" class="tk">incy32</a>);</td></tr>
+<tr name="105" id="105">
+<td><a id="l105" class='ln'>105</a></td><td></td></tr>
+<tr name="106" id="106">
+<td><a id="l106" class='ln'>106</a></td><td><a id="106c1" class="tk">EXTERN_C</a> <a id="106c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="107" id="107">
+<td><a id="l107" class='ln'>107</a></td><td><span class="pp">#define</span> <a id="107c9" class="tk">dcopy32</a> <a id="107c17" class="tk">FORTRAN_WRAPPER</a>(<a id="107c33" class="tk">dcopy32</a>)</td></tr>
+<tr name="108" id="108">
+<td><a id="l108" class='ln'>108</a></td><td><span class="kw">void</span> <a id="108c6" class="tk">dcopy32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="108c24" class="tk">*</a><a id="108c25" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="108c43" class="tk">*</a><a id="108c44" class="tk">dx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="108c58" class="tk">*</a><a id="108c59" class="tk">incx32</a>, </td></tr>
+<tr name="109" id="109">
+<td><a id="l109" class='ln'>109</a></td><td>             <span class="kw">double</span> <a id="109c21" class="tk">*</a><a id="109c22" class="tk">dy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="109c36" class="tk">*</a><a id="109c37" class="tk">incy32</a>);</td></tr>
+<tr name="110" id="110">
+<td><a id="l110" class='ln'>110</a></td><td></td></tr>
+<tr name="111" id="111">
+<td><a id="l111" class='ln'>111</a></td><td><a id="111c1" class="tk">EXTERN_C</a> <a id="111c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="112" id="112">
+<td><a id="l112" class='ln'>112</a></td><td><span class="pp">#define</span> <a id="112c9" class="tk">ccopy32</a> <a id="112c17" class="tk">FORTRAN_WRAPPER</a>(<a id="112c33" class="tk">ccopy32</a>)</td></tr>
+<tr name="113" id="113">
+<td><a id="l113" class='ln'>113</a></td><td><span class="kw">void</span> <a id="113c6" class="tk">ccopy32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="113c24" class="tk">*</a><a id="113c25" class="tk">n32</a>, <span class="kw">const</span> <a id="113c36" class="tk">creal32_T</a> <a id="113c46" class="tk">*</a><a id="113c47" class="tk">cx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="113c61" class="tk">*</a><a id="113c62" class="tk">incx32</a>, </td></tr>
+<tr name="114" id="114">
+<td><a id="l114" class='ln'>114</a></td><td>             <a id="114c14" class="tk">creal32_T</a> <a id="114c24" class="tk">*</a><a id="114c25" class="tk">cy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="114c39" class="tk">*</a><a id="114c40" class="tk">incy32</a>);</td></tr>
+<tr name="115" id="115">
+<td><a id="l115" class='ln'>115</a></td><td></td></tr>
+<tr name="116" id="116">
+<td><a id="l116" class='ln'>116</a></td><td><a id="116c1" class="tk">EXTERN_C</a> <a id="116c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="117" id="117">
+<td><a id="l117" class='ln'>117</a></td><td><span class="pp">#define</span> <a id="117c9" class="tk">zcopy32</a> <a id="117c17" class="tk">FORTRAN_WRAPPER</a>(<a id="117c33" class="tk">zcopy32</a>)</td></tr>
+<tr name="118" id="118">
+<td><a id="l118" class='ln'>118</a></td><td><span class="kw">void</span> <a id="118c6" class="tk">zcopy32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="118c24" class="tk">*</a><a id="118c25" class="tk">n32</a>, <a id="118c30" class="tk">creal_T</a> <a id="118c38" class="tk">*</a><a id="118c39" class="tk">zx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="118c53" class="tk">*</a><a id="118c54" class="tk">incx32</a>, </td></tr>
+<tr name="119" id="119">
+<td><a id="l119" class='ln'>119</a></td><td>             <a id="119c14" class="tk">creal_T</a> <a id="119c22" class="tk">*</a><a id="119c23" class="tk">zy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="119c37" class="tk">*</a><a id="119c38" class="tk">incy32</a>);</td></tr>
+<tr name="120" id="120">
+<td><a id="l120" class='ln'>120</a></td><td></td></tr>
+<tr name="121" id="121">
+<td><a id="l121" class='ln'>121</a></td><td><a id="121c1" class="tk">EXTERN_C</a> <a id="121c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="122" id="122">
+<td><a id="l122" class='ln'>122</a></td><td><span class="pp">#define</span> <a id="122c9" class="tk">cdotc32</a> <a id="122c17" class="tk">FORTRAN_WRAPPER</a>(<a id="122c33" class="tk">cdotc32</a>)</td></tr>
+<tr name="123" id="123">
+<td><a id="l123" class='ln'>123</a></td><td><a id="123c1" class="tk">complex</a> <a id="123c9" class="tk">cdotc32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="123c27" class="tk">*</a><a id="123c28" class="tk">n32</a>, <span class="kw">const</span> <a id="123c39" class="tk">creal32_T</a> <a id="123c49" class="tk">*</a><a id="123c50" class="tk">cx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="123c64" class="tk">*</a><a id="123c65" class="tk">incx32</a>,</td></tr>
+<tr name="124" id="124">
+<td><a id="l124" class='ln'>124</a></td><td>              <span class="kw">const</span> <a id="124c21" class="tk">creal32_T</a> <a id="124c31" class="tk">*</a><a id="124c32" class="tk">cy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="124c46" class="tk">*</a><a id="124c47" class="tk">incy32</a>);</td></tr>
+<tr name="125" id="125">
+<td><a id="l125" class='ln'>125</a></td><td></td></tr>
+<tr name="126" id="126">
+<td><a id="l126" class='ln'>126</a></td><td><a id="126c1" class="tk">EXTERN_C</a> <a id="126c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="127" id="127">
+<td><a id="l127" class='ln'>127</a></td><td><span class="pp">#define</span> <a id="127c9" class="tk">zdotc32</a> <a id="127c17" class="tk">FORTRAN_WRAPPER</a>(<a id="127c33" class="tk">zdotc32</a>)</td></tr>
+<tr name="128" id="128">
+<td><a id="l128" class='ln'>128</a></td><td><a id="128c1" class="tk">doublecomplex</a> <a id="128c15" class="tk">zdotc32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="128c33" class="tk">*</a><a id="128c34" class="tk">n32</a>, <span class="kw">const</span> <a id="128c45" class="tk">creal_T</a> <a id="128c53" class="tk">*</a><a id="128c54" class="tk">zx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="128c68" class="tk">*</a><a id="128c69" class="tk">incx32</a>,</td></tr>
+<tr name="129" id="129">
+<td><a id="l129" class='ln'>129</a></td><td>               <span class="kw">const</span> <a id="129c22" class="tk">creal_T</a> <a id="129c30" class="tk">*</a><a id="129c31" class="tk">zy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="129c45" class="tk">*</a><a id="129c46" class="tk">incy32</a>);</td></tr>
+<tr name="130" id="130">
+<td><a id="l130" class='ln'>130</a></td><td></td></tr>
+<tr name="131" id="131">
+<td><a id="l131" class='ln'>131</a></td><td><a id="131c1" class="tk">EXTERN_C</a> <a id="131c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="132" id="132">
+<td><a id="l132" class='ln'>132</a></td><td><span class="pp">#define</span> <a id="132c9" class="tk">sdot32</a> <a id="132c16" class="tk">FORTRAN_WRAPPER</a>(<a id="132c32" class="tk">sdot32</a>)</td></tr>
+<tr name="133" id="133">
+<td><a id="l133" class='ln'>133</a></td><td><span class="kw">float</span> <a id="133c7" class="tk">sdot32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="133c24" class="tk">*</a><a id="133c25" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="133c42" class="tk">*</a><a id="133c43" class="tk">sx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="133c57" class="tk">*</a><a id="133c58" class="tk">incx32</a>, </td></tr>
+<tr name="134" id="134">
+<td><a id="l134" class='ln'>134</a></td><td>             <span class="kw">const</span> <span class="kw">float</span>  <a id="134c27" class="tk">*</a><a id="134c28" class="tk">sy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="134c42" class="tk">*</a><a id="134c43" class="tk">incy32</a>);</td></tr>
+<tr name="135" id="135">
+<td><a id="l135" class='ln'>135</a></td><td></td></tr>
+<tr name="136" id="136">
+<td><a id="l136" class='ln'>136</a></td><td><a id="136c1" class="tk">EXTERN_C</a> <a id="136c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="137" id="137">
+<td><a id="l137" class='ln'>137</a></td><td><span class="pp">#define</span> <a id="137c9" class="tk">ddot32</a> <a id="137c16" class="tk">FORTRAN_WRAPPER</a>(<a id="137c32" class="tk">ddot32</a>)</td></tr>
+<tr name="138" id="138">
+<td><a id="l138" class='ln'>138</a></td><td><span class="kw">double</span> <a id="138c8" class="tk">ddot32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="138c25" class="tk">*</a><a id="138c26" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="138c44" class="tk">*</a><a id="138c45" class="tk">dx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="138c59" class="tk">*</a><a id="138c60" class="tk">incx32</a>, </td></tr>
+<tr name="139" id="139">
+<td><a id="l139" class='ln'>139</a></td><td>              <span class="kw">const</span> <span class="kw">double</span> <a id="139c28" class="tk">*</a><a id="139c29" class="tk">dy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="139c43" class="tk">*</a><a id="139c44" class="tk">incy32</a>);</td></tr>
+<tr name="140" id="140">
+<td><a id="l140" class='ln'>140</a></td><td></td></tr>
+<tr name="141" id="141">
+<td><a id="l141" class='ln'>141</a></td><td><a id="141c1" class="tk">EXTERN_C</a> <a id="141c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="142" id="142">
+<td><a id="l142" class='ln'>142</a></td><td><span class="pp">#define</span> <a id="142c9" class="tk">cdotu32</a> <a id="142c17" class="tk">FORTRAN_WRAPPER</a>(<a id="142c33" class="tk">cdotu32</a>)</td></tr>
+<tr name="143" id="143">
+<td><a id="l143" class='ln'>143</a></td><td><a id="143c1" class="tk">complex</a> <a id="143c9" class="tk">cdotu32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="143c27" class="tk">*</a><a id="143c28" class="tk">n32</a>, <span class="kw">const</span> <a id="143c39" class="tk">creal32_T</a> <a id="143c49" class="tk">*</a><a id="143c50" class="tk">cx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="143c64" class="tk">*</a><a id="143c65" class="tk">incx32</a>, </td></tr>
+<tr name="144" id="144">
+<td><a id="l144" class='ln'>144</a></td><td>              <span class="kw">const</span> <a id="144c21" class="tk">creal32_T</a> <a id="144c31" class="tk">*</a><a id="144c32" class="tk">cy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="144c46" class="tk">*</a><a id="144c47" class="tk">incy32</a>);</td></tr>
+<tr name="145" id="145">
+<td><a id="l145" class='ln'>145</a></td><td></td></tr>
+<tr name="146" id="146">
+<td><a id="l146" class='ln'>146</a></td><td><a id="146c1" class="tk">EXTERN_C</a> <a id="146c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="147" id="147">
+<td><a id="l147" class='ln'>147</a></td><td><span class="pp">#define</span> <a id="147c9" class="tk">zdotu32</a> <a id="147c17" class="tk">FORTRAN_WRAPPER</a>(<a id="147c33" class="tk">zdotu32</a>)</td></tr>
+<tr name="148" id="148">
+<td><a id="l148" class='ln'>148</a></td><td><a id="148c1" class="tk">doublecomplex</a> <a id="148c15" class="tk">zdotu32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="148c33" class="tk">*</a><a id="148c34" class="tk">n32</a>, <span class="kw">const</span> <a id="148c45" class="tk">creal_T</a> <a id="148c53" class="tk">*</a><a id="148c54" class="tk">zx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="148c68" class="tk">*</a><a id="148c69" class="tk">incx32</a>, </td></tr>
+<tr name="149" id="149">
+<td><a id="l149" class='ln'>149</a></td><td>               <span class="kw">const</span> <a id="149c22" class="tk">creal_T</a> <a id="149c30" class="tk">*</a><a id="149c31" class="tk">zy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="149c45" class="tk">*</a><a id="149c46" class="tk">incy32</a>);</td></tr>
+<tr name="150" id="150">
+<td><a id="l150" class='ln'>150</a></td><td></td></tr>
+<tr name="151" id="151">
+<td><a id="l151" class='ln'>151</a></td><td><a id="151c1" class="tk">EXTERN_C</a> <a id="151c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="152" id="152">
+<td><a id="l152" class='ln'>152</a></td><td><span class="pp">#define</span> <a id="152c9" class="tk">sgemm32</a> <a id="152c17" class="tk">FORTRAN_WRAPPER</a>(<a id="152c33" class="tk">sgemm32</a>)</td></tr>
+<tr name="153" id="153">
+<td><a id="l153" class='ln'>153</a></td><td><span class="kw">void</span> <a id="153c6" class="tk">sgemm32</a>(<span class="kw">char</span> <a id="153c19" class="tk">*</a><a id="153c20" class="tk">transa</a>, <span class="kw">char</span> <a id="153c33" class="tk">*</a><a id="153c34" class="tk">transb</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="153c52" class="tk">*</a><a id="153c53" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="153c68" class="tk">*</a><a id="153c69" class="tk">n32</a>,</td></tr>
+<tr name="154" id="154">
+<td><a id="l154" class='ln'>154</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="154c24" class="tk">*</a><a id="154c25" class="tk">k32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="154c42" class="tk">*</a><a id="154c43" class="tk">alpha</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="154c62" class="tk">*</a><a id="154c63" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="154c76" class="tk">*</a><a id="154c77" class="tk">lda32</a>,</td></tr>
+<tr name="155" id="155">
+<td><a id="l155" class='ln'>155</a></td><td>             <span class="kw">const</span> <span class="kw">float</span> <a id="155c26" class="tk">*</a><a id="155c27" class="tk">b</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="155c40" class="tk">*</a><a id="155c41" class="tk">ldb32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="155c60" class="tk">*</a><a id="155c61" class="tk">beta</a>, <span class="kw">float</span> <a id="155c73" class="tk">*</a><a id="155c74" class="tk">c</a>,</td></tr>
+<tr name="156" id="156">
+<td><a id="l156" class='ln'>156</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="156c24" class="tk">*</a><a id="156c25" class="tk">ldc32</a>);</td></tr>
+<tr name="157" id="157">
+<td><a id="l157" class='ln'>157</a></td><td></td></tr>
+<tr name="158" id="158">
+<td><a id="l158" class='ln'>158</a></td><td><a id="158c1" class="tk">EXTERN_C</a> <a id="158c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="159" id="159">
+<td><a id="l159" class='ln'>159</a></td><td><span class="pp">#define</span> <a id="159c9" class="tk">dgemm32</a> <a id="159c17" class="tk">FORTRAN_WRAPPER</a>(<a id="159c33" class="tk">dgemm32</a>)</td></tr>
+<tr name="160" id="160">
+<td><a id="l160" class='ln'>160</a></td><td><span class="kw">void</span> <a id="160c6" class="tk">dgemm32</a>(<span class="kw">char</span> <a id="160c19" class="tk">*</a><a id="160c20" class="tk">transa</a>, <span class="kw">char</span> <a id="160c33" class="tk">*</a><a id="160c34" class="tk">transb</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="160c52" class="tk">*</a><a id="160c53" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="160c68" class="tk">*</a><a id="160c69" class="tk">n32</a>,</td></tr>
+<tr name="161" id="161">
+<td><a id="l161" class='ln'>161</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="161c24" class="tk">*</a><a id="161c25" class="tk">k32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="161c43" class="tk">*</a><a id="161c44" class="tk">alpha</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="161c64" class="tk">*</a><a id="161c65" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="161c78" class="tk">*</a><a id="161c79" class="tk">lda32</a>,</td></tr>
+<tr name="162" id="162">
+<td><a id="l162" class='ln'>162</a></td><td>             <span class="kw">const</span> <span class="kw">double</span> <a id="162c27" class="tk">*</a><a id="162c28" class="tk">b</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="162c41" class="tk">*</a><a id="162c42" class="tk">ldb32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="162c62" class="tk">*</a><a id="162c63" class="tk">beta</a>, <span class="kw">double</span>  <a id="162c77" class="tk">*</a><a id="162c78" class="tk">c</a>,</td></tr>
+<tr name="163" id="163">
+<td><a id="l163" class='ln'>163</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="163c24" class="tk">*</a><a id="163c25" class="tk">ldc32</a>);</td></tr>
+<tr name="164" id="164">
+<td><a id="l164" class='ln'>164</a></td><td></td></tr>
+<tr name="165" id="165">
+<td><a id="l165" class='ln'>165</a></td><td><a id="165c1" class="tk">EXTERN_C</a> <a id="165c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="166" id="166">
+<td><a id="l166" class='ln'>166</a></td><td><span class="pp">#define</span> <a id="166c9" class="tk">cgemm32</a> <a id="166c17" class="tk">FORTRAN_WRAPPER</a>(<a id="166c33" class="tk">cgemm32</a>)</td></tr>
+<tr name="167" id="167">
+<td><a id="l167" class='ln'>167</a></td><td><span class="kw">void</span> <a id="167c6" class="tk">cgemm32</a>(<span class="kw">char</span> <a id="167c19" class="tk">*</a><a id="167c20" class="tk">transa</a>, <span class="kw">char</span> <a id="167c33" class="tk">*</a><a id="167c34" class="tk">transb</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="167c52" class="tk">*</a><a id="167c53" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="167c68" class="tk">*</a><a id="167c69" class="tk">n32</a>,</td></tr>
+<tr name="168" id="168">
+<td><a id="l168" class='ln'>168</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="168c24" class="tk">*</a><a id="168c25" class="tk">k32</a>, <span class="kw">const</span> <a id="168c36" class="tk">creal32_T</a> <a id="168c46" class="tk">*</a><a id="168c47" class="tk">alpha</a>, <span class="kw">const</span> <a id="168c60" class="tk">creal32_T</a> <a id="168c70" class="tk">*</a><a id="168c71" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="168c84" class="tk">*</a><a id="168c85" class="tk">lda32</a>,</td></tr>
+<tr name="169" id="169">
+<td><a id="l169" class='ln'>169</a></td><td>             <span class="kw">const</span> <a id="169c20" class="tk">creal32_T</a> <a id="169c30" class="tk">*</a><a id="169c31" class="tk">b</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="169c44" class="tk">*</a><a id="169c45" class="tk">ldb32</a>, <span class="kw">const</span> <a id="169c58" class="tk">creal32_T</a> <a id="169c68" class="tk">*</a><a id="169c69" class="tk">beta</a>, <a id="169c75" class="tk">creal32_T</a> <a id="169c85" class="tk">*</a><a id="169c86" class="tk">c</a>,</td></tr>
+<tr name="170" id="170">
+<td><a id="l170" class='ln'>170</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="170c24" class="tk">*</a><a id="170c25" class="tk">ldc32</a>);</td></tr>
+<tr name="171" id="171">
+<td><a id="l171" class='ln'>171</a></td><td></td></tr>
+<tr name="172" id="172">
+<td><a id="l172" class='ln'>172</a></td><td><a id="172c1" class="tk">EXTERN_C</a> <a id="172c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="173" id="173">
+<td><a id="l173" class='ln'>173</a></td><td><span class="pp">#define</span> <a id="173c9" class="tk">zgemm32</a> <a id="173c17" class="tk">FORTRAN_WRAPPER</a>(<a id="173c33" class="tk">zgemm32</a>)</td></tr>
+<tr name="174" id="174">
+<td><a id="l174" class='ln'>174</a></td><td><span class="kw">void</span> <a id="174c6" class="tk">zgemm32</a>(<span class="kw">char</span> <a id="174c19" class="tk">*</a><a id="174c20" class="tk">transa</a>, <span class="kw">char</span> <a id="174c33" class="tk">*</a><a id="174c34" class="tk">transb</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="174c52" class="tk">*</a><a id="174c53" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="174c68" class="tk">*</a><a id="174c69" class="tk">n32</a>,</td></tr>
+<tr name="175" id="175">
+<td><a id="l175" class='ln'>175</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="175c24" class="tk">*</a><a id="175c25" class="tk">k32</a>, <span class="kw">const</span> <a id="175c36" class="tk">creal_T</a> <a id="175c44" class="tk">*</a><a id="175c45" class="tk">alpha</a>, <span class="kw">const</span> <a id="175c58" class="tk">creal_T</a> <a id="175c66" class="tk">*</a><a id="175c67" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="175c80" class="tk">*</a><a id="175c81" class="tk">lda32</a>,</td></tr>
+<tr name="176" id="176">
+<td><a id="l176" class='ln'>176</a></td><td>             <span class="kw">const</span> <a id="176c20" class="tk">creal_T</a> <a id="176c28" class="tk">*</a><a id="176c29" class="tk">b</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="176c42" class="tk">*</a><a id="176c43" class="tk">ldb32</a>, <span class="kw">const</span> <a id="176c56" class="tk">creal_T</a> <a id="176c64" class="tk">*</a><a id="176c65" class="tk">beta</a>, <a id="176c71" class="tk">creal_T</a> <a id="176c79" class="tk">*</a><a id="176c80" class="tk">c</a>,</td></tr>
+<tr name="177" id="177">
+<td><a id="l177" class='ln'>177</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="177c24" class="tk">*</a><a id="177c25" class="tk">ldc32</a>);</td></tr>
+<tr name="178" id="178">
+<td><a id="l178" class='ln'>178</a></td><td></td></tr>
+<tr name="179" id="179">
+<td><a id="l179" class='ln'>179</a></td><td><a id="179c1" class="tk">EXTERN_C</a> <a id="179c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="180" id="180">
+<td><a id="l180" class='ln'>180</a></td><td><span class="pp">#define</span> <a id="180c9" class="tk">sgemv32</a> <a id="180c17" class="tk">FORTRAN_WRAPPER</a>(<a id="180c33" class="tk">sgemv32</a>)</td></tr>
+<tr name="181" id="181">
+<td><a id="l181" class='ln'>181</a></td><td><span class="kw">void</span> <a id="181c6" class="tk">sgemv32</a>(<span class="kw">char</span> <a id="181c19" class="tk">*</a><a id="181c20" class="tk">trans</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="181c37" class="tk">*</a><a id="181c38" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="181c53" class="tk">*</a><a id="181c54" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="181c71" class="tk">*</a><a id="181c72" class="tk">alpha</a>,</td></tr>
+<tr name="182" id="182">
+<td><a id="l182" class='ln'>182</a></td><td>             <span class="kw">const</span> <span class="kw">float</span> <a id="182c26" class="tk">*</a><a id="182c27" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="182c40" class="tk">*</a><a id="182c41" class="tk">lda32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="182c60" class="tk">*</a><a id="182c61" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="182c74" class="tk">*</a><a id="182c75" class="tk">incx32</a>, </td></tr>
+<tr name="183" id="183">
+<td><a id="l183" class='ln'>183</a></td><td>             <span class="kw">const</span> <span class="kw">float</span> <a id="183c26" class="tk">*</a><a id="183c27" class="tk">beta</a>, <span class="kw">float</span> <a id="183c39" class="tk">*</a><a id="183c40" class="tk">y</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="183c53" class="tk">*</a><a id="183c54" class="tk">incy32</a>);</td></tr>
+<tr name="184" id="184">
+<td><a id="l184" class='ln'>184</a></td><td></td></tr>
+<tr name="185" id="185">
+<td><a id="l185" class='ln'>185</a></td><td><a id="185c1" class="tk">EXTERN_C</a> <a id="185c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="186" id="186">
+<td><a id="l186" class='ln'>186</a></td><td><span class="pp">#define</span> <a id="186c9" class="tk">dgemv32</a> <a id="186c17" class="tk">FORTRAN_WRAPPER</a>(<a id="186c33" class="tk">dgemv32</a>)</td></tr>
+<tr name="187" id="187">
+<td><a id="l187" class='ln'>187</a></td><td><span class="kw">void</span> <a id="187c6" class="tk">dgemv32</a>(<span class="kw">char</span> <a id="187c19" class="tk">*</a><a id="187c20" class="tk">trans</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="187c37" class="tk">*</a><a id="187c38" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="187c53" class="tk">*</a><a id="187c54" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="187c72" class="tk">*</a><a id="187c73" class="tk">alpha</a>,</td></tr>
+<tr name="188" id="188">
+<td><a id="l188" class='ln'>188</a></td><td>             <span class="kw">const</span> <span class="kw">double</span> <a id="188c27" class="tk">*</a><a id="188c28" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="188c41" class="tk">*</a><a id="188c42" class="tk">lda32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="188c62" class="tk">*</a><a id="188c63" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="188c76" class="tk">*</a><a id="188c77" class="tk">incx32</a>, </td></tr>
+<tr name="189" id="189">
+<td><a id="l189" class='ln'>189</a></td><td>             <span class="kw">const</span> <span class="kw">double</span> <a id="189c27" class="tk">*</a><a id="189c28" class="tk">beta</a>, <span class="kw">double</span> <a id="189c41" class="tk">*</a><a id="189c42" class="tk">y</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="189c55" class="tk">*</a><a id="189c56" class="tk">incy32</a>);</td></tr>
+<tr name="190" id="190">
+<td><a id="l190" class='ln'>190</a></td><td></td></tr>
+<tr name="191" id="191">
+<td><a id="l191" class='ln'>191</a></td><td><a id="191c1" class="tk">EXTERN_C</a> <a id="191c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="192" id="192">
+<td><a id="l192" class='ln'>192</a></td><td><span class="pp">#define</span> <a id="192c9" class="tk">cgemv32</a> <a id="192c17" class="tk">FORTRAN_WRAPPER</a>(<a id="192c33" class="tk">cgemv32</a>)</td></tr>
+<tr name="193" id="193">
+<td><a id="l193" class='ln'>193</a></td><td><span class="kw">void</span> <a id="193c6" class="tk">cgemv32</a>(<span class="kw">char</span> <a id="193c19" class="tk">*</a><a id="193c20" class="tk">trans</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="193c37" class="tk">*</a><a id="193c38" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="193c53" class="tk">*</a><a id="193c54" class="tk">n32</a>, <span class="kw">const</span> <a id="193c65" class="tk">creal32_T</a> <a id="193c75" class="tk">*</a><a id="193c76" class="tk">alpha</a>,</td></tr>
+<tr name="194" id="194">
+<td><a id="l194" class='ln'>194</a></td><td>             <span class="kw">const</span> <a id="194c20" class="tk">creal32_T</a> <a id="194c30" class="tk">*</a><a id="194c31" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="194c44" class="tk">*</a><a id="194c45" class="tk">lda32</a>, <span class="kw">const</span> <a id="194c58" class="tk">creal32_T</a> <a id="194c68" class="tk">*</a><a id="194c69" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="194c82" class="tk">*</a><a id="194c83" class="tk">incx32</a>, </td></tr>
+<tr name="195" id="195">
+<td><a id="l195" class='ln'>195</a></td><td>             <span class="kw">const</span> <a id="195c20" class="tk">creal32_T</a> <a id="195c30" class="tk">*</a><a id="195c31" class="tk">beta</a>, <a id="195c37" class="tk">creal32_T</a> <a id="195c47" class="tk">*</a><a id="195c48" class="tk">y</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="195c61" class="tk">*</a><a id="195c62" class="tk">incy32</a>);</td></tr>
+<tr name="196" id="196">
+<td><a id="l196" class='ln'>196</a></td><td></td></tr>
+<tr name="197" id="197">
+<td><a id="l197" class='ln'>197</a></td><td><a id="197c1" class="tk">EXTERN_C</a> <a id="197c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="198" id="198">
+<td><a id="l198" class='ln'>198</a></td><td><span class="pp">#define</span> <a id="198c9" class="tk">zgemv32</a> <a id="198c17" class="tk">FORTRAN_WRAPPER</a>(<a id="198c33" class="tk">zgemv32</a>)</td></tr>
+<tr name="199" id="199">
+<td><a id="l199" class='ln'>199</a></td><td><span class="kw">void</span> <a id="199c6" class="tk">zgemv32</a>(<span class="kw">char</span> <a id="199c19" class="tk">*</a><a id="199c20" class="tk">trans</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="199c37" class="tk">*</a><a id="199c38" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="199c53" class="tk">*</a><a id="199c54" class="tk">n32</a>, <span class="kw">const</span> <a id="199c65" class="tk">creal_T</a> <a id="199c73" class="tk">*</a><a id="199c74" class="tk">alpha</a>,</td></tr>
+<tr name="200" id="200">
+<td><a id="l200" class='ln'>200</a></td><td>             <span class="kw">const</span> <a id="200c20" class="tk">creal_T</a> <a id="200c28" class="tk">*</a><a id="200c29" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="200c42" class="tk">*</a><a id="200c43" class="tk">lda32</a>, <span class="kw">const</span> <a id="200c56" class="tk">creal_T</a> <a id="200c64" class="tk">*</a><a id="200c65" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="200c78" class="tk">*</a><a id="200c79" class="tk">incx32</a>, </td></tr>
+<tr name="201" id="201">
+<td><a id="l201" class='ln'>201</a></td><td>             <span class="kw">const</span> <a id="201c20" class="tk">creal_T</a> <a id="201c28" class="tk">*</a><a id="201c29" class="tk">beta</a>, <a id="201c35" class="tk">creal_T</a> <a id="201c43" class="tk">*</a><a id="201c44" class="tk">y</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="201c57" class="tk">*</a><a id="201c58" class="tk">incy32</a>);</td></tr>
+<tr name="202" id="202">
+<td><a id="l202" class='ln'>202</a></td><td></td></tr>
+<tr name="203" id="203">
+<td><a id="l203" class='ln'>203</a></td><td><a id="203c1" class="tk">EXTERN_C</a> <a id="203c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="204" id="204">
+<td><a id="l204" class='ln'>204</a></td><td><span class="pp">#define</span> <a id="204c9" class="tk">cgerc32</a> <a id="204c17" class="tk">FORTRAN_WRAPPER</a>(<a id="204c33" class="tk">cgerc32</a>)</td></tr>
+<tr name="205" id="205">
+<td><a id="l205" class='ln'>205</a></td><td><span class="kw">void</span> <a id="205c6" class="tk">cgerc32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="205c24" class="tk">*</a><a id="205c25" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="205c40" class="tk">*</a><a id="205c41" class="tk">n32</a>, <span class="kw">const</span> <a id="205c52" class="tk">creal32_T</a> <a id="205c62" class="tk">*</a><a id="205c63" class="tk">alpha</a>, <span class="kw">const</span> <a id="205c76" class="tk">creal32_T</a> <a id="205c86" class="tk">*</a><a id="205c87" class="tk">x</a>,</td></tr>
+<tr name="206" id="206">
+<td><a id="l206" class='ln'>206</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="206c24" class="tk">*</a><a id="206c25" class="tk">incx32</a>, <span class="kw">const</span> <a id="206c39" class="tk">creal32_T</a> <a id="206c49" class="tk">*</a><a id="206c50" class="tk">y</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="206c63" class="tk">*</a><a id="206c64" class="tk">incy32</a>,</td></tr>
+<tr name="207" id="207">
+<td><a id="l207" class='ln'>207</a></td><td>             <a id="207c14" class="tk">creal32_T</a> <a id="207c24" class="tk">*</a><a id="207c25" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="207c38" class="tk">*</a><a id="207c39" class="tk">lda32</a>);     </td></tr>
+<tr name="208" id="208">
+<td><a id="l208" class='ln'>208</a></td><td></td></tr>
+<tr name="209" id="209">
+<td><a id="l209" class='ln'>209</a></td><td><a id="209c1" class="tk">EXTERN_C</a> <a id="209c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="210" id="210">
+<td><a id="l210" class='ln'>210</a></td><td><span class="pp">#define</span> <a id="210c9" class="tk">zgerc32</a> <a id="210c17" class="tk">FORTRAN_WRAPPER</a>(<a id="210c33" class="tk">zgerc32</a>)</td></tr>
+<tr name="211" id="211">
+<td><a id="l211" class='ln'>211</a></td><td><span class="kw">void</span> <a id="211c6" class="tk">zgerc32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="211c24" class="tk">*</a><a id="211c25" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="211c40" class="tk">*</a><a id="211c41" class="tk">n32</a>, <span class="kw">const</span> <a id="211c52" class="tk">creal_T</a> <a id="211c60" class="tk">*</a><a id="211c61" class="tk">alpha</a>, <span class="kw">const</span> <a id="211c74" class="tk">creal_T</a> <a id="211c82" class="tk">*</a><a id="211c83" class="tk">x</a>,</td></tr>
+<tr name="212" id="212">
+<td><a id="l212" class='ln'>212</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="212c24" class="tk">*</a><a id="212c25" class="tk">incx32</a>, <a id="212c33" class="tk">creal_T</a> <a id="212c41" class="tk">*</a><a id="212c42" class="tk">y</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="212c55" class="tk">*</a><a id="212c56" class="tk">incy32</a>,</td></tr>
+<tr name="213" id="213">
+<td><a id="l213" class='ln'>213</a></td><td>             <a id="213c14" class="tk">creal_T</a> <a id="213c22" class="tk">*</a><a id="213c23" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="213c36" class="tk">*</a><a id="213c37" class="tk">lda32</a>);</td></tr>
+<tr name="214" id="214">
+<td><a id="l214" class='ln'>214</a></td><td>     </td></tr>
+<tr name="215" id="215">
+<td><a id="l215" class='ln'>215</a></td><td><a id="215c1" class="tk">EXTERN_C</a> <a id="215c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="216" id="216">
+<td><a id="l216" class='ln'>216</a></td><td><span class="pp">#define</span> <a id="216c9" class="tk">sger32</a> <a id="216c16" class="tk">FORTRAN_WRAPPER</a>(<a id="216c32" class="tk">sger32</a>)</td></tr>
+<tr name="217" id="217">
+<td><a id="l217" class='ln'>217</a></td><td><span class="kw">void</span> <a id="217c6" class="tk">sger32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="217c23" class="tk">*</a><a id="217c24" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="217c39" class="tk">*</a><a id="217c40" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="217c57" class="tk">*</a><a id="217c58" class="tk">alpha</a>, <span class="kw">const</span> <span class="kw">float</span>  <a id="217c78" class="tk">*</a><a id="217c79" class="tk">x</a>,</td></tr>
+<tr name="218" id="218">
+<td><a id="l218" class='ln'>218</a></td><td>            <span class="kw">const</span> <span class="kw">int</span> <a id="218c23" class="tk">*</a><a id="218c24" class="tk">incx32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="218c44" class="tk">*</a><a id="218c45" class="tk">y</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="218c58" class="tk">*</a><a id="218c59" class="tk">incy32</a>, </td></tr>
+<tr name="219" id="219">
+<td><a id="l219" class='ln'>219</a></td><td>            <span class="kw">float</span> <a id="219c19" class="tk">*</a><a id="219c20" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="219c33" class="tk">*</a><a id="219c34" class="tk">lda32</a>);</td></tr>
+<tr name="220" id="220">
+<td><a id="l220" class='ln'>220</a></td><td></td></tr>
+<tr name="221" id="221">
+<td><a id="l221" class='ln'>221</a></td><td><a id="221c1" class="tk">EXTERN_C</a> <a id="221c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="222" id="222">
+<td><a id="l222" class='ln'>222</a></td><td><span class="pp">#define</span> <a id="222c9" class="tk">dger32</a> <a id="222c16" class="tk">FORTRAN_WRAPPER</a>(<a id="222c32" class="tk">dger32</a>)</td></tr>
+<tr name="223" id="223">
+<td><a id="l223" class='ln'>223</a></td><td><span class="kw">void</span> <a id="223c6" class="tk">dger32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="223c23" class="tk">*</a><a id="223c24" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="223c39" class="tk">*</a><a id="223c40" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="223c58" class="tk">*</a><a id="223c59" class="tk">alpha</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="223c79" class="tk">*</a><a id="223c80" class="tk">x</a>,</td></tr>
+<tr name="224" id="224">
+<td><a id="l224" class='ln'>224</a></td><td>            <span class="kw">const</span> <span class="kw">int</span> <a id="224c23" class="tk">*</a><a id="224c24" class="tk">incx32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="224c45" class="tk">*</a><a id="224c46" class="tk">y</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="224c59" class="tk">*</a><a id="224c60" class="tk">incy32</a>,</td></tr>
+<tr name="225" id="225">
+<td><a id="l225" class='ln'>225</a></td><td>            <span class="kw">double</span> <a id="225c20" class="tk">*</a><a id="225c21" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="225c34" class="tk">*</a><a id="225c35" class="tk">lda32</a>);</td></tr>
+<tr name="226" id="226">
+<td><a id="l226" class='ln'>226</a></td><td></td></tr>
+<tr name="227" id="227">
+<td><a id="l227" class='ln'>227</a></td><td><a id="227c1" class="tk">EXTERN_C</a> <a id="227c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="228" id="228">
+<td><a id="l228" class='ln'>228</a></td><td><span class="pp">#define</span> <a id="228c9" class="tk">cgeru32</a> <a id="228c17" class="tk">FORTRAN_WRAPPER</a>(<a id="228c33" class="tk">cgeru32</a>)</td></tr>
+<tr name="229" id="229">
+<td><a id="l229" class='ln'>229</a></td><td><span class="kw">void</span> <a id="229c6" class="tk">cgeru32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="229c24" class="tk">*</a><a id="229c25" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="229c40" class="tk">*</a><a id="229c41" class="tk">n32</a>, <span class="kw">const</span> <a id="229c52" class="tk">creal32_T</a> <a id="229c62" class="tk">*</a><a id="229c63" class="tk">alpha</a>, <span class="kw">const</span> <a id="229c76" class="tk">creal32_T</a> <a id="229c86" class="tk">*</a><a id="229c87" class="tk">x</a>,</td></tr>
+<tr name="230" id="230">
+<td><a id="l230" class='ln'>230</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="230c24" class="tk">*</a><a id="230c25" class="tk">incx32</a>, <span class="kw">const</span> <a id="230c39" class="tk">creal32_T</a> <a id="230c49" class="tk">*</a><a id="230c50" class="tk">y</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="230c63" class="tk">*</a><a id="230c64" class="tk">incy32</a>,</td></tr>
+<tr name="231" id="231">
+<td><a id="l231" class='ln'>231</a></td><td>             <a id="231c14" class="tk">creal32_T</a> <a id="231c24" class="tk">*</a><a id="231c25" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="231c38" class="tk">*</a><a id="231c39" class="tk">lda32</a>);</td></tr>
+<tr name="232" id="232">
+<td><a id="l232" class='ln'>232</a></td><td></td></tr>
+<tr name="233" id="233">
+<td><a id="l233" class='ln'>233</a></td><td><a id="233c1" class="tk">EXTERN_C</a> <a id="233c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="234" id="234">
+<td><a id="l234" class='ln'>234</a></td><td><span class="pp">#define</span> <a id="234c9" class="tk">zgeru32</a> <a id="234c17" class="tk">FORTRAN_WRAPPER</a>(<a id="234c33" class="tk">zgeru32</a>)</td></tr>
+<tr name="235" id="235">
+<td><a id="l235" class='ln'>235</a></td><td><span class="kw">void</span> <a id="235c6" class="tk">zgeru32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="235c24" class="tk">*</a><a id="235c25" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="235c40" class="tk">*</a><a id="235c41" class="tk">n32</a>, <span class="kw">const</span> <a id="235c52" class="tk">creal_T</a> <a id="235c60" class="tk">*</a><a id="235c61" class="tk">alpha</a>, <span class="kw">const</span> <a id="235c74" class="tk">creal_T</a> <a id="235c82" class="tk">*</a><a id="235c83" class="tk">x</a>,</td></tr>
+<tr name="236" id="236">
+<td><a id="l236" class='ln'>236</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="236c24" class="tk">*</a><a id="236c25" class="tk">incx32</a>, <a id="236c33" class="tk">creal_T</a> <a id="236c41" class="tk">*</a><a id="236c42" class="tk">y</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="236c55" class="tk">*</a><a id="236c56" class="tk">incy32</a>,</td></tr>
+<tr name="237" id="237">
+<td><a id="l237" class='ln'>237</a></td><td>             <a id="237c14" class="tk">creal_T</a> <a id="237c22" class="tk">*</a><a id="237c23" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="237c36" class="tk">*</a><a id="237c37" class="tk">lda32</a>);</td></tr>
+<tr name="238" id="238">
+<td><a id="l238" class='ln'>238</a></td><td></td></tr>
+<tr name="239" id="239">
+<td><a id="l239" class='ln'>239</a></td><td><a id="239c1" class="tk">EXTERN_C</a> <a id="239c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="240" id="240">
+<td><a id="l240" class='ln'>240</a></td><td><span class="pp">#define</span> <a id="240c9" class="tk">snrm232</a> <a id="240c17" class="tk">FORTRAN_WRAPPER</a>(<a id="240c33" class="tk">snrm232</a>)</td></tr>
+<tr name="241" id="241">
+<td><a id="l241" class='ln'>241</a></td><td><span class="kw">float</span> <a id="241c7" class="tk">snrm232</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="241c25" class="tk">*</a><a id="241c26" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="241c43" class="tk">*</a><a id="241c44" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="241c57" class="tk">*</a><a id="241c58" class="tk">incx32</a>);</td></tr>
+<tr name="242" id="242">
+<td><a id="l242" class='ln'>242</a></td><td></td></tr>
+<tr name="243" id="243">
+<td><a id="l243" class='ln'>243</a></td><td><a id="243c1" class="tk">EXTERN_C</a> <a id="243c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="244" id="244">
+<td><a id="l244" class='ln'>244</a></td><td><span class="pp">#define</span> <a id="244c9" class="tk">dnrm232</a> <a id="244c17" class="tk">FORTRAN_WRAPPER</a>(<a id="244c33" class="tk">dnrm232</a>)</td></tr>
+<tr name="245" id="245">
+<td><a id="l245" class='ln'>245</a></td><td><span class="kw">double</span> <a id="245c8" class="tk">dnrm232</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="245c26" class="tk">*</a><a id="245c27" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="245c45" class="tk">*</a><a id="245c46" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="245c59" class="tk">*</a><a id="245c60" class="tk">incx32</a>);</td></tr>
+<tr name="246" id="246">
+<td><a id="l246" class='ln'>246</a></td><td></td></tr>
+<tr name="247" id="247">
+<td><a id="l247" class='ln'>247</a></td><td><a id="247c1" class="tk">EXTERN_C</a> <a id="247c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="248" id="248">
+<td><a id="l248" class='ln'>248</a></td><td><span class="pp">#define</span> <a id="248c9" class="tk">scnrm232</a> <a id="248c18" class="tk">FORTRAN_WRAPPER</a>(<a id="248c34" class="tk">scnrm232</a>)</td></tr>
+<tr name="249" id="249">
+<td><a id="l249" class='ln'>249</a></td><td><span class="kw">float</span> <a id="249c7" class="tk">scnrm232</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="249c26" class="tk">*</a><a id="249c27" class="tk">n32</a>, <span class="kw">const</span> <a id="249c38" class="tk">creal32_T</a> <a id="249c48" class="tk">*</a><a id="249c49" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="249c62" class="tk">*</a><a id="249c63" class="tk">incx32</a>);</td></tr>
+<tr name="250" id="250">
+<td><a id="l250" class='ln'>250</a></td><td></td></tr>
+<tr name="251" id="251">
+<td><a id="l251" class='ln'>251</a></td><td><a id="251c1" class="tk">EXTERN_C</a> <a id="251c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="252" id="252">
+<td><a id="l252" class='ln'>252</a></td><td><span class="pp">#define</span> <a id="252c9" class="tk">dznrm232</a> <a id="252c18" class="tk">FORTRAN_WRAPPER</a>(<a id="252c34" class="tk">dznrm232</a>)</td></tr>
+<tr name="253" id="253">
+<td><a id="l253" class='ln'>253</a></td><td><span class="kw">double</span> <a id="253c8" class="tk">dznrm232</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="253c27" class="tk">*</a><a id="253c28" class="tk">n32</a>, <span class="kw">const</span> <a id="253c39" class="tk">creal_T</a> <a id="253c47" class="tk">*</a><a id="253c48" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="253c61" class="tk">*</a><a id="253c62" class="tk">incx32</a>);</td></tr>
+<tr name="254" id="254">
+<td><a id="l254" class='ln'>254</a></td><td></td></tr>
+<tr name="255" id="255">
+<td><a id="l255" class='ln'>255</a></td><td><a id="255c1" class="tk">EXTERN_C</a> <a id="255c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="256" id="256">
+<td><a id="l256" class='ln'>256</a></td><td><span class="pp">#define</span> <a id="256c9" class="tk">srotg32</a> <a id="256c17" class="tk">FORTRAN_WRAPPER</a>(<a id="256c33" class="tk">srotg32</a>)</td></tr>
+<tr name="257" id="257">
+<td><a id="l257" class='ln'>257</a></td><td><span class="kw">void</span> <a id="257c6" class="tk">srotg32</a>(<span class="kw">float</span>  <a id="257c21" class="tk">*</a><a id="257c22" class="tk">sa</a>, <span class="kw">float</span>  <a id="257c33" class="tk">*</a><a id="257c34" class="tk">sb</a>, <span class="kw">float</span>  <a id="257c45" class="tk">*</a><a id="257c46" class="tk">c</a>, <span class="kw">float</span>  <a id="257c56" class="tk">*</a><a id="257c57" class="tk">s</a>);</td></tr>
+<tr name="258" id="258">
+<td><a id="l258" class='ln'>258</a></td><td></td></tr>
+<tr name="259" id="259">
+<td><a id="l259" class='ln'>259</a></td><td><a id="259c1" class="tk">EXTERN_C</a> <a id="259c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="260" id="260">
+<td><a id="l260" class='ln'>260</a></td><td><span class="pp">#define</span> <a id="260c9" class="tk">drotg32</a> <a id="260c17" class="tk">FORTRAN_WRAPPER</a>(<a id="260c33" class="tk">drotg32</a>)</td></tr>
+<tr name="261" id="261">
+<td><a id="l261" class='ln'>261</a></td><td><span class="kw">void</span> <a id="261c6" class="tk">drotg32</a>(<span class="kw">double</span> <a id="261c21" class="tk">*</a><a id="261c22" class="tk">da</a>, <span class="kw">double</span> <a id="261c33" class="tk">*</a><a id="261c34" class="tk">db</a>, <span class="kw">double</span> <a id="261c45" class="tk">*</a><a id="261c46" class="tk">c</a>, <span class="kw">double</span> <a id="261c56" class="tk">*</a><a id="261c57" class="tk">s</a>);</td></tr>
+<tr name="262" id="262">
+<td><a id="l262" class='ln'>262</a></td><td></td></tr>
+<tr name="263" id="263">
+<td><a id="l263" class='ln'>263</a></td><td><a id="263c1" class="tk">EXTERN_C</a> <a id="263c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="264" id="264">
+<td><a id="l264" class='ln'>264</a></td><td><span class="pp">#define</span> <a id="264c9" class="tk">crotg32</a> <a id="264c17" class="tk">FORTRAN_WRAPPER</a>(<a id="264c33" class="tk">crotg32</a>)</td></tr>
+<tr name="265" id="265">
+<td><a id="l265" class='ln'>265</a></td><td><span class="kw">void</span> <a id="265c6" class="tk">crotg32</a>(<a id="265c14" class="tk">creal32_T</a> <a id="265c24" class="tk">*</a><a id="265c25" class="tk">ca</a>, <a id="265c29" class="tk">creal32_T</a> <a id="265c39" class="tk">*</a><a id="265c40" class="tk">cb</a>, <a id="265c44" class="tk">creal32_T</a> <a id="265c54" class="tk">*</a><a id="265c55" class="tk">c</a>, <a id="265c58" class="tk">creal32_T</a> <a id="265c68" class="tk">*</a><a id="265c69" class="tk">s</a>);</td></tr>
+<tr name="266" id="266">
+<td><a id="l266" class='ln'>266</a></td><td></td></tr>
+<tr name="267" id="267">
+<td><a id="l267" class='ln'>267</a></td><td><a id="267c1" class="tk">EXTERN_C</a> <a id="267c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="268" id="268">
+<td><a id="l268" class='ln'>268</a></td><td><span class="pp">#define</span> <a id="268c9" class="tk">zrotg32</a> <a id="268c17" class="tk">FORTRAN_WRAPPER</a>(<a id="268c33" class="tk">zrotg32</a>)</td></tr>
+<tr name="269" id="269">
+<td><a id="l269" class='ln'>269</a></td><td><span class="kw">void</span> <a id="269c6" class="tk">zrotg32</a>(<a id="269c14" class="tk">creal_T</a> <a id="269c22" class="tk">*</a><a id="269c23" class="tk">ca</a>, <a id="269c27" class="tk">creal_T</a> <a id="269c35" class="tk">*</a><a id="269c36" class="tk">cb</a>, <a id="269c40" class="tk">creal_T</a> <a id="269c48" class="tk">*</a><a id="269c49" class="tk">c</a>, <a id="269c52" class="tk">creal_T</a> <a id="269c60" class="tk">*</a><a id="269c61" class="tk">s</a>);</td></tr>
+<tr name="270" id="270">
+<td><a id="l270" class='ln'>270</a></td><td></td></tr>
+<tr name="271" id="271">
+<td><a id="l271" class='ln'>271</a></td><td><a id="271c1" class="tk">EXTERN_C</a> <a id="271c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="272" id="272">
+<td><a id="l272" class='ln'>272</a></td><td><span class="pp">#define</span> <a id="272c9" class="tk">srot32</a> <a id="272c16" class="tk">FORTRAN_WRAPPER</a>(<a id="272c32" class="tk">srot32</a>)</td></tr>
+<tr name="273" id="273">
+<td><a id="l273" class='ln'>273</a></td><td><span class="kw">void</span> <a id="273c6" class="tk">srot32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="273c23" class="tk">*</a><a id="273c24" class="tk">n32</a>, <span class="kw">float</span>  <a id="273c36" class="tk">*</a><a id="273c37" class="tk">sx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="273c51" class="tk">*</a><a id="273c52" class="tk">incx32</a>, <span class="kw">float</span>  <a id="273c67" class="tk">*</a><a id="273c68" class="tk">sy</a>, </td></tr>
+<tr name="274" id="274">
+<td><a id="l274" class='ln'>274</a></td><td>            <span class="kw">const</span> <span class="kw">int</span> <a id="274c23" class="tk">*</a><a id="274c24" class="tk">incy32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="274c44" class="tk">*</a><a id="274c45" class="tk">c</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="274c60" class="tk">*</a><a id="274c61" class="tk">s</a>);</td></tr>
+<tr name="275" id="275">
+<td><a id="l275" class='ln'>275</a></td><td></td></tr>
+<tr name="276" id="276">
+<td><a id="l276" class='ln'>276</a></td><td><a id="276c1" class="tk">EXTERN_C</a> <a id="276c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="277" id="277">
+<td><a id="l277" class='ln'>277</a></td><td><span class="pp">#define</span> <a id="277c9" class="tk">drot32</a> <a id="277c16" class="tk">FORTRAN_WRAPPER</a>(<a id="277c32" class="tk">drot32</a>)</td></tr>
+<tr name="278" id="278">
+<td><a id="l278" class='ln'>278</a></td><td><span class="kw">void</span> <a id="278c6" class="tk">drot32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="278c23" class="tk">*</a><a id="278c24" class="tk">n32</a>, <span class="kw">double</span> <a id="278c36" class="tk">*</a><a id="278c37" class="tk">dx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="278c51" class="tk">*</a><a id="278c52" class="tk">incx32</a>, <span class="kw">double</span> <a id="278c67" class="tk">*</a><a id="278c68" class="tk">dy</a>,</td></tr>
+<tr name="279" id="279">
+<td><a id="l279" class='ln'>279</a></td><td>            <span class="kw">const</span> <span class="kw">int</span> <a id="279c23" class="tk">*</a><a id="279c24" class="tk">incy32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="279c45" class="tk">*</a><a id="279c46" class="tk">c</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="279c62" class="tk">*</a><a id="279c63" class="tk">s</a>);</td></tr>
+<tr name="280" id="280">
+<td><a id="l280" class='ln'>280</a></td><td></td></tr>
+<tr name="281" id="281">
+<td><a id="l281" class='ln'>281</a></td><td><a id="281c1" class="tk">EXTERN_C</a> <a id="281c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="282" id="282">
+<td><a id="l282" class='ln'>282</a></td><td><span class="pp">#define</span> <a id="282c9" class="tk">csrot32</a> <a id="282c17" class="tk">FORTRAN_WRAPPER</a>(<a id="282c33" class="tk">csrot32</a>)</td></tr>
+<tr name="283" id="283">
+<td><a id="l283" class='ln'>283</a></td><td><span class="kw">void</span> <a id="283c6" class="tk">csrot32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="283c24" class="tk">*</a><a id="283c25" class="tk">n32</a>, <a id="283c30" class="tk">creal32_T</a> <a id="283c40" class="tk">*</a><a id="283c41" class="tk">cx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="283c55" class="tk">*</a><a id="283c56" class="tk">incx32</a>, <a id="283c64" class="tk">creal32_T</a> <a id="283c74" class="tk">*</a><a id="283c75" class="tk">cy</a>, </td></tr>
+<tr name="284" id="284">
+<td><a id="l284" class='ln'>284</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="284c24" class="tk">*</a><a id="284c25" class="tk">incy32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="284c45" class="tk">*</a><a id="284c46" class="tk">c</a>, <span class="kw">const</span> <a id="284c55" class="tk">creal32_T</a> <a id="284c65" class="tk">*</a><a id="284c66" class="tk">s</a>);</td></tr>
+<tr name="285" id="285">
+<td><a id="l285" class='ln'>285</a></td><td></td></tr>
+<tr name="286" id="286">
+<td><a id="l286" class='ln'>286</a></td><td><a id="286c1" class="tk">EXTERN_C</a> <a id="286c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="287" id="287">
+<td><a id="l287" class='ln'>287</a></td><td><span class="pp">#define</span> <a id="287c9" class="tk">zdrot32</a> <a id="287c17" class="tk">FORTRAN_WRAPPER</a>(<a id="287c33" class="tk">zdrot32</a>)</td></tr>
+<tr name="288" id="288">
+<td><a id="l288" class='ln'>288</a></td><td><span class="kw">void</span> <a id="288c6" class="tk">zdrot32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="288c24" class="tk">*</a><a id="288c25" class="tk">n32</a>, <a id="288c30" class="tk">creal_T</a> <a id="288c38" class="tk">*</a><a id="288c39" class="tk">cx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="288c53" class="tk">*</a><a id="288c54" class="tk">incx32</a>, <a id="288c62" class="tk">creal_T</a> <a id="288c70" class="tk">*</a><a id="288c71" class="tk">cy</a>, </td></tr>
+<tr name="289" id="289">
+<td><a id="l289" class='ln'>289</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="289c24" class="tk">*</a><a id="289c25" class="tk">incy32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="289c46" class="tk">*</a><a id="289c47" class="tk">c</a>, <span class="kw">const</span> <a id="289c56" class="tk">creal_T</a> <a id="289c64" class="tk">*</a><a id="289c65" class="tk">s</a>);</td></tr>
+<tr name="290" id="290">
+<td><a id="l290" class='ln'>290</a></td><td></td></tr>
+<tr name="291" id="291">
+<td><a id="l291" class='ln'>291</a></td><td><a id="291c1" class="tk">EXTERN_C</a> <a id="291c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="292" id="292">
+<td><a id="l292" class='ln'>292</a></td><td><span class="pp">#define</span> <a id="292c9" class="tk">sscal32</a> <a id="292c17" class="tk">FORTRAN_WRAPPER</a>(<a id="292c33" class="tk">sscal32</a>)</td></tr>
+<tr name="293" id="293">
+<td><a id="l293" class='ln'>293</a></td><td><span class="kw">void</span> <a id="293c6" class="tk">sscal32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="293c24" class="tk">*</a><a id="293c25" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="293c42" class="tk">*</a><a id="293c43" class="tk">sa</a>, <span class="kw">float</span>  <a id="293c54" class="tk">*</a><a id="293c55" class="tk">sx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="293c69" class="tk">*</a><a id="293c70" class="tk">incx32</a>);</td></tr>
+<tr name="294" id="294">
+<td><a id="l294" class='ln'>294</a></td><td></td></tr>
+<tr name="295" id="295">
+<td><a id="l295" class='ln'>295</a></td><td><a id="295c1" class="tk">EXTERN_C</a> <a id="295c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="296" id="296">
+<td><a id="l296" class='ln'>296</a></td><td><span class="pp">#define</span> <a id="296c9" class="tk">dscal32</a> <a id="296c17" class="tk">FORTRAN_WRAPPER</a>(<a id="296c33" class="tk">dscal32</a>)</td></tr>
+<tr name="297" id="297">
+<td><a id="l297" class='ln'>297</a></td><td><span class="kw">void</span> <a id="297c6" class="tk">dscal32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="297c24" class="tk">*</a><a id="297c25" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="297c43" class="tk">*</a><a id="297c44" class="tk">da</a>, <span class="kw">double</span> <a id="297c55" class="tk">*</a><a id="297c56" class="tk">dx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="297c70" class="tk">*</a><a id="297c71" class="tk">incx32</a>);</td></tr>
+<tr name="298" id="298">
+<td><a id="l298" class='ln'>298</a></td><td></td></tr>
+<tr name="299" id="299">
+<td><a id="l299" class='ln'>299</a></td><td><a id="299c1" class="tk">EXTERN_C</a> <a id="299c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="300" id="300">
+<td><a id="l300" class='ln'>300</a></td><td><span class="pp">#define</span> <a id="300c9" class="tk">cscal32</a> <a id="300c17" class="tk">FORTRAN_WRAPPER</a>(<a id="300c33" class="tk">cscal32</a>)</td></tr>
+<tr name="301" id="301">
+<td><a id="l301" class='ln'>301</a></td><td><span class="kw">void</span> <a id="301c6" class="tk">cscal32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="301c24" class="tk">*</a><a id="301c25" class="tk">n32</a>, <span class="kw">const</span> <a id="301c36" class="tk">creal32_T</a> <a id="301c46" class="tk">*</a><a id="301c47" class="tk">ca</a>, <a id="301c51" class="tk">creal32_T</a> <a id="301c61" class="tk">*</a><a id="301c62" class="tk">cx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="301c76" class="tk">*</a><a id="301c77" class="tk">incx32</a>);</td></tr>
+<tr name="302" id="302">
+<td><a id="l302" class='ln'>302</a></td><td></td></tr>
+<tr name="303" id="303">
+<td><a id="l303" class='ln'>303</a></td><td><a id="303c1" class="tk">EXTERN_C</a> <a id="303c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="304" id="304">
+<td><a id="l304" class='ln'>304</a></td><td><span class="pp">#define</span> <a id="304c9" class="tk">zscal32</a> <a id="304c17" class="tk">FORTRAN_WRAPPER</a>(<a id="304c33" class="tk">zscal32</a>)</td></tr>
+<tr name="305" id="305">
+<td><a id="l305" class='ln'>305</a></td><td><span class="kw">void</span> <a id="305c6" class="tk">zscal32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="305c24" class="tk">*</a><a id="305c25" class="tk">n32</a>, <span class="kw">const</span> <a id="305c36" class="tk">creal_T</a> <a id="305c44" class="tk">*</a><a id="305c45" class="tk">za</a>, <a id="305c49" class="tk">creal_T</a> <a id="305c57" class="tk">*</a><a id="305c58" class="tk">zx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="305c72" class="tk">*</a><a id="305c73" class="tk">incx32</a>);</td></tr>
+<tr name="306" id="306">
+<td><a id="l306" class='ln'>306</a></td><td></td></tr>
+<tr name="307" id="307">
+<td><a id="l307" class='ln'>307</a></td><td><a id="307c1" class="tk">EXTERN_C</a> <a id="307c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="308" id="308">
+<td><a id="l308" class='ln'>308</a></td><td><span class="pp">#define</span> <a id="308c9" class="tk">sswap32</a> <a id="308c17" class="tk">FORTRAN_WRAPPER</a>(<a id="308c33" class="tk">sswap32</a>)</td></tr>
+<tr name="309" id="309">
+<td><a id="l309" class='ln'>309</a></td><td><span class="kw">void</span> <a id="309c6" class="tk">sswap32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="309c24" class="tk">*</a><a id="309c25" class="tk">n32</a>, <span class="kw">float</span>  <a id="309c37" class="tk">*</a><a id="309c38" class="tk">sx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="309c52" class="tk">*</a><a id="309c53" class="tk">incx32</a>, <span class="kw">float</span>  <a id="309c68" class="tk">*</a><a id="309c69" class="tk">sy</a>, </td></tr>
+<tr name="310" id="310">
+<td><a id="l310" class='ln'>310</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="310c24" class="tk">*</a><a id="310c25" class="tk">incy32</a>);</td></tr>
+<tr name="311" id="311">
+<td><a id="l311" class='ln'>311</a></td><td></td></tr>
+<tr name="312" id="312">
+<td><a id="l312" class='ln'>312</a></td><td><a id="312c1" class="tk">EXTERN_C</a> <a id="312c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="313" id="313">
+<td><a id="l313" class='ln'>313</a></td><td><span class="pp">#define</span> <a id="313c9" class="tk">dswap32</a> <a id="313c17" class="tk">FORTRAN_WRAPPER</a>(<a id="313c33" class="tk">dswap32</a>)</td></tr>
+<tr name="314" id="314">
+<td><a id="l314" class='ln'>314</a></td><td><span class="kw">void</span> <a id="314c6" class="tk">dswap32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="314c24" class="tk">*</a><a id="314c25" class="tk">n32</a>, <span class="kw">double</span> <a id="314c37" class="tk">*</a><a id="314c38" class="tk">dx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="314c52" class="tk">*</a><a id="314c53" class="tk">incx32</a>, <span class="kw">double</span> <a id="314c68" class="tk">*</a><a id="314c69" class="tk">dy</a>,</td></tr>
+<tr name="315" id="315">
+<td><a id="l315" class='ln'>315</a></td><td>             <span class="kw">const</span> <span class="kw">int</span> <a id="315c24" class="tk">*</a><a id="315c25" class="tk">incy32</a>);</td></tr>
+<tr name="316" id="316">
+<td><a id="l316" class='ln'>316</a></td><td></td></tr>
+<tr name="317" id="317">
+<td><a id="l317" class='ln'>317</a></td><td><a id="317c1" class="tk">EXTERN_C</a> <a id="317c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="318" id="318">
+<td><a id="l318" class='ln'>318</a></td><td><span class="pp">#define</span> <a id="318c9" class="tk">cswap32</a> <a id="318c17" class="tk">FORTRAN_WRAPPER</a>(<a id="318c33" class="tk">cswap32</a>)</td></tr>
+<tr name="319" id="319">
+<td><a id="l319" class='ln'>319</a></td><td><span class="kw">void</span> <a id="319c6" class="tk">cswap32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="319c24" class="tk">*</a><a id="319c25" class="tk">n32</a>, <a id="319c30" class="tk">creal32_T</a> <a id="319c40" class="tk">*</a><a id="319c41" class="tk">cx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="319c55" class="tk">*</a><a id="319c56" class="tk">incx32</a>, </td></tr>
+<tr name="320" id="320">
+<td><a id="l320" class='ln'>320</a></td><td>             <a id="320c14" class="tk">creal32_T</a> <a id="320c24" class="tk">*</a><a id="320c25" class="tk">cy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="320c39" class="tk">*</a><a id="320c40" class="tk">incy32</a>);</td></tr>
+<tr name="321" id="321">
+<td><a id="l321" class='ln'>321</a></td><td></td></tr>
+<tr name="322" id="322">
+<td><a id="l322" class='ln'>322</a></td><td><a id="322c1" class="tk">EXTERN_C</a> <a id="322c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="323" id="323">
+<td><a id="l323" class='ln'>323</a></td><td><span class="pp">#define</span> <a id="323c9" class="tk">zswap32</a> <a id="323c17" class="tk">FORTRAN_WRAPPER</a>(<a id="323c33" class="tk">zswap32</a>)</td></tr>
+<tr name="324" id="324">
+<td><a id="l324" class='ln'>324</a></td><td><span class="kw">void</span> <a id="324c6" class="tk">zswap32</a>(<span class="kw">const</span> <span class="kw">int</span> <a id="324c24" class="tk">*</a><a id="324c25" class="tk">n32</a>, <a id="324c30" class="tk">creal_T</a> <a id="324c38" class="tk">*</a><a id="324c39" class="tk">zx</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="324c53" class="tk">*</a><a id="324c54" class="tk">incx32</a>, </td></tr>
+<tr name="325" id="325">
+<td><a id="l325" class='ln'>325</a></td><td>             <a id="325c14" class="tk">creal_T</a> <a id="325c22" class="tk">*</a><a id="325c23" class="tk">zy</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="325c37" class="tk">*</a><a id="325c38" class="tk">incy32</a>);</td></tr>
+<tr name="326" id="326">
+<td><a id="l326" class='ln'>326</a></td><td></td></tr>
+<tr name="327" id="327">
+<td><a id="l327" class='ln'>327</a></td><td><a id="327c1" class="tk">EXTERN_C</a> <a id="327c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="328" id="328">
+<td><a id="l328" class='ln'>328</a></td><td><span class="pp">#define</span> <a id="328c9" class="tk">strsm32</a> <a id="328c17" class="tk">FORTRAN_WRAPPER</a>(<a id="328c33" class="tk">strsm32</a>)</td></tr>
+<tr name="329" id="329">
+<td><a id="l329" class='ln'>329</a></td><td><span class="kw">void</span> <a id="329c6" class="tk">strsm32</a>(<span class="kw">char</span>   <a id="329c21" class="tk">*</a><a id="329c22" class="tk">side</a>, <span class="kw">char</span>   <a id="329c35" class="tk">*</a><a id="329c36" class="tk">uplo</a>, <span class="kw">char</span>   <a id="329c49" class="tk">*</a><a id="329c50" class="tk">transa</a>, </td></tr>
+<tr name="330" id="330">
+<td><a id="l330" class='ln'>330</a></td><td>             <span class="kw">char</span> <a id="330c19" class="tk">*</a><a id="330c20" class="tk">diag</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="330c36" class="tk">*</a><a id="330c37" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="330c52" class="tk">*</a><a id="330c53" class="tk">n32</a>,</td></tr>
+<tr name="331" id="331">
+<td><a id="l331" class='ln'>331</a></td><td>             <span class="kw">const</span> <span class="kw">float</span> <a id="331c26" class="tk">*</a><a id="331c27" class="tk">alpha</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="331c46" class="tk">*</a><a id="331c47" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="331c60" class="tk">*</a><a id="331c61" class="tk">lda32</a>, </td></tr>
+<tr name="332" id="332">
+<td><a id="l332" class='ln'>332</a></td><td>             <span class="kw">float</span>  <a id="332c21" class="tk">*</a><a id="332c22" class="tk">b</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="332c35" class="tk">*</a><a id="332c36" class="tk">ldb32</a>);</td></tr>
+<tr name="333" id="333">
+<td><a id="l333" class='ln'>333</a></td><td></td></tr>
+<tr name="334" id="334">
+<td><a id="l334" class='ln'>334</a></td><td><a id="334c1" class="tk">EXTERN_C</a> <a id="334c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="335" id="335">
+<td><a id="l335" class='ln'>335</a></td><td><span class="pp">#define</span> <a id="335c9" class="tk">dtrsm32</a> <a id="335c17" class="tk">FORTRAN_WRAPPER</a>(<a id="335c33" class="tk">dtrsm32</a>)</td></tr>
+<tr name="336" id="336">
+<td><a id="l336" class='ln'>336</a></td><td><span class="kw">void</span> <a id="336c6" class="tk">dtrsm32</a>(<span class="kw">char</span>   <a id="336c21" class="tk">*</a><a id="336c22" class="tk">side</a>, <span class="kw">char</span>   <a id="336c35" class="tk">*</a><a id="336c36" class="tk">uplo</a>, <span class="kw">char</span>   <a id="336c49" class="tk">*</a><a id="336c50" class="tk">transa</a>, </td></tr>
+<tr name="337" id="337">
+<td><a id="l337" class='ln'>337</a></td><td>             <span class="kw">char</span> <a id="337c19" class="tk">*</a><a id="337c20" class="tk">diag</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="337c36" class="tk">*</a><a id="337c37" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="337c52" class="tk">*</a><a id="337c53" class="tk">n32</a>, </td></tr>
+<tr name="338" id="338">
+<td><a id="l338" class='ln'>338</a></td><td>             <span class="kw">const</span> <span class="kw">double</span> <a id="338c27" class="tk">*</a><a id="338c28" class="tk">alpha</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="338c48" class="tk">*</a><a id="338c49" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="338c62" class="tk">*</a><a id="338c63" class="tk">lda32</a>, </td></tr>
+<tr name="339" id="339">
+<td><a id="l339" class='ln'>339</a></td><td>             <span class="kw">double</span> <a id="339c21" class="tk">*</a><a id="339c22" class="tk">b</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="339c35" class="tk">*</a><a id="339c36" class="tk">ldb32</a>);</td></tr>
+<tr name="340" id="340">
+<td><a id="l340" class='ln'>340</a></td><td></td></tr>
+<tr name="341" id="341">
+<td><a id="l341" class='ln'>341</a></td><td><a id="341c1" class="tk">EXTERN_C</a> <a id="341c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="342" id="342">
+<td><a id="l342" class='ln'>342</a></td><td><span class="pp">#define</span> <a id="342c9" class="tk">ctrsm32</a> <a id="342c17" class="tk">FORTRAN_WRAPPER</a>(<a id="342c33" class="tk">ctrsm32</a>)</td></tr>
+<tr name="343" id="343">
+<td><a id="l343" class='ln'>343</a></td><td><span class="kw">void</span> <a id="343c6" class="tk">ctrsm32</a>(<span class="kw">char</span>   <a id="343c21" class="tk">*</a><a id="343c22" class="tk">side</a>, <span class="kw">char</span>   <a id="343c35" class="tk">*</a><a id="343c36" class="tk">uplo</a>, <span class="kw">char</span>   <a id="343c49" class="tk">*</a><a id="343c50" class="tk">transa</a>, </td></tr>
+<tr name="344" id="344">
+<td><a id="l344" class='ln'>344</a></td><td>             <span class="kw">char</span> <a id="344c19" class="tk">*</a><a id="344c20" class="tk">diag</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="344c36" class="tk">*</a><a id="344c37" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="344c52" class="tk">*</a><a id="344c53" class="tk">n32</a>, </td></tr>
+<tr name="345" id="345">
+<td><a id="l345" class='ln'>345</a></td><td>             <span class="kw">const</span> <a id="345c20" class="tk">creal32_T</a> <a id="345c30" class="tk">*</a><a id="345c31" class="tk">alpha</a>, <span class="kw">const</span> <a id="345c44" class="tk">creal32_T</a> <a id="345c54" class="tk">*</a><a id="345c55" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="345c68" class="tk">*</a><a id="345c69" class="tk">lda32</a>, </td></tr>
+<tr name="346" id="346">
+<td><a id="l346" class='ln'>346</a></td><td>             <a id="346c14" class="tk">creal32_T</a> <a id="346c24" class="tk">*</a><a id="346c25" class="tk">b</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="346c38" class="tk">*</a><a id="346c39" class="tk">ldb32</a>);</td></tr>
+<tr name="347" id="347">
+<td><a id="l347" class='ln'>347</a></td><td></td></tr>
+<tr name="348" id="348">
+<td><a id="l348" class='ln'>348</a></td><td><a id="348c1" class="tk">EXTERN_C</a> <a id="348c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="349" id="349">
+<td><a id="l349" class='ln'>349</a></td><td><span class="pp">#define</span> <a id="349c9" class="tk">ztrsm32</a> <a id="349c17" class="tk">FORTRAN_WRAPPER</a>(<a id="349c33" class="tk">ztrsm32</a>)</td></tr>
+<tr name="350" id="350">
+<td><a id="l350" class='ln'>350</a></td><td><span class="kw">void</span> <a id="350c6" class="tk">ztrsm32</a>(<span class="kw">char</span>   <a id="350c21" class="tk">*</a><a id="350c22" class="tk">side</a>, <span class="kw">char</span>   <a id="350c35" class="tk">*</a><a id="350c36" class="tk">uplo</a>, <span class="kw">char</span>   <a id="350c49" class="tk">*</a><a id="350c50" class="tk">transa</a>,</td></tr>
+<tr name="351" id="351">
+<td><a id="l351" class='ln'>351</a></td><td>             <span class="kw">char</span> <a id="351c19" class="tk">*</a><a id="351c20" class="tk">diag</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="351c36" class="tk">*</a><a id="351c37" class="tk">m32</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="351c52" class="tk">*</a><a id="351c53" class="tk">n32</a>,</td></tr>
+<tr name="352" id="352">
+<td><a id="l352" class='ln'>352</a></td><td>             <span class="kw">const</span> <a id="352c20" class="tk">creal_T</a> <a id="352c28" class="tk">*</a><a id="352c29" class="tk">alpha</a>, <span class="kw">const</span> <a id="352c42" class="tk">creal_T</a> <a id="352c50" class="tk">*</a><a id="352c51" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="352c64" class="tk">*</a><a id="352c65" class="tk">lda32</a>, </td></tr>
+<tr name="353" id="353">
+<td><a id="l353" class='ln'>353</a></td><td>             <a id="353c14" class="tk">creal_T</a> <a id="353c22" class="tk">*</a><a id="353c23" class="tk">b</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="353c36" class="tk">*</a><a id="353c37" class="tk">ldb32</a>);</td></tr>
+<tr name="354" id="354">
+<td><a id="l354" class='ln'>354</a></td><td></td></tr>
+<tr name="355" id="355">
+<td><a id="l355" class='ln'>355</a></td><td><a id="355c1" class="tk">EXTERN_C</a> <a id="355c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="356" id="356">
+<td><a id="l356" class='ln'>356</a></td><td><span class="pp">#define</span> <a id="356c9" class="tk">strsv32</a> <a id="356c17" class="tk">FORTRAN_WRAPPER</a>(<a id="356c33" class="tk">strsv32</a>)</td></tr>
+<tr name="357" id="357">
+<td><a id="l357" class='ln'>357</a></td><td><span class="kw">void</span> <a id="357c6" class="tk">strsv32</a>(<span class="kw">char</span>   <a id="357c21" class="tk">*</a><a id="357c22" class="tk">uplo</a>, <span class="kw">char</span>   <a id="357c35" class="tk">*</a><a id="357c36" class="tk">trans</a>, <span class="kw">char</span>   <a id="357c50" class="tk">*</a><a id="357c51" class="tk">diag</a>,</td></tr>
+<tr name="358" id="358">
+<td><a id="l358" class='ln'>358</a></td><td>                <span class="kw">const</span> <span class="kw">int</span> <a id="358c27" class="tk">*</a><a id="358c28" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">float</span> <a id="358c45" class="tk">*</a><a id="358c46" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="358c59" class="tk">*</a><a id="358c60" class="tk">lda32</a>,</td></tr>
+<tr name="359" id="359">
+<td><a id="l359" class='ln'>359</a></td><td>                <span class="kw">float</span> <a id="359c23" class="tk">*</a><a id="359c24" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="359c37" class="tk">*</a><a id="359c38" class="tk">incx32</a>);</td></tr>
+<tr name="360" id="360">
+<td><a id="l360" class='ln'>360</a></td><td></td></tr>
+<tr name="361" id="361">
+<td><a id="l361" class='ln'>361</a></td><td><a id="361c1" class="tk">EXTERN_C</a> <a id="361c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="362" id="362">
+<td><a id="l362" class='ln'>362</a></td><td><span class="pp">#define</span> <a id="362c9" class="tk">dtrsv32</a> <a id="362c17" class="tk">FORTRAN_WRAPPER</a>(<a id="362c33" class="tk">dtrsv32</a>)</td></tr>
+<tr name="363" id="363">
+<td><a id="l363" class='ln'>363</a></td><td><span class="kw">void</span> <a id="363c6" class="tk">dtrsv32</a>(<span class="kw">char</span>   <a id="363c21" class="tk">*</a><a id="363c22" class="tk">uplo</a>, <span class="kw">char</span>   <a id="363c35" class="tk">*</a><a id="363c36" class="tk">trans</a>, <span class="kw">char</span>   <a id="363c50" class="tk">*</a><a id="363c51" class="tk">diag</a>,</td></tr>
+<tr name="364" id="364">
+<td><a id="l364" class='ln'>364</a></td><td>                <span class="kw">const</span> <span class="kw">int</span> <a id="364c27" class="tk">*</a><a id="364c28" class="tk">n32</a>, <span class="kw">const</span> <span class="kw">double</span> <a id="364c46" class="tk">*</a><a id="364c47" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="364c60" class="tk">*</a><a id="364c61" class="tk">lda32</a>, </td></tr>
+<tr name="365" id="365">
+<td><a id="l365" class='ln'>365</a></td><td>                <span class="kw">double</span> <a id="365c24" class="tk">*</a><a id="365c25" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="365c38" class="tk">*</a><a id="365c39" class="tk">incx32</a>);</td></tr>
+<tr name="366" id="366">
+<td><a id="l366" class='ln'>366</a></td><td></td></tr>
+<tr name="367" id="367">
+<td><a id="l367" class='ln'>367</a></td><td><a id="367c1" class="tk">EXTERN_C</a> <a id="367c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="368" id="368">
+<td><a id="l368" class='ln'>368</a></td><td><span class="pp">#define</span> <a id="368c9" class="tk">ctrsv32</a> <a id="368c17" class="tk">FORTRAN_WRAPPER</a>(<a id="368c33" class="tk">ctrsv32</a>)</td></tr>
+<tr name="369" id="369">
+<td><a id="l369" class='ln'>369</a></td><td><span class="kw">void</span> <a id="369c6" class="tk">ctrsv32</a>(<span class="kw">char</span>   <a id="369c21" class="tk">*</a><a id="369c22" class="tk">uplo</a>, <span class="kw">char</span>   <a id="369c35" class="tk">*</a><a id="369c36" class="tk">trans</a>, <span class="kw">char</span>   <a id="369c50" class="tk">*</a><a id="369c51" class="tk">diag</a>, </td></tr>
+<tr name="370" id="370">
+<td><a id="l370" class='ln'>370</a></td><td>                <span class="kw">const</span> <span class="kw">int</span> <a id="370c27" class="tk">*</a><a id="370c28" class="tk">n32</a>, <span class="kw">const</span> <a id="370c39" class="tk">creal32_T</a> <a id="370c49" class="tk">*</a><a id="370c50" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="370c63" class="tk">*</a><a id="370c64" class="tk">lda32</a>, </td></tr>
+<tr name="371" id="371">
+<td><a id="l371" class='ln'>371</a></td><td>                <a id="371c17" class="tk">creal32_T</a> <a id="371c27" class="tk">*</a><a id="371c28" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="371c41" class="tk">*</a><a id="371c42" class="tk">incx32</a>);</td></tr>
+<tr name="372" id="372">
+<td><a id="l372" class='ln'>372</a></td><td></td></tr>
+<tr name="373" id="373">
+<td><a id="l373" class='ln'>373</a></td><td><a id="373c1" class="tk">EXTERN_C</a> <a id="373c10" class="tk">LIBMWBLASCOMPAT32_API</a></td></tr>
+<tr name="374" id="374">
+<td><a id="l374" class='ln'>374</a></td><td><span class="pp">#define</span> <a id="374c9" class="tk">ztrsv32</a> <a id="374c17" class="tk">FORTRAN_WRAPPER</a>(<a id="374c33" class="tk">ztrsv32</a>)</td></tr>
+<tr name="375" id="375">
+<td><a id="l375" class='ln'>375</a></td><td><span class="kw">void</span> <a id="375c6" class="tk">ztrsv32</a>(<span class="kw">char</span>   <a id="375c21" class="tk">*</a><a id="375c22" class="tk">uplo</a>, <span class="kw">char</span>   <a id="375c35" class="tk">*</a><a id="375c36" class="tk">trans</a>, <span class="kw">char</span>   <a id="375c50" class="tk">*</a><a id="375c51" class="tk">diag</a>,</td></tr>
+<tr name="376" id="376">
+<td><a id="l376" class='ln'>376</a></td><td>                <span class="kw">const</span> <span class="kw">int</span> <a id="376c27" class="tk">*</a><a id="376c28" class="tk">n32</a>, <span class="kw">const</span> <a id="376c39" class="tk">creal_T</a> <a id="376c47" class="tk">*</a><a id="376c48" class="tk">a</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="376c61" class="tk">*</a><a id="376c62" class="tk">lda32</a>, </td></tr>
+<tr name="377" id="377">
+<td><a id="l377" class='ln'>377</a></td><td>                <a id="377c17" class="tk">creal_T</a> <a id="377c25" class="tk">*</a><a id="377c26" class="tk">x</a>, <span class="kw">const</span> <span class="kw">int</span> <a id="377c39" class="tk">*</a><a id="377c40" class="tk">incx32</a>);</td></tr>
+<tr name="378" id="378">
+<td><a id="l378" class='ln'>378</a></td><td></td></tr>
+<tr name="379" id="379">
+<td><a id="l379" class='ln'>379</a></td><td><span class="pp">#endif</span> <span class="ct">/* blascompat32_h */</span></td></tr>
+<tr name="380" id="380">
+<td><a id="l380" class='ln'>380</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

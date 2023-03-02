@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="ct">/* Copyright 2013-2014 The MathWorks, Inc. */</span></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="pp">#ifndef</span> <a id="3c9" class="tk">_sf_runtime_sf_runtime_h_</a></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td><span class="pp">#define</span> <a id="4c9" class="tk">_sf_runtime_sf_runtime_h_</a></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td></td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="pp">#ifdef</span> <a id="6c8" class="tk">SUPPORTS_PRAGMA_ONCE</a></td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td><span class="pp">#pragma</span> <a id="7c9" class="tk">once</a></td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td></td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td><span class="pp">#include "simstruc.h"</span></td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td></td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td><span class="pp">#include "sf_runtime_spec.h"</span></td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td></td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td><a id="14c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="14c26" class="tk">sf_msg_calendar_push</a>(<a id="14c47" class="tk">SimStruct</a><a id="14c56" class="tk">*</a> <a id="14c58" class="tk">S</a>, <span class="kw">int</span> <a id="14c65" class="tk">outportNum</a>, <span class="kw">void</span><a id="14c81" class="tk">*</a> <a id="14c83" class="tk">payload</a>, <a id="14c92" class="tk">boolean_T</a> <a id="14c102" class="tk">isLocalMsg</a>);</td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td><a id="15c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">int</span> <a id="15c25" class="tk">sf_msg_calendar_pop</a>(<a id="15c45" class="tk">SimStruct</a><a id="15c54" class="tk">*</a> <a id="15c56" class="tk">S</a>, <span class="kw">int</span> <a id="15c63" class="tk">inportNum</a>, <span class="kw">void</span><a id="15c78" class="tk">*</a> <a id="15c80" class="tk">payload</a>, <a id="15c89" class="tk">boolean_T</a><a id="15c98" class="tk">*</a> <a id="15c100" class="tk">isPopped</a>, <a id="15c110" class="tk">boolean_T</a> <a id="15c120" class="tk">isForwarded</a>, <span class="kw">void</span><a id="15c137" class="tk">*</a><a id="15c138" class="tk">*</a> <a id="15c140" class="tk">msgHandle</a>, <a id="15c151" class="tk">boolean_T</a> <a id="15c161" class="tk">isLocalMsg</a>, <span class="kw">int</span> <a id="15c177" class="tk">sizeOfPayload</a>);</td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td><a id="16c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="16c26" class="tk">sf_msg_calendar_consume</a>(<a id="16c50" class="tk">SimStruct</a><a id="16c59" class="tk">*</a> <a id="16c61" class="tk">S</a>, <span class="kw">int</span> <a id="16c68" class="tk">inportNum</a>, <a id="16c79" class="tk">boolean_T</a><a id="16c88" class="tk">*</a> <a id="16c90" class="tk">isPopped</a>, <a id="16c100" class="tk">boolean_T</a><a id="16c109" class="tk">*</a> <a id="16c111" class="tk">isForwarded</a>, <span class="kw">void</span><a id="16c128" class="tk">*</a> <a id="16c130" class="tk">msgHandle</a>);</td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td><a id="17c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="17c26" class="tk">sf_msg_calendar_forward</a>(<a id="17c50" class="tk">SimStruct</a><a id="17c59" class="tk">*</a> <a id="17c61" class="tk">S</a>,  <a id="17c65" class="tk">boolean_T</a> <a id="17c75" class="tk">isPopped</a>, <a id="17c85" class="tk">boolean_T</a><a id="17c94" class="tk">*</a> <a id="17c96" class="tk">isForwarded</a>, <span class="kw">void</span><a id="17c113" class="tk">*</a> <a id="17c115" class="tk">srcMsgHandle</a>, <span class="kw">int</span> <a id="17c133" class="tk">msgDestIndexE</a>, <a id="17c148" class="tk">boolean_T</a> <a id="17c158" class="tk">isLocalMsg</a>);</td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td><a id="18c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="18c26" class="tk">sf_msg_calendar_update_payload</a>(<a id="18c57" class="tk">SimStruct</a><a id="18c66" class="tk">*</a> <a id="18c68" class="tk">S</a>,  <span class="kw">void</span><a id="18c76" class="tk">*</a> <a id="18c78" class="tk">msgHandle</a>, <span class="kw">const</span> <span class="kw">void</span><a id="18c99" class="tk">*</a> <a id="18c101" class="tk">updatedPayload</a>, <a id="18c117" class="tk">boolean_T</a> <a id="18c127" class="tk">isPopped</a>, <a id="18c137" class="tk">boolean_T</a> <a id="18c147" class="tk">isForwarded</a>);</td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td></td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

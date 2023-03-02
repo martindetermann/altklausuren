@@ -1,0 +1,21 @@
+LIN_description_file ;
+LIN_protocol_version = "2.0" ;
+LIN_language_version = "2.0" ;
+LIN_speed = 19.200 kbps ;
+Nodes {
+    Master:Master_Node,1.0000 ms,0.0000 ms ;
+    Slaves:Slave_Node;
+}
+Signals {
+    Master_Signal:16,{0x00,0x00},Master_Node,Slave_Node;
+}
+Frames {
+    Master_Frame:0x05,Master_Node,2{
+        Master_Signal,0;
+    }
+}
+Schedule_tables {
+    Master_Schedule {
+        Master_Frame delay 200.0000 ms ;
+    }
+}

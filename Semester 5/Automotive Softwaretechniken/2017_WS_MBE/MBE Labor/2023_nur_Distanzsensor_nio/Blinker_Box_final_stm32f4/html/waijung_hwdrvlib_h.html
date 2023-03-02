@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td><span class="ct"> * File: waijung_hwdrvlib.h</span></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td><span class="ct"> * Created with Waijung Blockset</span></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="ct"> * Real-Time Workshop code generated for Simulink model Blinker_Box_final.</span></td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="ct"> * Model version                        : 1.10</span></td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td><span class="ct"> * Real-Time Workshop file version      : 8.13 (R2017b) 24-Jul-2017</span></td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td><span class="ct"> * Real-Time Workshop file generated on : Tue Dec  5 14:24:08 2017</span></td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td><span class="ct"> * TLC version                          : 8.13 (Jul 25 2017)</span></td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td><span class="ct"> * C/C++ source code generated on       : Tue Dec  5 14:24:09 2017</span></td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td><span class="ct"> * Target selection: stm32f4.tlc</span></td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td><span class="ct"> * Embedded hardware selection: ARM Compatible-&gt;Cortex - M4</span></td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td><span class="ct"> * Code generation objectives: Unspecified</span></td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td><span class="ct"> * Validation result: Not run</span></td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td></td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td><span class="pp">#ifndef</span> <a id="20c9" class="tk">RTW_HEADER_waijung_hwdrvlib_h_</a></td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td><span class="pp">#define</span> <a id="21c9" class="tk">RTW_HEADER_waijung_hwdrvlib_h_</a></td></tr>
+<tr name="22" id="22">
+<td><a id="l22" class='ln'>22</a></td><td><span class="pp">#include &lt;string.h&gt;</span></td></tr>
+<tr name="23" id="23">
+<td><a id="l23" class='ln'>23</a></td><td><span class="pp">#include "rtwtypes.h"</span></td></tr>
+<tr name="24" id="24">
+<td><a id="l24" class='ln'>24</a></td><td><span class="pp">#include "stm32f4xx.h"</span></td></tr>
+<tr name="25" id="25">
+<td><a id="l25" class='ln'>25</a></td><td></td></tr>
+<tr name="26" id="26">
+<td><a id="l26" class='ln'>26</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="27" id="27">
+<td><a id="l27" class='ln'>27</a></td><td><span class="ct"> * Name: &lt;S2&gt;/Digital Output</span></td></tr>
+<tr name="28" id="28">
+<td><a id="l28" class='ln'>28</a></td><td><span class="ct"> * Id: OutputDigitalOutput</span></td></tr>
+<tr name="29" id="29">
+<td><a id="l29" class='ln'>29</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="30" id="30">
+<td><a id="l30" class='ln'>30</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="31" id="31">
+<td><a id="l31" class='ln'>31</a></td><td><span class="pp">#define</span> <a id="31c9" class="tk">OutputDigitalOutput_C0</a>         <a id="31c40" class="tk">Peripheral_BB</a>(<a id="31c54" class="tk">GPIOC</a>-&gt;<a id="31c61" class="tk">ODR</a>, 0) <span class="ct">/* Output pin */</span></td></tr>
+<tr name="32" id="32">
+<td><a id="l32" class='ln'>32</a></td><td><span class="pp">#define</span> <a id="32c9" class="tk">OutputDigitalOutput_C1</a>         <a id="32c40" class="tk">Peripheral_BB</a>(<a id="32c54" class="tk">GPIOC</a>-&gt;<a id="32c61" class="tk">ODR</a>, 1) <span class="ct">/* Output pin */</span></td></tr>
+<tr name="33" id="33">
+<td><a id="l33" class='ln'>33</a></td><td><span class="pp">#define</span> <a id="33c9" class="tk">OutputDigitalOutput_C2</a>         <a id="33c40" class="tk">Peripheral_BB</a>(<a id="33c54" class="tk">GPIOC</a>-&gt;<a id="33c61" class="tk">ODR</a>, 2) <span class="ct">/* Output pin */</span></td></tr>
+<tr name="34" id="34">
+<td><a id="l34" class='ln'>34</a></td><td><span class="pp">#define</span> <a id="34c9" class="tk">OutputDigitalOutput_C3</a>         <a id="34c40" class="tk">Peripheral_BB</a>(<a id="34c54" class="tk">GPIOC</a>-&gt;<a id="34c61" class="tk">ODR</a>, 3) <span class="ct">/* Output pin */</span></td></tr>
+<tr name="35" id="35">
+<td><a id="l35" class='ln'>35</a></td><td><span class="pp">#define</span> <a id="35c9" class="tk">OutputDigitalOutput_C4</a>         <a id="35c40" class="tk">Peripheral_BB</a>(<a id="35c54" class="tk">GPIOC</a>-&gt;<a id="35c61" class="tk">ODR</a>, 4) <span class="ct">/* Output pin */</span></td></tr>
+<tr name="36" id="36">
+<td><a id="l36" class='ln'>36</a></td><td><span class="pp">#define</span> <a id="36c9" class="tk">OutputDigitalOutput_C5</a>         <a id="36c40" class="tk">Peripheral_BB</a>(<a id="36c54" class="tk">GPIOC</a>-&gt;<a id="36c61" class="tk">ODR</a>, 5) <span class="ct">/* Output pin */</span></td></tr>
+<tr name="37" id="37">
+<td><a id="l37" class='ln'>37</a></td><td><span class="pp">#define</span> <a id="37c9" class="tk">OutputDigitalOutput_C6</a>         <a id="37c40" class="tk">Peripheral_BB</a>(<a id="37c54" class="tk">GPIOC</a>-&gt;<a id="37c61" class="tk">ODR</a>, 6) <span class="ct">/* Output pin */</span></td></tr>
+<tr name="38" id="38">
+<td><a id="l38" class='ln'>38</a></td><td><span class="pp">#define</span> <a id="38c9" class="tk">OutputDigitalOutput_C7</a>         <a id="38c40" class="tk">Peripheral_BB</a>(<a id="38c54" class="tk">GPIOC</a>-&gt;<a id="38c61" class="tk">ODR</a>, 7) <span class="ct">/* Output pin */</span></td></tr>
+<tr name="39" id="39">
+<td><a id="l39" class='ln'>39</a></td><td><span class="pp">#define</span> <a id="39c9" class="tk">OutputDigitalOutput_C8</a>         <a id="39c40" class="tk">Peripheral_BB</a>(<a id="39c54" class="tk">GPIOC</a>-&gt;<a id="39c61" class="tk">ODR</a>, 8) <span class="ct">/* Output pin */</span></td></tr>
+<tr name="40" id="40">
+<td><a id="l40" class='ln'>40</a></td><td><span class="pp">#define</span> <a id="40c9" class="tk">OutputDigitalOutput_C9</a>         <a id="40c40" class="tk">Peripheral_BB</a>(<a id="40c54" class="tk">GPIOC</a>-&gt;<a id="40c61" class="tk">ODR</a>, 9) <span class="ct">/* Output pin */</span></td></tr>
+<tr name="41" id="41">
+<td><a id="l41" class='ln'>41</a></td><td></td></tr>
+<tr name="42" id="42">
+<td><a id="l42" class='ln'>42</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="43" id="43">
+<td><a id="l43" class='ln'>43</a></td><td><span class="ct"> * Bit banding</span></td></tr>
+<tr name="44" id="44">
+<td><a id="l44" class='ln'>44</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="45" id="45">
+<td><a id="l45" class='ln'>45</a></td><td><span class="ct"> * The Cortex memory map includes two bit-band regions.</span></td></tr>
+<tr name="46" id="46">
+<td><a id="l46" class='ln'>46</a></td><td><span class="ct"> * These regions map each word in an alias region of memory to a bit in</span></td></tr>
+<tr name="47" id="47">
+<td><a id="l47" class='ln'>47</a></td><td><span class="ct"> * a bit-band region of memory. Writing to a word in the alias region</span></td></tr>
+<tr name="48" id="48">
+<td><a id="l48" class='ln'>48</a></td><td><span class="ct"> * has the same effect as a read-modify-write operation on the targeted bit</span></td></tr>
+<tr name="49" id="49">
+<td><a id="l49" class='ln'>49</a></td><td><span class="ct"> * in the bit-band region.</span></td></tr>
+<tr name="50" id="50">
+<td><a id="l50" class='ln'>50</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="51" id="51">
+<td><a id="l51" class='ln'>51</a></td><td><span class="ct"> * In the STM32F4xxx both peripheral registers and SRAM are mapped in</span></td></tr>
+<tr name="52" id="52">
+<td><a id="l52" class='ln'>52</a></td><td><span class="ct"> * a bit-band region. This allows single bit-band write and read operations</span></td></tr>
+<tr name="53" id="53">
+<td><a id="l53" class='ln'>53</a></td><td><span class="ct"> * to be performed.</span></td></tr>
+<tr name="54" id="54">
+<td><a id="l54" class='ln'>54</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="55" id="55">
+<td><a id="l55" class='ln'>55</a></td><td><span class="ct"> * A mapping formula shows how to reference each word in the alias region</span></td></tr>
+<tr name="56" id="56">
+<td><a id="l56" class='ln'>56</a></td><td><span class="ct"> * to a corresponding bit in the bit-band region. The mapping formula is:</span></td></tr>
+<tr name="57" id="57">
+<td><a id="l57" class='ln'>57</a></td><td><span class="ct"> * bit_word_addr = bit_band_base + (byte_offset x 32) + (bit_number × 4)</span></td></tr>
+<tr name="58" id="58">
+<td><a id="l58" class='ln'>58</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="59" id="59">
+<td><a id="l59" class='ln'>59</a></td><td><span class="ct"> * BB_base      is the base address of the bit-band region for a register. (PERIPH_BB_BASE at 0x42000000 or SRAM_BB_BASE at 0x22000000)</span></td></tr>
+<tr name="60" id="60">
+<td><a id="l60" class='ln'>60</a></td><td><span class="ct"> * Reg_base     is the base address of a register in the memory region. (PERIPH_BASE at 0x40000000 or SRAM_BASE at 0x20000000)</span></td></tr>
+<tr name="61" id="61">
+<td><a id="l61" class='ln'>61</a></td><td><span class="ct"> * Register     is a register in the memory region that contains the targeted bit.</span></td></tr>
+<tr name="62" id="62">
+<td><a id="l62" class='ln'>62</a></td><td><span class="ct"> * Bit_number   is the targeted bit number (0 - 31).</span></td></tr>
+<tr name="63" id="63">
+<td><a id="l63" class='ln'>63</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="64" id="64">
+<td><a id="l64" class='ln'>64</a></td><td><span class="ct"> * PERIPH_BB_BASE, SRAM_BB_BASE, PERIPH_BASE, and SRAM_BASE are defined in stm32f10x.h</span></td></tr>
+<tr name="65" id="65">
+<td><a id="l65" class='ln'>65</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="66" id="66">
+<td><a id="l66" class='ln'>66</a></td><td><span class="ct"> * Example for determining bit banding bit.</span></td></tr>
+<tr name="67" id="67">
+<td><a id="l67" class='ln'>67</a></td><td><span class="ct"> * Determine DMA Transfer Complete Flag using bit banding.</span></td></tr>
+<tr name="68" id="68">
+<td><a id="l68" class='ln'>68</a></td><td><span class="ct"> * TCIFx is the flag for DMA Channel x</span></td></tr>
+<tr name="69" id="69">
+<td><a id="l69" class='ln'>69</a></td><td><span class="ct"> * This bit is set by hardware. It is cleared by software writing 1 to</span></td></tr>
+<tr name="70" id="70">
+<td><a id="l70" class='ln'>70</a></td><td><span class="ct"> * the corresponding bit in the DMA_IFCR register.</span></td></tr>
+<tr name="71" id="71">
+<td><a id="l71" class='ln'>71</a></td><td><span class="ct"> * TCIFx = 0: No transfer complete (TC) event on channel x</span></td></tr>
+<tr name="72" id="72">
+<td><a id="l72" class='ln'>72</a></td><td><span class="ct"> * TCIFx = 1: A transfer complete (TC) event occurred on channel x</span></td></tr>
+<tr name="73" id="73">
+<td><a id="l73" class='ln'>73</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="74" id="74">
+<td><a id="l74" class='ln'>74</a></td><td><span class="ct"> * DMA Channel:       1 2 3  4  5  6  7</span></td></tr>
+<tr name="75" id="75">
+<td><a id="l75" class='ln'>75</a></td><td><span class="ct"> * Flag bit position: 1 5 9 13 17 21 25 (in DMA_ISR register)</span></td></tr>
+<tr name="76" id="76">
+<td><a id="l76" class='ln'>76</a></td><td><span class="ct"> * (For DMA2 Channel 6 and 7 is irrelevant since it only has 5 channels.)</span></td></tr>
+<tr name="77" id="77">
+<td><a id="l77" class='ln'>77</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="78" id="78">
+<td><a id="l78" class='ln'>78</a></td><td><span class="ct"> * CTCIFx: Channel x transfer complete clear (x = 1 ..7)</span></td></tr>
+<tr name="79" id="79">
+<td><a id="l79" class='ln'>79</a></td><td><span class="ct"> * This bit is set and cleared by software.</span></td></tr>
+<tr name="80" id="80">
+<td><a id="l80" class='ln'>80</a></td><td><span class="ct"> * CTCIFx = 0: No effect</span></td></tr>
+<tr name="81" id="81">
+<td><a id="l81" class='ln'>81</a></td><td><span class="ct"> * CTCIFx = 1: Clear the corresponding TCIF flag in the DMA_ISR register</span></td></tr>
+<tr name="82" id="82">
+<td><a id="l82" class='ln'>82</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="83" id="83">
+<td><a id="l83" class='ln'>83</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="84" id="84">
+<td><a id="l84" class='ln'>84</a></td><td><span class="pp">#define</span> <a id="84c9" class="tk">BitBanding</a>(<a id="84c20" class="tk">Register</a>, <a id="84c30" class="tk">Bit_number</a>, <a id="84c42" class="tk">Reg_base</a>, <a id="84c52" class="tk">BB_base</a>) ((<span class="kw">volatile</span> <a id="84c72" class="tk">uint32_t</a><a id="84c80" class="tk">*</a>) ((<a id="84c85" class="tk">BB_base</a>) <a id="84c94" class="tk">+</a> (((<a id="84c99" class="tk">uint32_t</a>) <a id="84c109" class="tk">&amp;</a>(<a id="84c111" class="tk">Register</a>)) <a id="84c122" class="tk">-</a> ((<a id="84c126" class="tk">Reg_base</a>))<a id="84c136" class="tk">&lt;&lt;</a>5) <a id="84c141" class="tk">+</a> ((<a id="84c145" class="tk">Bit_number</a>)<a id="84c156" class="tk">&lt;&lt;</a>2)))</td></tr>
+<tr name="85" id="85">
+<td><a id="l85" class='ln'>85</a></td><td><span class="pp">#define</span> <a id="85c9" class="tk">Peripheral_BB</a>(<a id="85c23" class="tk">Register</a>, <a id="85c33" class="tk">Bit_number</a>) <a id="85c45" class="tk">BitBanding</a>(<a id="85c56" class="tk">Register</a>, <a id="85c66" class="tk">Bit_number</a>, <a id="85c78" class="tk">PERIPH_BASE</a>, <a id="85c91" class="tk">PERIPH_BB_BASE</a>)</td></tr>
+<tr name="86" id="86">
+<td><a id="l86" class='ln'>86</a></td><td><span class="pp">#define</span> <a id="86c9" class="tk">SRAM_BB</a>(<a id="86c17" class="tk">Register</a>, <a id="86c27" class="tk">Bit_number</a>)  <a id="86c40" class="tk">BitBanding</a>(<a id="86c51" class="tk">Register</a>, <a id="86c61" class="tk">Bit_number</a>, <a id="86c73" class="tk">SRAM_BASE</a>, <a id="86c84" class="tk">SRAM_BB_BASE</a>)</td></tr>
+<tr name="87" id="87">
+<td><a id="l87" class='ln'>87</a></td><td></td></tr>
+<tr name="88" id="88">
+<td><a id="l88" class='ln'>88</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="89" id="89">
+<td><a id="l89" class='ln'>89</a></td><td><span class="ct"> * Sample usage:</span></td></tr>
+<tr name="90" id="90">
+<td><a id="l90" class='ln'>90</a></td><td><span class="ct"> * USART1-&gt;SR can be found from "stm32f4xx.h" and USART_FLAG_TC (6) can be found from "stm32f4xx_usart.h"</span></td></tr>
+<tr name="91" id="91">
+<td><a id="l91" class='ln'>91</a></td><td><span class="ct"> * #define USART1_TC Peripheral_BB(USART1-&gt;SR, 6) USART_SR.TC bit</span></td></tr>
+<tr name="92" id="92">
+<td><a id="l92" class='ln'>92</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="93" id="93">
+<td><a id="l93" class='ln'>93</a></td><td><span class="ct"> * Another example:</span></td></tr>
+<tr name="94" id="94">
+<td><a id="l94" class='ln'>94</a></td><td><span class="ct"> * #define GPIOC_8 Peripheral_BB(GPIOC-&gt;ODR, 8)</span></td></tr>
+<tr name="95" id="95">
+<td><a id="l95" class='ln'>95</a></td><td><span class="ct"> * *GPIOC_8 = 1;</span></td></tr>
+<tr name="96" id="96">
+<td><a id="l96" class='ln'>96</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="97" id="97">
+<td><a id="l97" class='ln'>97</a></td><td></td></tr>
+<tr name="98" id="98">
+<td><a id="l98" class='ln'>98</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="99" id="99">
+<td><a id="l99" class='ln'>99</a></td><td><span class="ct"> * Systick is configured such that the SysTick interrupt every 0.01 sec</span></td></tr>
+<tr name="100" id="100">
+<td><a id="l100" class='ln'>100</a></td><td><span class="ct"> * which is the base sample time of the system.</span></td></tr>
+<tr name="101" id="101">
+<td><a id="l101" class='ln'>101</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="102" id="102">
+<td><a id="l102" class='ln'>102</a></td><td><span class="pp">#define</span> <a id="102c9" class="tk">SYSTICKRELOADVALUE</a>             1680000</td></tr>
+<tr name="103" id="103">
+<td><a id="l103" class='ln'>103</a></td><td></td></tr>
+<tr name="104" id="104">
+<td><a id="l104" class='ln'>104</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="105" id="105">
+<td><a id="l105" class='ln'>105</a></td><td><span class="ct"> * HCLK (Hz)</span></td></tr>
+<tr name="106" id="106">
+<td><a id="l106" class='ln'>106</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="107" id="107">
+<td><a id="l107" class='ln'>107</a></td><td><span class="pp">#define</span> <a id="107c9" class="tk">HCLK</a>                           168000000</td></tr>
+<tr name="108" id="108">
+<td><a id="l108" class='ln'>108</a></td><td></td></tr>
+<tr name="109" id="109">
+<td><a id="l109" class='ln'>109</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="110" id="110">
+<td><a id="l110" class='ln'>110</a></td><td><span class="ct"> * Each Systick counter is TIMEPERSYSTICK sec.</span></td></tr>
+<tr name="111" id="111">
+<td><a id="l111" class='ln'>111</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="112" id="112">
+<td><a id="l112" class='ln'>112</a></td><td><span class="pp">#define</span> <a id="112c9" class="tk">TIMEPERSYSTICK</a>                 0.01 <a id="112c45" class="tk">/</a> 1680000</td></tr>
+<tr name="113" id="113">
+<td><a id="l113" class='ln'>113</a></td><td></td></tr>
+<tr name="114" id="114">
+<td><a id="l114" class='ln'>114</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="115" id="115">
+<td><a id="l115" class='ln'>115</a></td><td><span class="ct"> * Timer</span></td></tr>
+<tr name="116" id="116">
+<td><a id="l116" class='ln'>116</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="117" id="117">
+<td><a id="l117" class='ln'>117</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="118" id="118">
+<td><a id="l118" class='ln'>118</a></td><td><span class="pp">#define</span> <a id="118c9" class="tk">SYS_CURRENT_TICK</a>               (<a id="118c41" class="tk">SysTick</a>-&gt;<a id="118c50" class="tk">VAL</a>)</td></tr>
+<tr name="119" id="119">
+<td><a id="l119" class='ln'>119</a></td><td><span class="pp">#define</span> <a id="119c9" class="tk">SYS_TICKSTEP</a>                   0.01f</td></tr>
+<tr name="120" id="120">
+<td><a id="l120" class='ln'>120</a></td><td></td></tr>
+<tr name="121" id="121">
+<td><a id="l121" class='ln'>121</a></td><td><span class="kw">typedef</span> <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="122" id="122">
+<td><a id="l122" class='ln'>122</a></td><td>  <a id="122c3" class="tk">uint32_t</a> <a id="122c12" class="tk">start</a>;</td></tr>
+<tr name="123" id="123">
+<td><a id="l123" class='ln'>123</a></td><td>  <a id="123c3" class="tk">uint32_t</a> <a id="123c12" class="tk">length</a>;</td></tr>
+<tr name="124" id="124">
+<td><a id="l124" class='ln'>124</a></td><td><span class="br">}</span> <a id="124c3" class="tk">SYS_TIMER_STRUCT</a>;</td></tr>
+<tr name="125" id="125">
+<td><a id="l125" class='ln'>125</a></td><td></td></tr>
+<tr name="126" id="126">
+<td><a id="l126" class='ln'>126</a></td><td><span class="pp">#define</span> <a id="126c9" class="tk">SYSTIMER_FLAGS_TIMEOUT</a>         0x01</td></tr>
+<tr name="127" id="127">
+<td><a id="l127" class='ln'>127</a></td><td></td></tr>
+<tr name="128" id="128">
+<td><a id="l128" class='ln'>128</a></td><td><span class="kw">typedef</span> <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="129" id="129">
+<td><a id="l129" class='ln'>129</a></td><td>  <a id="129c3" class="tk">uint8_t</a> <a id="129c11" class="tk">flags</a>;</td></tr>
+<tr name="130" id="130">
+<td><a id="l130" class='ln'>130</a></td><td>  <a id="130c3" class="tk">uint32_t</a> <a id="130c12" class="tk">tid</a>;                        <span class="ct">/* Tick count */</span></td></tr>
+<tr name="131" id="131">
+<td><a id="l131" class='ln'>131</a></td><td>  <a id="131c3" class="tk">uint32_t</a> <a id="131c12" class="tk">tick</a>;                       <span class="ct">/* Capture cuttent tick */</span></td></tr>
+<tr name="132" id="132">
+<td><a id="l132" class='ln'>132</a></td><td>  <a id="132c3" class="tk">uint32_t</a> <a id="132c12" class="tk">target_us</a>;                  <span class="ct">/* Target of systick */</span></td></tr>
+<tr name="133" id="133">
+<td><a id="l133" class='ln'>133</a></td><td><span class="br">}</span> <a id="133c3" class="tk">SYS_TIMER_uS_STRUCT</a>;</td></tr>
+<tr name="134" id="134">
+<td><a id="l134" class='ln'>134</a></td><td></td></tr>
+<tr name="135" id="135">
+<td><a id="l135" class='ln'>135</a></td><td><span class="kw">extern</span> <span class="kw">volatile</span> <span class="kw">unsigned</span> <span class="kw">int</span> <a id="135c30" class="tk">systick_count</a>;</td></tr>
+<tr name="136" id="136">
+<td><a id="l136" class='ln'>136</a></td><td><span class="kw">void</span> <a id="136c6" class="tk">SysTimer_Start</a>(<a id="136c21" class="tk">SYS_TIMER_STRUCT</a><a id="136c37" class="tk">*</a> <a id="136c39" class="tk">timer</a>, <a id="136c46" class="tk">uint32_t</a> <a id="136c55" class="tk">ms</a>);</td></tr>
+<tr name="137" id="137">
+<td><a id="l137" class='ln'>137</a></td><td><span class="kw">void</span> <a id="137c6" class="tk">SysTimer_uS_Start</a>(<a id="137c24" class="tk">SYS_TIMER_uS_STRUCT</a> <a id="137c44" class="tk">*</a><a id="137c45" class="tk">timer</a>, <a id="137c52" class="tk">uint32_t</a> <a id="137c61" class="tk">us</a>);</td></tr>
+<tr name="138" id="138">
+<td><a id="l138" class='ln'>138</a></td><td><span class="kw">int</span> <a id="138c5" class="tk">SysTimer_IsTimeout</a>(<a id="138c24" class="tk">SYS_TIMER_STRUCT</a><a id="138c40" class="tk">*</a> <a id="138c42" class="tk">timer</a>);</td></tr>
+<tr name="139" id="139">
+<td><a id="l139" class='ln'>139</a></td><td><span class="kw">int</span> <a id="139c5" class="tk">SysTimer_uS_IsTimeout</a>(<a id="139c27" class="tk">SYS_TIMER_uS_STRUCT</a><a id="139c46" class="tk">*</a> <a id="139c48" class="tk">timer</a>);</td></tr>
+<tr name="140" id="140">
+<td><a id="l140" class='ln'>140</a></td><td><span class="kw">void</span> <a id="140c6" class="tk">SysTimer_delay_us</a>(<a id="140c24" class="tk">uint32_t</a> <a id="140c33" class="tk">us</a>);</td></tr>
+<tr name="141" id="141">
+<td><a id="l141" class='ln'>141</a></td><td><span class="kw">extern</span> <span class="kw">volatile</span> <span class="kw">unsigned</span> <span class="kw">int</span> <a id="141c30" class="tk">systick_count</a>;</td></tr>
+<tr name="142" id="142">
+<td><a id="l142" class='ln'>142</a></td><td></td></tr>
+<tr name="143" id="143">
+<td><a id="l143" class='ln'>143</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="144" id="144">
+<td><a id="l144" class='ln'>144</a></td><td><span class="ct"> * CAN</span></td></tr>
+<tr name="145" id="145">
+<td><a id="l145" class='ln'>145</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="146" id="146">
+<td><a id="l146" class='ln'>146</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="147" id="147">
+<td><a id="l147" class='ln'>147</a></td><td><span class="pp">#define</span> <a id="147c9" class="tk">CAN_FILTER_COUNT</a>               14</td></tr>
+<tr name="148" id="148">
+<td><a id="l148" class='ln'>148</a></td><td></td></tr>
+<tr name="149" id="149">
+<td><a id="l149" class='ln'>149</a></td><td><span class="ct">/* CAN Transmit status */</span></td></tr>
+<tr name="150" id="150">
+<td><a id="l150" class='ln'>150</a></td><td><span class="pp">#define</span> <a id="150c9" class="tk">CAN_STA_SUCCESS</a>                0                         <span class="ct">/* Ok */</span></td></tr>
+<tr name="151" id="151">
+<td><a id="l151" class='ln'>151</a></td><td><span class="pp">#define</span> <a id="151c9" class="tk">CAN_STA_FAILED</a>                 1                         <span class="ct">/* Failed */</span></td></tr>
+<tr name="152" id="152">
+<td><a id="l152" class='ln'>152</a></td><td><span class="pp">#define</span> <a id="152c9" class="tk">CAN_STA_PENDING</a>                2                         <span class="ct">/* Message is pending */</span></td></tr>
+<tr name="153" id="153">
+<td><a id="l153" class='ln'>153</a></td><td><span class="pp">#define</span> <a id="153c9" class="tk">CAN_STA_NOSLOT</a>                 3                         <span class="ct">/* No mailbox */</span></td></tr>
+<tr name="154" id="154">
+<td><a id="l154" class='ln'>154</a></td><td></td></tr>
+<tr name="155" id="155">
+<td><a id="l155" class='ln'>155</a></td><td><span class="ct">/* CAN1 Filter */</span></td></tr>
+<tr name="156" id="156">
+<td><a id="l156" class='ln'>156</a></td><td><span class="kw">typedef</span> <span class="kw">void</span> (<a id="156c15" class="tk">*</a><a id="156c16" class="tk">CAN_FILTER_CALLBACK</a>)(<a id="156c37" class="tk">CanRxMsg</a><a id="156c45" class="tk">*</a> <a id="156c47" class="tk">pMsg</a>);</td></tr>
+<tr name="157" id="157">
+<td><a id="l157" class='ln'>157</a></td><td><span class="kw">typedef</span> <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="158" id="158">
+<td><a id="l158" class='ln'>158</a></td><td>  <a id="158c3" class="tk">CAN_FILTER_CALLBACK</a> <a id="158c23" class="tk">CallBack</a>;        <span class="ct">/* Call back routine when filter match */</span></td></tr>
+<tr name="159" id="159">
+<td><a id="l159" class='ln'>159</a></td><td><span class="br">}</span> <a id="159c3" class="tk">CAN_FILTER_STRUCT</a>;</td></tr>
+<tr name="160" id="160">
+<td><a id="l160" class='ln'>160</a></td><td></td></tr>
+<tr name="161" id="161">
+<td><a id="l161" class='ln'>161</a></td><td><span class="kw">extern</span> <a id="161c8" class="tk">CAN_FILTER_STRUCT</a> <a id="161c26" class="tk">CAN1_FilterList</a>[];</td></tr>
+<tr name="162" id="162">
+<td><a id="l162" class='ln'>162</a></td><td><span class="kw">extern</span> <a id="162c8" class="tk">CAN_FILTER_STRUCT</a> <a id="162c26" class="tk">CAN2_FilterList</a>[];</td></tr>
+<tr name="163" id="163">
+<td><a id="l163" class='ln'>163</a></td><td><a id="163c1" class="tk">uint8_t</a> <a id="163c9" class="tk">CAN1_Filter_Hook</a>(<a id="163c26" class="tk">CAN_FILTER_CALLBACK</a> <a id="163c46" class="tk">callback</a>);</td></tr>
+<tr name="164" id="164">
+<td><a id="l164" class='ln'>164</a></td><td><a id="164c1" class="tk">uint8_t</a> <a id="164c9" class="tk">CAN2_Filter_Hook</a>(<a id="164c26" class="tk">CAN_FILTER_CALLBACK</a> <a id="164c46" class="tk">callback</a>);</td></tr>
+<tr name="165" id="165">
+<td><a id="l165" class='ln'>165</a></td><td><span class="kw">void</span> <a id="165c6" class="tk">CAN1_Filter_Free</a>(<a id="165c23" class="tk">uint8_t</a> <a id="165c31" class="tk">filter_index</a>);</td></tr>
+<tr name="166" id="166">
+<td><a id="l166" class='ln'>166</a></td><td><span class="kw">void</span> <a id="166c6" class="tk">CAN2_Filter_Free</a>(<a id="166c23" class="tk">uint8_t</a> <a id="166c31" class="tk">filter_index</a>);</td></tr>
+<tr name="167" id="167">
+<td><a id="l167" class='ln'>167</a></td><td></td></tr>
+<tr name="168" id="168">
+<td><a id="l168" class='ln'>168</a></td><td><span class="ct">/* CAN Transmit */</span></td></tr>
+<tr name="169" id="169">
+<td><a id="l169" class='ln'>169</a></td><td><a id="169c1" class="tk">uint32_t</a> <a id="169c10" class="tk">CANx_Transmit</a>(<a id="169c24" class="tk">CAN_TypeDef</a><a id="169c35" class="tk">*</a> <a id="169c37" class="tk">CANx</a>, <a id="169c43" class="tk">CanTxMsg</a><a id="169c51" class="tk">*</a> <a id="169c53" class="tk">TxMessage</a>, <a id="169c64" class="tk">uint8_t</a> <a id="169c72" class="tk">blocking</a>,</td></tr>
+<tr name="170" id="170">
+<td><a id="l170" class='ln'>170</a></td><td>  <span class="kw">float</span> <a id="170c9" class="tk">timeout_sec</a>);</td></tr>
+<tr name="171" id="171">
+<td><a id="l171" class='ln'>171</a></td><td></td></tr>
+<tr name="172" id="172">
+<td><a id="l172" class='ln'>172</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="173" id="173">
+<td><a id="l173" class='ln'>173</a></td><td><span class="ct"> * Name: &lt;S1&gt;/CAN Receive</span></td></tr>
+<tr name="174" id="174">
+<td><a id="l174" class='ln'>174</a></td><td><span class="ct"> * Id: CANReceive</span></td></tr>
+<tr name="175" id="175">
+<td><a id="l175" class='ln'>175</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="176" id="176">
+<td><a id="l176" class='ln'>176</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="177" id="177">
+<td><a id="l177" class='ln'>177</a></td><td><span class="kw">typedef</span> <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="178" id="178">
+<td><a id="l178" class='ln'>178</a></td><td>  <a id="178c3" class="tk">uint8_t</a> <a id="178c11" class="tk">d0</a>;</td></tr>
+<tr name="179" id="179">
+<td><a id="l179" class='ln'>179</a></td><td><span class="br">}</span> <a id="179c3" class="tk">CANReceive_DATA_STRUCT</a>;</td></tr>
+<tr name="180" id="180">
+<td><a id="l180" class='ln'>180</a></td><td></td></tr>
+<tr name="181" id="181">
+<td><a id="l181" class='ln'>181</a></td><td><span class="kw">extern</span> <a id="181c8" class="tk">CANReceive_DATA_STRUCT</a> <a id="181c31" class="tk">*</a><a id="181c32" class="tk">CANReceive_data</a>;</td></tr>
+<tr name="182" id="182">
+<td><a id="l182" class='ln'>182</a></td><td><span class="kw">extern</span> <a id="182c8" class="tk">CanRxMsg</a> <a id="182c17" class="tk">CANReceive_Msg</a>;</td></tr>
+<tr name="183" id="183">
+<td><a id="l183" class='ln'>183</a></td><td><a id="183c1" class="tk">uint16_t</a> <a id="183c10" class="tk">CANReceive_GetMsg</a>(<a id="183c28" class="tk">CanRxMsg</a><a id="183c36" class="tk">*</a> <a id="183c38" class="tk">pMsg</a>);</td></tr>
+<tr name="184" id="184">
+<td><a id="l184" class='ln'>184</a></td><td><span class="kw">void</span> <a id="184c6" class="tk">enable_CANReceive</a>(<span class="kw">void</span>);</td></tr>
+<tr name="185" id="185">
+<td><a id="l185" class='ln'>185</a></td><td><span class="kw">void</span> <a id="185c6" class="tk">disable_CANReceive</a>(<span class="kw">void</span>);</td></tr>
+<tr name="186" id="186">
+<td><a id="l186" class='ln'>186</a></td><td></td></tr>
+<tr name="187" id="187">
+<td><a id="l187" class='ln'>187</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="188" id="188">
+<td><a id="l188" class='ln'>188</a></td><td><span class="ct"> * Name: &lt;S1&gt;/CAN Receive1</span></td></tr>
+<tr name="189" id="189">
+<td><a id="l189" class='ln'>189</a></td><td><span class="ct"> * Id: CANReceive1</span></td></tr>
+<tr name="190" id="190">
+<td><a id="l190" class='ln'>190</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="191" id="191">
+<td><a id="l191" class='ln'>191</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="192" id="192">
+<td><a id="l192" class='ln'>192</a></td><td><span class="kw">typedef</span> <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="193" id="193">
+<td><a id="l193" class='ln'>193</a></td><td>  <a id="193c3" class="tk">uint8_t</a> <a id="193c11" class="tk">d0</a>;</td></tr>
+<tr name="194" id="194">
+<td><a id="l194" class='ln'>194</a></td><td><span class="br">}</span> <a id="194c3" class="tk">CANReceive1_DATA_STRUCT</a>;</td></tr>
+<tr name="195" id="195">
+<td><a id="l195" class='ln'>195</a></td><td></td></tr>
+<tr name="196" id="196">
+<td><a id="l196" class='ln'>196</a></td><td><span class="kw">extern</span> <a id="196c8" class="tk">CANReceive1_DATA_STRUCT</a> <a id="196c32" class="tk">*</a><a id="196c33" class="tk">CANReceive1_data</a>;</td></tr>
+<tr name="197" id="197">
+<td><a id="l197" class='ln'>197</a></td><td><span class="kw">extern</span> <a id="197c8" class="tk">CanRxMsg</a> <a id="197c17" class="tk">CANReceive1_Msg</a>;</td></tr>
+<tr name="198" id="198">
+<td><a id="l198" class='ln'>198</a></td><td><a id="198c1" class="tk">uint16_t</a> <a id="198c10" class="tk">CANReceive1_GetMsg</a>(<a id="198c29" class="tk">CanRxMsg</a><a id="198c37" class="tk">*</a> <a id="198c39" class="tk">pMsg</a>);</td></tr>
+<tr name="199" id="199">
+<td><a id="l199" class='ln'>199</a></td><td><span class="kw">void</span> <a id="199c6" class="tk">enable_CANReceive1</a>(<span class="kw">void</span>);</td></tr>
+<tr name="200" id="200">
+<td><a id="l200" class='ln'>200</a></td><td><span class="kw">void</span> <a id="200c6" class="tk">disable_CANReceive1</a>(<span class="kw">void</span>);</td></tr>
+<tr name="201" id="201">
+<td><a id="l201" class='ln'>201</a></td><td></td></tr>
+<tr name="202" id="202">
+<td><a id="l202" class='ln'>202</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="203" id="203">
+<td><a id="l203" class='ln'>203</a></td><td><span class="ct"> * Name: &lt;S1&gt;/CAN Receive2</span></td></tr>
+<tr name="204" id="204">
+<td><a id="l204" class='ln'>204</a></td><td><span class="ct"> * Id: CANReceive2</span></td></tr>
+<tr name="205" id="205">
+<td><a id="l205" class='ln'>205</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="206" id="206">
+<td><a id="l206" class='ln'>206</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="207" id="207">
+<td><a id="l207" class='ln'>207</a></td><td><span class="kw">typedef</span> <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="208" id="208">
+<td><a id="l208" class='ln'>208</a></td><td>  <a id="208c3" class="tk">uint8_t</a> <a id="208c11" class="tk">d0</a>;</td></tr>
+<tr name="209" id="209">
+<td><a id="l209" class='ln'>209</a></td><td><span class="br">}</span> <a id="209c3" class="tk">CANReceive2_DATA_STRUCT</a>;</td></tr>
+<tr name="210" id="210">
+<td><a id="l210" class='ln'>210</a></td><td></td></tr>
+<tr name="211" id="211">
+<td><a id="l211" class='ln'>211</a></td><td><span class="kw">extern</span> <a id="211c8" class="tk">CANReceive2_DATA_STRUCT</a> <a id="211c32" class="tk">*</a><a id="211c33" class="tk">CANReceive2_data</a>;</td></tr>
+<tr name="212" id="212">
+<td><a id="l212" class='ln'>212</a></td><td><span class="kw">extern</span> <a id="212c8" class="tk">CanRxMsg</a> <a id="212c17" class="tk">CANReceive2_Msg</a>;</td></tr>
+<tr name="213" id="213">
+<td><a id="l213" class='ln'>213</a></td><td><a id="213c1" class="tk">uint16_t</a> <a id="213c10" class="tk">CANReceive2_GetMsg</a>(<a id="213c29" class="tk">CanRxMsg</a><a id="213c37" class="tk">*</a> <a id="213c39" class="tk">pMsg</a>);</td></tr>
+<tr name="214" id="214">
+<td><a id="l214" class='ln'>214</a></td><td><span class="kw">void</span> <a id="214c6" class="tk">enable_CANReceive2</a>(<span class="kw">void</span>);</td></tr>
+<tr name="215" id="215">
+<td><a id="l215" class='ln'>215</a></td><td><span class="kw">void</span> <a id="215c6" class="tk">disable_CANReceive2</a>(<span class="kw">void</span>);</td></tr>
+<tr name="216" id="216">
+<td><a id="l216" class='ln'>216</a></td><td></td></tr>
+<tr name="217" id="217">
+<td><a id="l217" class='ln'>217</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="218" id="218">
+<td><a id="l218" class='ln'>218</a></td><td><span class="ct"> * Name: &lt;S1&gt;/CAN Receive3</span></td></tr>
+<tr name="219" id="219">
+<td><a id="l219" class='ln'>219</a></td><td><span class="ct"> * Id: CANReceive3</span></td></tr>
+<tr name="220" id="220">
+<td><a id="l220" class='ln'>220</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="221" id="221">
+<td><a id="l221" class='ln'>221</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="222" id="222">
+<td><a id="l222" class='ln'>222</a></td><td><span class="kw">typedef</span> <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="223" id="223">
+<td><a id="l223" class='ln'>223</a></td><td>  <a id="223c3" class="tk">uint16_t</a> <a id="223c12" class="tk">d0</a>;</td></tr>
+<tr name="224" id="224">
+<td><a id="l224" class='ln'>224</a></td><td><span class="br">}</span> <a id="224c3" class="tk">CANReceive3_DATA_STRUCT</a>;</td></tr>
+<tr name="225" id="225">
+<td><a id="l225" class='ln'>225</a></td><td></td></tr>
+<tr name="226" id="226">
+<td><a id="l226" class='ln'>226</a></td><td><span class="kw">extern</span> <a id="226c8" class="tk">CANReceive3_DATA_STRUCT</a> <a id="226c32" class="tk">*</a><a id="226c33" class="tk">CANReceive3_data</a>;</td></tr>
+<tr name="227" id="227">
+<td><a id="l227" class='ln'>227</a></td><td><span class="kw">extern</span> <a id="227c8" class="tk">CanRxMsg</a> <a id="227c17" class="tk">CANReceive3_Msg</a>;</td></tr>
+<tr name="228" id="228">
+<td><a id="l228" class='ln'>228</a></td><td><a id="228c1" class="tk">uint16_t</a> <a id="228c10" class="tk">CANReceive3_GetMsg</a>(<a id="228c29" class="tk">CanRxMsg</a><a id="228c37" class="tk">*</a> <a id="228c39" class="tk">pMsg</a>);</td></tr>
+<tr name="229" id="229">
+<td><a id="l229" class='ln'>229</a></td><td><span class="kw">void</span> <a id="229c6" class="tk">enable_CANReceive3</a>(<span class="kw">void</span>);</td></tr>
+<tr name="230" id="230">
+<td><a id="l230" class='ln'>230</a></td><td><span class="kw">void</span> <a id="230c6" class="tk">disable_CANReceive3</a>(<span class="kw">void</span>);</td></tr>
+<tr name="231" id="231">
+<td><a id="l231" class='ln'>231</a></td><td></td></tr>
+<tr name="232" id="232">
+<td><a id="l232" class='ln'>232</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="233" id="233">
+<td><a id="l233" class='ln'>233</a></td><td><span class="ct"> * Name: &lt;S1&gt;/CAN Receive4</span></td></tr>
+<tr name="234" id="234">
+<td><a id="l234" class='ln'>234</a></td><td><span class="ct"> * Id: CANReceive4</span></td></tr>
+<tr name="235" id="235">
+<td><a id="l235" class='ln'>235</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="236" id="236">
+<td><a id="l236" class='ln'>236</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="237" id="237">
+<td><a id="l237" class='ln'>237</a></td><td><span class="kw">typedef</span> <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="238" id="238">
+<td><a id="l238" class='ln'>238</a></td><td>  <a id="238c3" class="tk">uint8_t</a> <a id="238c11" class="tk">d0</a>;</td></tr>
+<tr name="239" id="239">
+<td><a id="l239" class='ln'>239</a></td><td><span class="br">}</span> <a id="239c3" class="tk">CANReceive4_DATA_STRUCT</a>;</td></tr>
+<tr name="240" id="240">
+<td><a id="l240" class='ln'>240</a></td><td></td></tr>
+<tr name="241" id="241">
+<td><a id="l241" class='ln'>241</a></td><td><span class="kw">extern</span> <a id="241c8" class="tk">CANReceive4_DATA_STRUCT</a> <a id="241c32" class="tk">*</a><a id="241c33" class="tk">CANReceive4_data</a>;</td></tr>
+<tr name="242" id="242">
+<td><a id="l242" class='ln'>242</a></td><td><span class="kw">extern</span> <a id="242c8" class="tk">CanRxMsg</a> <a id="242c17" class="tk">CANReceive4_Msg</a>;</td></tr>
+<tr name="243" id="243">
+<td><a id="l243" class='ln'>243</a></td><td><a id="243c1" class="tk">uint16_t</a> <a id="243c10" class="tk">CANReceive4_GetMsg</a>(<a id="243c29" class="tk">CanRxMsg</a><a id="243c37" class="tk">*</a> <a id="243c39" class="tk">pMsg</a>);</td></tr>
+<tr name="244" id="244">
+<td><a id="l244" class='ln'>244</a></td><td><span class="kw">void</span> <a id="244c6" class="tk">enable_CANReceive4</a>(<span class="kw">void</span>);</td></tr>
+<tr name="245" id="245">
+<td><a id="l245" class='ln'>245</a></td><td><span class="kw">void</span> <a id="245c6" class="tk">disable_CANReceive4</a>(<span class="kw">void</span>);</td></tr>
+<tr name="246" id="246">
+<td><a id="l246" class='ln'>246</a></td><td></td></tr>
+<tr name="247" id="247">
+<td><a id="l247" class='ln'>247</a></td><td><span class="ct">/* OutputDigitalOutput */</span></td></tr>
+<tr name="248" id="248">
+<td><a id="l248" class='ln'>248</a></td><td><span class="kw">void</span> <a id="248c6" class="tk">enable_OutputDigitalOutput</a>(<span class="kw">void</span>);</td></tr>
+<tr name="249" id="249">
+<td><a id="l249" class='ln'>249</a></td><td></td></tr>
+<tr name="250" id="250">
+<td><a id="l250" class='ln'>250</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="251" id="251">
+<td><a id="l251" class='ln'>251</a></td><td><span class="ct"> * UART Utilities for packet processing</span></td></tr>
+<tr name="252" id="252">
+<td><a id="l252" class='ln'>252</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="253" id="253">
+<td><a id="l253" class='ln'>253</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="254" id="254">
+<td><a id="l254" class='ln'>254</a></td><td><span class="ct">/* UART packet process struct */</span></td></tr>
+<tr name="255" id="255">
+<td><a id="l255" class='ln'>255</a></td><td><span class="kw">typedef</span> <span class="kw">enum</span> <span class="br">{</span></td></tr>
+<tr name="256" id="256">
+<td><a id="l256" class='ln'>256</a></td><td>  <a id="256c3" class="tk">txIdle</a> = 0,</td></tr>
+<tr name="257" id="257">
+<td><a id="l257" class='ln'>257</a></td><td>  <a id="257c3" class="tk">txBusy</a></td></tr>
+<tr name="258" id="258">
+<td><a id="l258" class='ln'>258</a></td><td><span class="br">}</span> <a id="258c3" class="tk">UART_TX_STATE</a>;</td></tr>
+<tr name="259" id="259">
+<td><a id="l259" class='ln'>259</a></td><td></td></tr>
+<tr name="260" id="260">
+<td><a id="l260" class='ln'>260</a></td><td><span class="ct">/* Data read structure */</span></td></tr>
+<tr name="261" id="261">
+<td><a id="l261" class='ln'>261</a></td><td><span class="kw">typedef</span> <span class="kw">struct</span> <span class="br">{</span></td></tr>
+<tr name="262" id="262">
+<td><a id="l262" class='ln'>262</a></td><td>  <a id="262c3" class="tk">uint16_t</a> <a id="262c12" class="tk">index</a>;                      <span class="ct">/* Index of data in buffer */</span></td></tr>
+<tr name="263" id="263">
+<td><a id="l263" class='ln'>263</a></td><td>  <a id="263c3" class="tk">uint16_t</a> <a id="263c12" class="tk">count</a>;                      <span class="ct">/* Return data count */</span></td></tr>
+<tr name="264" id="264">
+<td><a id="l264" class='ln'>264</a></td><td>  <a id="264c3" class="tk">uint8_t</a> <a id="264c11" class="tk">*</a><a id="264c12" class="tk">buffer</a>;                     <span class="ct">/* Return buffer pointer of valid data */</span></td></tr>
+<tr name="265" id="265">
+<td><a id="l265" class='ln'>265</a></td><td><span class="br">}</span> <a id="265c3" class="tk">UARTRX_BUFFER_READ_STRUCT</a>;</td></tr>
+<tr name="266" id="266">
+<td><a id="l266" class='ln'>266</a></td><td></td></tr>
+<tr name="267" id="267">
+<td><a id="l267" class='ln'>267</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="268" id="268">
+<td><a id="l268" class='ln'>268</a></td><td><span class="ct"> * Name: &lt;S3&gt;/UART Setup</span></td></tr>
+<tr name="269" id="269">
+<td><a id="l269" class='ln'>269</a></td><td><span class="ct"> * Id: SetupUARTSetup</span></td></tr>
+<tr name="270" id="270">
+<td><a id="l270" class='ln'>270</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="271" id="271">
+<td><a id="l271" class='ln'>271</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="272" id="272">
+<td><a id="l272" class='ln'>272</a></td><td><span class="pp">#define</span> <a id="272c9" class="tk">UTX2_BUFFER_SIZE</a>               512</td></tr>
+<tr name="273" id="273">
+<td><a id="l273" class='ln'>273</a></td><td></td></tr>
+<tr name="274" id="274">
+<td><a id="l274" class='ln'>274</a></td><td><span class="kw">extern</span> <a id="274c8" class="tk">uint8_t</a> <a id="274c16" class="tk">UART2_Tx_Buffer</a>[];</td></tr>
+<tr name="275" id="275">
+<td><a id="l275" class='ln'>275</a></td><td><span class="kw">extern</span> <a id="275c8" class="tk">UART_TX_STATE</a> <a id="275c22" class="tk">SetupUARTSetup_Tx_State</a>;</td></tr>
+<tr name="276" id="276">
+<td><a id="l276" class='ln'>276</a></td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="276c13" class="tk">UART2_TxUpdate</a>(<a id="276c28" class="tk">uint16_t</a> <a id="276c37" class="tk">count</a>);</td></tr>
+<tr name="277" id="277">
+<td><a id="l277" class='ln'>277</a></td><td></td></tr>
+<tr name="278" id="278">
+<td><a id="l278" class='ln'>278</a></td><td><span class="pp">#define</span> <a id="278c9" class="tk">URX2_BUFFER_SIZE</a>               512</td></tr>
+<tr name="279" id="279">
+<td><a id="l279" class='ln'>279</a></td><td></td></tr>
+<tr name="280" id="280">
+<td><a id="l280" class='ln'>280</a></td><td><span class="kw">extern</span> <a id="280c8" class="tk">uint8_t</a> <a id="280c16" class="tk">UART2_Rx_Buffer</a>[];</td></tr>
+<tr name="281" id="281">
+<td><a id="l281" class='ln'>281</a></td><td><span class="kw">extern</span> <a id="281c8" class="tk">uint8_t</a> <a id="281c16" class="tk">UART2_Temp_Buffer</a>[];</td></tr>
+<tr name="282" id="282">
+<td><a id="l282" class='ln'>282</a></td><td><a id="282c1" class="tk">uint16_t</a> <a id="282c10" class="tk">UART2_ReadLine</a>(<a id="282c25" class="tk">UARTRX_BUFFER_READ_STRUCT</a> <a id="282c51" class="tk">*</a><a id="282c52" class="tk">read_struct</a>, <span class="kw">const</span> <span class="kw">char</span></td></tr>
+<tr name="283" id="283">
+<td><a id="l283" class='ln'>283</a></td><td>  <a id="283c3" class="tk">*</a><a id="283c4" class="tk">terminator</a>, <a id="283c16" class="tk">uint16_t</a> <a id="283c25" class="tk">terminator_count</a>, <a id="283c43" class="tk">uint8_t</a> <a id="283c51" class="tk">*</a><a id="283c52" class="tk">buffer</a>, <a id="283c60" class="tk">uint16_t</a> <a id="283c69" class="tk">buffer_size</a>);</td></tr>
+<tr name="284" id="284">
+<td><a id="l284" class='ln'>284</a></td><td><a id="284c1" class="tk">uint8_t</a> <a id="284c9" class="tk">UART2_ReadBinary</a>(<a id="284c26" class="tk">UARTRX_BUFFER_READ_STRUCT</a> <a id="284c52" class="tk">*</a><a id="284c53" class="tk">read_struct</a>, <span class="kw">const</span> <span class="kw">char</span></td></tr>
+<tr name="285" id="285">
+<td><a id="l285" class='ln'>285</a></td><td>  <a id="285c3" class="tk">*</a><a id="285c4" class="tk">header</a>, <a id="285c12" class="tk">uint16_t</a> <a id="285c21" class="tk">header_count</a>, <span class="kw">const</span> <span class="kw">char</span> <a id="285c46" class="tk">*</a><a id="285c47" class="tk">terminator</a>, <a id="285c59" class="tk">uint16_t</a></td></tr>
+<tr name="286" id="286">
+<td><a id="l286" class='ln'>286</a></td><td>  <a id="286c3" class="tk">terminator_count</a>, <a id="286c21" class="tk">uint8_t</a> <a id="286c29" class="tk">*</a><a id="286c30" class="tk">buffer</a>, <a id="286c38" class="tk">uint16_t</a> <a id="286c47" class="tk">data_count</a>);</td></tr>
+<tr name="287" id="287">
+<td><a id="l287" class='ln'>287</a></td><td><span class="kw">void</span> <a id="287c6" class="tk">UART2_RestoreBytes</a>(<a id="287c25" class="tk">UARTRX_BUFFER_READ_STRUCT</a> <a id="287c51" class="tk">*</a><a id="287c52" class="tk">read_struct</a>, <a id="287c65" class="tk">uint16_t</a> <a id="287c74" class="tk">count</a>);</td></tr>
+<tr name="288" id="288">
+<td><a id="l288" class='ln'>288</a></td><td><span class="kw">extern</span> <a id="288c8" class="tk">uint16_t</a> <a id="288c17" class="tk">UART2_GetInitNDTR</a>(<span class="kw">void</span>);</td></tr>
+<tr name="289" id="289">
+<td><a id="l289" class='ln'>289</a></td><td><span class="kw">void</span> <a id="289c6" class="tk">UART2_Read</a>(<a id="289c17" class="tk">UARTRX_BUFFER_READ_STRUCT</a> <a id="289c43" class="tk">*</a><a id="289c44" class="tk">read_struct</a>);</td></tr>
+<tr name="290" id="290">
+<td><a id="l290" class='ln'>290</a></td><td><span class="kw">void</span> <a id="290c6" class="tk">UART2_ReadEx</a>(<a id="290c19" class="tk">UARTRX_BUFFER_READ_STRUCT</a> <a id="290c45" class="tk">*</a><a id="290c46" class="tk">read_struct</a>, <a id="290c59" class="tk">uint8_t</a> <a id="290c67" class="tk">*</a><a id="290c68" class="tk">buffer</a>,</td></tr>
+<tr name="291" id="291">
+<td><a id="l291" class='ln'>291</a></td><td>                  <a id="291c19" class="tk">uint16_t</a> <a id="291c28" class="tk">buffer_size</a>, <a id="291c41" class="tk">uint16_t</a><a id="291c49" class="tk">*</a><a id="291c50" class="tk">reading_count</a>);</td></tr>
+<tr name="292" id="292">
+<td><a id="l292" class='ln'>292</a></td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="292c13" class="tk">UART2_Write</a>(<a id="292c25" class="tk">uint8_t</a><a id="292c32" class="tk">*</a> <a id="292c34" class="tk">data</a>, <a id="292c40" class="tk">uint16_t</a> <a id="292c49" class="tk">count</a>);</td></tr>
+<tr name="293" id="293">
+<td><a id="l293" class='ln'>293</a></td><td><span class="kw">extern</span> <a id="293c8" class="tk">UART_TX_STATE</a> <a id="293c22" class="tk">UART2_FlushTxBuffer</a>(<span class="kw">void</span>);</td></tr>
+<tr name="294" id="294">
+<td><a id="l294" class='ln'>294</a></td><td><span class="kw">void</span> <a id="294c6" class="tk">waijung_usart2_initial</a>(<span class="kw">void</span>);</td></tr>
+<tr name="295" id="295">
+<td><a id="l295" class='ln'>295</a></td><td></td></tr>
+<tr name="296" id="296">
+<td><a id="l296" class='ln'>296</a></td><td><span class="pp">#define</span> <a id="296c9" class="tk">WAIJUNG_USARt2_INIT</a>()          <a id="296c40" class="tk">waijung_usart2_initial</a>()</td></tr>
+<tr name="297" id="297">
+<td><a id="l297" class='ln'>297</a></td><td></td></tr>
+<tr name="298" id="298">
+<td><a id="l298" class='ln'>298</a></td><td><span class="kw">void</span> <a id="298c6" class="tk">enable_SetupUARTSetup</a>(<span class="kw">void</span>);</td></tr>
+<tr name="299" id="299">
+<td><a id="l299" class='ln'>299</a></td><td></td></tr>
+<tr name="300" id="300">
+<td><a id="l300" class='ln'>300</a></td><td><span class="ct">/* ########################################################################</span></td></tr>
+<tr name="301" id="301">
+<td><a id="l301" class='ln'>301</a></td><td><span class="ct"> * Name: &lt;S3&gt;/CAN Setup</span></td></tr>
+<tr name="302" id="302">
+<td><a id="l302" class='ln'>302</a></td><td><span class="ct"> * Id: CANSetup</span></td></tr>
+<tr name="303" id="303">
+<td><a id="l303" class='ln'>303</a></td><td><span class="ct"> * ########################################################################</span></td></tr>
+<tr name="304" id="304">
+<td><a id="l304" class='ln'>304</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="305" id="305">
+<td><a id="l305" class='ln'>305</a></td><td><span class="kw">void</span> <a id="305c6" class="tk">waijung_can1_initial</a>(<span class="kw">void</span>);</td></tr>
+<tr name="306" id="306">
+<td><a id="l306" class='ln'>306</a></td><td></td></tr>
+<tr name="307" id="307">
+<td><a id="l307" class='ln'>307</a></td><td><span class="pp">#define</span> <a id="307c9" class="tk">WAIJUNG_CAN1_INIT</a>()            <a id="307c40" class="tk">waijung_can1_initial</a>()</td></tr>
+<tr name="308" id="308">
+<td><a id="l308" class='ln'>308</a></td><td></td></tr>
+<tr name="309" id="309">
+<td><a id="l309" class='ln'>309</a></td><td><span class="kw">void</span> <a id="309c6" class="tk">enable_CANSetup</a>(<span class="kw">void</span>);</td></tr>
+<tr name="310" id="310">
+<td><a id="l310" class='ln'>310</a></td><td><span class="kw">void</span> <a id="310c6" class="tk">disable_CANSetup</a>(<span class="kw">void</span>);</td></tr>
+<tr name="311" id="311">
+<td><a id="l311" class='ln'>311</a></td><td></td></tr>
+<tr name="312" id="312">
+<td><a id="l312" class='ln'>312</a></td><td><span class="pp">#endif</span>                                 <span class="ct">/* RTW_HEADER_waijung_hwdrvlib_h_ */</span></td></tr>
+<tr name="313" id="313">
+<td><a id="l313" class='ln'>313</a></td><td></td></tr>
+<tr name="314" id="314">
+<td><a id="l314" class='ln'>314</a></td><td><span class="ct">/* [EOF] */</span></td></tr>
+<tr name="315" id="315">
+<td><a id="l315" class='ln'>315</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

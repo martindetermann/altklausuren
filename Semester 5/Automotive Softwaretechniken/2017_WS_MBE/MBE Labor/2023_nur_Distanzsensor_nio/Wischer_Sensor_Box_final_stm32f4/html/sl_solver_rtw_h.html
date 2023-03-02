@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="pp">#ifndef</span> <a id="1c9" class="tk">sl_solver_rtw_h</a></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td><span class="pp">#define</span> <a id="2c9" class="tk">sl_solver_rtw_h</a></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="pp">#ifdef</span> <a id="3c8" class="tk">SUPPORTS_PRAGMA_ONCE</a></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td><span class="pp"># pragma</span> <a id="4c10" class="tk">once</a></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="ct"> * Copyright 2008-2013 The MathWorks, Inc.</span></td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td><span class="ct"> * This header is the entrance to the sl_solver_rtw module. It is used by the</span></td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td><span class="ct"> * RTW-RSim and Rapid Accelerator targets.</span></td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td></td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td><span class="pp">#if</span> <a id="15c5" class="tk">defined</a>(<a id="15c13" class="tk">RSIM_WITH_SL_SOLVER</a>)</td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td> <span class="ct">/*</span></td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td><span class="ct">  * This header is being included by either the RSim or RapidAccelerator runtime</span></td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td><span class="ct">  * interface (both require C linkage)</span></td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td><span class="ct">  */</span></td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td><span class="pp"># define</span> <a id="20c10" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a>  <span class="kw">extern</span></td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td><span class="pp"># include "simstruc.h"</span></td></tr>
+<tr name="22" id="22">
+<td><a id="l22" class='ln'>22</a></td><td></td></tr>
+<tr name="23" id="23">
+<td><a id="l23" class='ln'>23</a></td><td><span class="pp">#else</span></td></tr>
+<tr name="24" id="24">
+<td><a id="l24" class='ln'>24</a></td><td><span class="pp"># include "package.h"</span></td></tr>
+<tr name="25" id="25">
+<td><a id="l25" class='ln'>25</a></td><td><span class="pp"># if</span> <a id="25c6" class="tk">defined</a>(<a id="25c14" class="tk">SL_SOLVER_RTW_INTERNAL</a>)</td></tr>
+<tr name="26" id="26">
+<td><a id="l26" class='ln'>26</a></td><td>  <span class="ct">/*</span></td></tr>
+<tr name="27" id="27">
+<td><a id="l27" class='ln'>27</a></td><td><span class="ct">   * This header is being included by files inside src/sl_solver_rtw</span></td></tr>
+<tr name="28" id="28">
+<td><a id="l28" class='ln'>28</a></td><td><span class="ct">   */</span></td></tr>
+<tr name="29" id="29">
+<td><a id="l29" class='ln'>29</a></td><td><span class="pp">#  define</span> <a id="29c11" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a>  <span class="kw">extern</span> "C" <a id="29c53" class="tk">DLL_EXPORT_SYM</a></td></tr>
+<tr name="30" id="30">
+<td><a id="l30" class='ln'>30</a></td><td><span class="pp"># else</span></td></tr>
+<tr name="31" id="31">
+<td><a id="l31" class='ln'>31</a></td><td>  <span class="ct">/*</span></td></tr>
+<tr name="32" id="32">
+<td><a id="l32" class='ln'>32</a></td><td><span class="ct">   * This file is being include by other internal modules.</span></td></tr>
+<tr name="33" id="33">
+<td><a id="l33" class='ln'>33</a></td><td><span class="ct">   */</span></td></tr>
+<tr name="34" id="34">
+<td><a id="l34" class='ln'>34</a></td><td><span class="pp">#  define</span> <a id="34c11" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a>  <span class="kw">extern</span> "C" <a id="34c53" class="tk">DLL_IMPORT_SYM</a></td></tr>
+<tr name="35" id="35">
+<td><a id="l35" class='ln'>35</a></td><td><span class="pp"># endif</span></td></tr>
+<tr name="36" id="36">
+<td><a id="l36" class='ln'>36</a></td><td><span class="pp"># include "simstruct/simstruc.h"</span></td></tr>
+<tr name="37" id="37">
+<td><a id="l37" class='ln'>37</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="38" id="38">
+<td><a id="l38" class='ln'>38</a></td><td></td></tr>
+<tr name="39" id="39">
+<td><a id="l39" class='ln'>39</a></td><td><a id="39c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="39c36" class="tk">rsimEnableDebugOutput</a>(<a id="39c58" class="tk">size_t</a> <a id="39c65" class="tk">simStructSize</a>,</td></tr>
+<tr name="40" id="40">
+<td><a id="l40" class='ln'>40</a></td><td>                                    <a id="40c37" class="tk">size_t</a> <a id="40c44" class="tk">ssMdlInfoSize</a>);</td></tr>
+<tr name="41" id="41">
+<td><a id="l41" class='ln'>41</a></td><td></td></tr>
+<tr name="42" id="42">
+<td><a id="l42" class='ln'>42</a></td><td><a id="42c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">int</span>  <a id="42c36" class="tk">getStiffnessFromJacobian</a>( <a id="42c62" class="tk">SimStruct</a><a id="42c71" class="tk">*</a> <a id="42c73" class="tk">S</a>, </td></tr>
+<tr name="43" id="43">
+<td><a id="l43" class='ln'>43</a></td><td>                   <span class="kw">int</span> <a id="43c24" class="tk">nx</a>, </td></tr>
+<tr name="44" id="44">
+<td><a id="l44" class='ln'>44</a></td><td>							     <span class="kw">double</span> <a id="44c20" class="tk">stiffnessThreshold</a>, </td></tr>
+<tr name="45" id="45">
+<td><a id="l45" class='ln'>45</a></td><td>							     <span class="kw">double</span> <a id="45c20" class="tk">*</a><a id="45c21" class="tk">solverJac</a>, </td></tr>
+<tr name="46" id="46">
+<td><a id="l46" class='ln'>46</a></td><td>							     <span class="kw">bool</span><a id="46c17" class="tk">*</a> <a id="46c19" class="tk">isStiff</a>, </td></tr>
+<tr name="47" id="47">
+<td><a id="l47" class='ln'>47</a></td><td>							     <span class="kw">double</span><a id="47c19" class="tk">*</a> <a id="47c21" class="tk">stiffness</a>); </td></tr>
+<tr name="48" id="48">
+<td><a id="l48" class='ln'>48</a></td><td></td></tr>
+<tr name="49" id="49">
+<td><a id="l49" class='ln'>49</a></td><td><a id="49c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="49c36" class="tk">rsimFinalizeAutoSolverForStiffModelsIfNeeded</a>( <a id="49c82" class="tk">SimStruct</a><a id="49c91" class="tk">*</a> <a id="49c93" class="tk">S</a>, </td></tr>
+<tr name="50" id="50">
+<td><a id="l50" class='ln'>50</a></td><td>                                            <span class="kw">const</span> <span class="kw">char</span><a id="50c55" class="tk">*</a> <a id="50c57" class="tk">slvrJpatternFileName</a>,</td></tr>
+<tr name="51" id="51">
+<td><a id="l51" class='ln'>51</a></td><td>                                            <span class="kw">int</span> <a id="51c49" class="tk">numStatesForStiffnessChecking</a>,</td></tr>
+<tr name="52" id="52">
+<td><a id="l52" class='ln'>52</a></td><td>                                            <span class="kw">double</span> <a id="52c52" class="tk">stiffnessThreshold</a>,</td></tr>
+<tr name="53" id="53">
+<td><a id="l53" class='ln'>53</a></td><td>                                            <span class="kw">double</span> <a id="53c52" class="tk">configsetInitialStepSize</a> ); </td></tr>
+<tr name="54" id="54">
+<td><a id="l54" class='ln'>54</a></td><td></td></tr>
+<tr name="55" id="55">
+<td><a id="l55" class='ln'>55</a></td><td><a id="55c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="55c36" class="tk">rsimCreateSolverData</a>(<a id="55c57" class="tk">SimStruct</a><a id="55c66" class="tk">*</a> <a id="55c68" class="tk">S</a>, <span class="kw">const</span> <span class="kw">char</span><a id="55c81" class="tk">*</a> <a id="55c83" class="tk">slvrJpatternFileName</a>);</td></tr>
+<tr name="56" id="56">
+<td><a id="l56" class='ln'>56</a></td><td></td></tr>
+<tr name="57" id="57">
+<td><a id="l57" class='ln'>57</a></td><td><a id="57c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="57c36" class="tk">rsimSetDecoupledContinuousIntegration</a>(<a id="57c74" class="tk">SimStruct</a><a id="57c83" class="tk">*</a> <a id="57c85" class="tk">S</a>, <span class="kw">const</span> <span class="kw">bool</span> <a id="57c99" class="tk">decoupledContinuousIntegration</a>);</td></tr>
+<tr name="58" id="58">
+<td><a id="l58" class='ln'>58</a></td><td><a id="58c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="58c36" class="tk">rsimSetOptimalSolverResetCausedByZc</a>(<a id="58c72" class="tk">SimStruct</a><a id="58c81" class="tk">*</a> <a id="58c83" class="tk">S</a>, <span class="kw">const</span> <span class="kw">bool</span> <a id="58c97" class="tk">optimalSolverResetCausedByZc</a>);</td></tr>
+<tr name="59" id="59">
+<td><a id="l59" class='ln'>59</a></td><td></td></tr>
+<tr name="60" id="60">
+<td><a id="l60" class='ln'>60</a></td><td><a id="60c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="60c36" class="tk">rsimDestroySolverData</a>( <a id="60c59" class="tk">SimStruct</a><a id="60c68" class="tk">*</a> <a id="60c70" class="tk">S</a> );</td></tr>
+<tr name="61" id="61">
+<td><a id="l61" class='ln'>61</a></td><td></td></tr>
+<tr name="62" id="62">
+<td><a id="l62" class='ln'>62</a></td><td><a id="62c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="62c36" class="tk">rsimInitializeEngine</a>(<a id="62c57" class="tk">SimStruct</a><a id="62c66" class="tk">*</a> <a id="62c68" class="tk">S</a>);</td></tr>
+<tr name="63" id="63">
+<td><a id="l63" class='ln'>63</a></td><td></td></tr>
+<tr name="64" id="64">
+<td><a id="l64" class='ln'>64</a></td><td><a id="64c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="64c36" class="tk">rsimAdvanceSolver</a>(<a id="64c54" class="tk">SimStruct</a><a id="64c63" class="tk">*</a> <a id="64c65" class="tk">S</a>);</td></tr>
+<tr name="65" id="65">
+<td><a id="l65" class='ln'>65</a></td><td></td></tr>
+<tr name="66" id="66">
+<td><a id="l66" class='ln'>66</a></td><td><a id="66c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="66c36" class="tk">rsimUpdateDiscreteTaskTimesAndSampleHits</a>(<a id="66c77" class="tk">SimStruct</a><a id="66c86" class="tk">*</a> <a id="66c88" class="tk">S</a>);</td></tr>
+<tr name="67" id="67">
+<td><a id="l67" class='ln'>67</a></td><td></td></tr>
+<tr name="68" id="68">
+<td><a id="l68" class='ln'>68</a></td><td><a id="68c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="68c36" class="tk">rsimUpdateSolverStopTimeForFixedStepMultiTaskingSim</a>(<a id="68c88" class="tk">SimStruct</a><a id="68c97" class="tk">*</a> <a id="68c99" class="tk">S</a>);</td></tr>
+<tr name="69" id="69">
+<td><a id="l69" class='ln'>69</a></td><td></td></tr>
+<tr name="70" id="70">
+<td><a id="l70" class='ln'>70</a></td><td><a id="70c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="70c36" class="tk">rsimUpdateTimingEngineAndSolverStopTime</a>(<a id="70c76" class="tk">SimStruct</a><a id="70c85" class="tk">*</a> <a id="70c87" class="tk">S</a>);</td></tr>
+<tr name="71" id="71">
+<td><a id="l71" class='ln'>71</a></td><td></td></tr>
+<tr name="72" id="72">
+<td><a id="l72" class='ln'>72</a></td><td><a id="72c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="72c36" class="tk">rsimTerminateEngine</a>(<a id="72c56" class="tk">SimStruct</a><a id="72c65" class="tk">*</a> <a id="72c67" class="tk">S</a>, <span class="kw">int</span> <a id="72c74" class="tk">verbose</a>);</td></tr>
+<tr name="73" id="73">
+<td><a id="l73" class='ln'>73</a></td><td></td></tr>
+<tr name="74" id="74">
+<td><a id="l74" class='ln'>74</a></td><td><a id="74c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="74c36" class="tk">rsimDisplayTimingData</a>(<a id="74c58" class="tk">SimStruct</a><a id="74c67" class="tk">*</a> <a id="74c69" class="tk">S</a>,</td></tr>
+<tr name="75" id="75">
+<td><a id="l75" class='ln'>75</a></td><td>                                    <a id="75c37" class="tk">size_t</a> <a id="75c44" class="tk">simStructSize</a>,</td></tr>
+<tr name="76" id="76">
+<td><a id="l76" class='ln'>76</a></td><td>                                    <a id="76c37" class="tk">size_t</a> <a id="76c44" class="tk">ssMdlInfoSize</a>);</td></tr>
+<tr name="77" id="77">
+<td><a id="l77" class='ln'>77</a></td><td></td></tr>
+<tr name="78" id="78">
+<td><a id="l78" class='ln'>78</a></td><td><a id="78c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="78c36" class="tk">rsimInstallAllHandlers</a>(</td></tr>
+<tr name="79" id="79">
+<td><a id="l79" class='ln'>79</a></td><td>    <a id="79c5" class="tk">SimStruct</a><a id="79c14" class="tk">*</a> <a id="79c16" class="tk">S</a>,</td></tr>
+<tr name="80" id="80">
+<td><a id="l80" class='ln'>80</a></td><td>    <span class="kw">void</span> (<a id="80c11" class="tk">*</a><a id="80c12" class="tk">logDataFcn</a>)(<a id="80c24" class="tk">SimStruct</a><a id="80c33" class="tk">*</a> <a id="80c35" class="tk">s</a>),</td></tr>
+<tr name="81" id="81">
+<td><a id="l81" class='ln'>81</a></td><td>    <span class="kw">int</span>        <a id="81c16" class="tk">timeLimit</a> );</td></tr>
+<tr name="82" id="82">
+<td><a id="l82" class='ln'>82</a></td><td>    </td></tr>
+<tr name="83" id="83">
+<td><a id="l83" class='ln'>83</a></td><td><a id="83c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">void</span> <a id="83c36" class="tk">rsimUninstallNonfatalHandlers</a>(<span class="kw">void</span>);</td></tr>
+<tr name="84" id="84">
+<td><a id="l84" class='ln'>84</a></td><td></td></tr>
+<tr name="85" id="85">
+<td><a id="l85" class='ln'>85</a></td><td><a id="85c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">int</span> <a id="85c35" class="tk">isVariableStepSolver</a>(<span class="kw">const</span> <span class="kw">char</span><a id="85c66" class="tk">*</a> <a id="85c68" class="tk">slvrName</a>);</td></tr>
+<tr name="86" id="86">
+<td><a id="l86" class='ln'>86</a></td><td></td></tr>
+<tr name="87" id="87">
+<td><a id="l87" class='ln'>87</a></td><td><a id="87c1" class="tk">SL_SOLVER_RTW_EXPORT_EXTERN_C</a> <span class="kw">int</span> <a id="87c35" class="tk">isFixedStepSolver</a>(<span class="kw">const</span> <span class="kw">char</span><a id="87c63" class="tk">*</a> <a id="87c65" class="tk">slvrName</a>);</td></tr>
+<tr name="88" id="88">
+<td><a id="l88" class='ln'>88</a></td><td></td></tr>
+<tr name="89" id="89">
+<td><a id="l89" class='ln'>89</a></td><td><span class="pp">#endif</span> <span class="ct">/* sl_solver_rtw_h */</span></td></tr>
+<tr name="90" id="90">
+<td><a id="l90" class='ln'>90</a></td><td></td></tr>
+<tr name="91" id="91">
+<td><a id="l91" class='ln'>91</a></td><td><span class="ct">/* LocalWords:  RSim</span></td></tr>
+<tr name="92" id="92">
+<td><a id="l92" class='ln'>92</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="93" id="93">
+<td><a id="l93" class='ln'>93</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

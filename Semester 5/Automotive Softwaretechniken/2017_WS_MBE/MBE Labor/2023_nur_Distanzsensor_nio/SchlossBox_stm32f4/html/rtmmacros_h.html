@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td><span class="ct"> * Copyright 1994-2005 The MathWorks, Inc.</span></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td><span class="ct"> * File: rtmmacros.h     </span></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="ct"> * Abstract:</span></td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td><span class="ct"> * All our real-time simulation wrappers are setup to handle rtModel</span></td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="ct"> * objects. For targets that still use the SimStruct, this file </span></td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td><span class="ct"> * provides a mapping from the rtModel to the SimStruct. When all targets</span></td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td><span class="ct"> * use the rtModel, this file can be eliminated.</span></td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td></td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td><span class="pp">#ifndef</span> <a id="13c9" class="tk">_RTW_HEADER_rtmmacros_h_</a></td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td><span class="pp"># define</span> <a id="14c10" class="tk">_RTW_HEADER_rtmmacros_h_</a></td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td></td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td><span class="pp">#define</span> <a id="16c9" class="tk">rtmGetBlkStateChange</a>            <a id="16c41" class="tk">ssGetBlkStateChange</a></td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td><span class="pp">#define</span> <a id="17c9" class="tk">rtmSetBlkStateChange</a>            <a id="17c41" class="tk">ssSetBlkStateChange</a></td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td><span class="pp">#define</span> <a id="18c9" class="tk">rtmGetChecksum0</a>                 <a id="18c41" class="tk">ssGetChecksum0</a></td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td><span class="pp">#define</span> <a id="19c9" class="tk">rtmSetChecksum0</a>                 <a id="19c41" class="tk">ssSetChecksum0</a></td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td><span class="pp">#define</span> <a id="20c9" class="tk">rtmGetChecksum1</a>                 <a id="20c41" class="tk">ssGetChecksum1</a></td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td><span class="pp">#define</span> <a id="21c9" class="tk">rtmSetChecksum1</a>                 <a id="21c41" class="tk">ssSetChecksum1</a></td></tr>
+<tr name="22" id="22">
+<td><a id="l22" class='ln'>22</a></td><td><span class="pp">#define</span> <a id="22c9" class="tk">rtmGetChecksum2</a>                 <a id="22c41" class="tk">ssGetChecksum2</a></td></tr>
+<tr name="23" id="23">
+<td><a id="l23" class='ln'>23</a></td><td><span class="pp">#define</span> <a id="23c9" class="tk">rtmSetChecksum2</a>                 <a id="23c41" class="tk">ssSetChecksum2</a></td></tr>
+<tr name="24" id="24">
+<td><a id="l24" class='ln'>24</a></td><td><span class="pp">#define</span> <a id="24c9" class="tk">rtmGetChecksum3</a>                 <a id="24c41" class="tk">ssGetChecksum3</a></td></tr>
+<tr name="25" id="25">
+<td><a id="l25" class='ln'>25</a></td><td><span class="pp">#define</span> <a id="25c9" class="tk">rtmSetChecksum3</a>                 <a id="25c41" class="tk">ssSetChecksum3</a></td></tr>
+<tr name="26" id="26">
+<td><a id="l26" class='ln'>26</a></td><td><span class="pp">#define</span> <a id="26c9" class="tk">rtmGetNumSampleTimes</a>            <a id="26c41" class="tk">ssGetNumSampleTimes</a></td></tr>
+<tr name="27" id="27">
+<td><a id="l27" class='ln'>27</a></td><td><span class="pp">#define</span> <a id="27c9" class="tk">rtmGetNumContStates</a>             <a id="27c41" class="tk">ssGetNumContStates</a></td></tr>
+<tr name="28" id="28">
+<td><a id="l28" class='ln'>28</a></td><td><span class="pp">#define</span> <a id="28c9" class="tk">rtmGetContStates</a>                <a id="28c41" class="tk">ssGetContStates</a></td></tr>
+<tr name="29" id="29">
+<td><a id="l29" class='ln'>29</a></td><td><span class="pp">#define</span> <a id="29c9" class="tk">rtmSetContStates</a>                <a id="29c41" class="tk">ssSetContStates</a></td></tr>
+<tr name="30" id="30">
+<td><a id="l30" class='ln'>30</a></td><td><span class="pp">#define</span> <a id="30c9" class="tk">rtmIsContinuousTask</a>             <a id="30c41" class="tk">ssIsContinuousTask</a></td></tr>
+<tr name="31" id="31">
+<td><a id="l31" class='ln'>31</a></td><td><span class="pp">#define</span> <a id="31c9" class="tk">rtmGetDerivCacheNeedsReset</a>      <a id="31c41" class="tk">ssGetDerivCacheNeedsReset</a></td></tr>
+<tr name="32" id="32">
+<td><a id="l32" class='ln'>32</a></td><td><span class="pp">#define</span> <a id="32c9" class="tk">rtmSetDerivCacheNeedsReset</a>      <a id="32c41" class="tk">ssSetDerivCacheNeedsReset</a></td></tr>
+<tr name="33" id="33">
+<td><a id="l33" class='ln'>33</a></td><td><span class="pp">#define</span> <a id="33c9" class="tk">rtmGetDiscStates</a>                <a id="33c41" class="tk">ssGetDiscStates</a></td></tr>
+<tr name="34" id="34">
+<td><a id="l34" class='ln'>34</a></td><td><span class="pp">#define</span> <a id="34c9" class="tk">rtmSetDiscStates</a>                <a id="34c41" class="tk">ssSetDiscStates</a></td></tr>
+<tr name="35" id="35">
+<td><a id="l35" class='ln'>35</a></td><td><span class="pp">#define</span> <a id="35c9" class="tk">rtmGetErrorStatus</a>               <a id="35c41" class="tk">ssGetErrorStatus</a></td></tr>
+<tr name="36" id="36">
+<td><a id="l36" class='ln'>36</a></td><td><span class="pp">#define</span> <a id="36c9" class="tk">rtmSetErrorStatus</a>               <a id="36c41" class="tk">ssSetErrorStatus</a></td></tr>
+<tr name="37" id="37">
+<td><a id="l37" class='ln'>37</a></td><td><span class="pp">#define</span> <a id="37c9" class="tk">rtmGetFixedStepSize</a>             <a id="37c41" class="tk">ssGetFixedStepSize</a></td></tr>
+<tr name="38" id="38">
+<td><a id="l38" class='ln'>38</a></td><td><span class="pp">#define</span> <a id="38c9" class="tk">rtmSetFixedStepSize</a>             <a id="38c41" class="tk">ssSetFixedStepSize</a></td></tr>
+<tr name="39" id="39">
+<td><a id="l39" class='ln'>39</a></td><td><span class="pp">#define</span> <a id="39c9" class="tk">rtmGetRTWLogInfo</a>                <a id="39c41" class="tk">ssGetRTWLogInfo</a></td></tr>
+<tr name="40" id="40">
+<td><a id="l40" class='ln'>40</a></td><td><span class="pp">#define</span> <a id="40c9" class="tk">rtmSetRTWLogInfo</a>                <a id="40c41" class="tk">ssSetRTWLogInfo</a></td></tr>
+<tr name="41" id="41">
+<td><a id="l41" class='ln'>41</a></td><td><span class="pp">#define</span> <a id="41c9" class="tk">rtmGetRTWExtModeInfo</a>            <a id="41c41" class="tk">ssGetRTWExtModeInfo</a></td></tr>
+<tr name="42" id="42">
+<td><a id="l42" class='ln'>42</a></td><td><span class="pp">#define</span> <a id="42c9" class="tk">rtmSetRTWExtModeInfo</a>            <a id="42c41" class="tk">ssSetRTWExtModeInfo</a></td></tr>
+<tr name="43" id="43">
+<td><a id="l43" class='ln'>43</a></td><td><span class="pp">#define</span> <a id="43c9" class="tk">rtmGetMaxNumMinSteps</a>            <a id="43c41" class="tk">ssGetMaxNumMinSteps</a></td></tr>
+<tr name="44" id="44">
+<td><a id="l44" class='ln'>44</a></td><td><span class="pp">#define</span> <a id="44c9" class="tk">rtmSetMaxNumMinSteps</a>            <a id="44c41" class="tk">ssSetMaxNumMinSteps</a></td></tr>
+<tr name="45" id="45">
+<td><a id="l45" class='ln'>45</a></td><td><span class="pp">#define</span> <a id="45c9" class="tk">rtmGetMaxStepSize</a>               <a id="45c41" class="tk">ssGetMaxStepSize</a></td></tr>
+<tr name="46" id="46">
+<td><a id="l46" class='ln'>46</a></td><td><span class="pp">#define</span> <a id="46c9" class="tk">rtmSetMaxStepSize</a>               <a id="46c41" class="tk">ssSetMaxStepSize</a></td></tr>
+<tr name="47" id="47">
+<td><a id="l47" class='ln'>47</a></td><td><span class="pp">#define</span> <a id="47c9" class="tk">rtmGetMinStepSize</a>               <a id="47c41" class="tk">ssGetMinStepSize</a></td></tr>
+<tr name="48" id="48">
+<td><a id="l48" class='ln'>48</a></td><td><span class="pp">#define</span> <a id="48c9" class="tk">rtmSetMinStepSize</a>               <a id="48c41" class="tk">ssSetMinStepSize</a></td></tr>
+<tr name="49" id="49">
+<td><a id="l49" class='ln'>49</a></td><td><span class="pp">#define</span> <a id="49c9" class="tk">rtmGetSolverMaxConsecutiveMinStep</a>   <a id="49c45" class="tk">ssGetSolverMaxConsecutiveMinStep</a></td></tr>
+<tr name="50" id="50">
+<td><a id="l50" class='ln'>50</a></td><td><span class="pp">#define</span> <a id="50c9" class="tk">rtmSetSolverMaxConsecutiveMinStep</a>   <a id="50c45" class="tk">ssSetSolverMaxConsecutiveMinStep</a></td></tr>
+<tr name="51" id="51">
+<td><a id="l51" class='ln'>51</a></td><td><span class="pp">#define</span> <a id="51c9" class="tk">rtmGetSolverZcThreshold</a>         <a id="51c41" class="tk">ssGetSolverZcThreshold</a></td></tr>
+<tr name="52" id="52">
+<td><a id="l52" class='ln'>52</a></td><td><span class="pp">#define</span> <a id="52c9" class="tk">rtmSetSolverZcThreshold</a>         <a id="52c41" class="tk">ssSetSolverZcThreshold</a></td></tr>
+<tr name="53" id="53">
+<td><a id="l53" class='ln'>53</a></td><td><span class="pp">#define</span> <a id="53c9" class="tk">rtmGetSolverConsecutiveZCsError</a>     <a id="53c45" class="tk">ssGetSolverConsecutiveZCsError</a></td></tr>
+<tr name="54" id="54">
+<td><a id="l54" class='ln'>54</a></td><td><span class="pp">#define</span> <a id="54c9" class="tk">rtmSetSolverConsecutiveZCsError</a>     <a id="54c45" class="tk">ssSetSolverConsecutiveZCsError</a></td></tr>
+<tr name="55" id="55">
+<td><a id="l55" class='ln'>55</a></td><td><span class="pp">#define</span> <a id="55c9" class="tk">rtmGetSolverZeroCrossAlgorithm</a>  <a id="55c41" class="tk">ssGetSolverZeroCrossAlgorithm</a></td></tr>
+<tr name="56" id="56">
+<td><a id="l56" class='ln'>56</a></td><td><span class="pp">#define</span> <a id="56c9" class="tk">rtmSetSolverZeroCrossAlgorithm</a>  <a id="56c41" class="tk">ssSetSolverZeroCrossAlgorithm</a></td></tr>
+<tr name="57" id="57">
+<td><a id="l57" class='ln'>57</a></td><td><span class="pp">#define</span> <a id="57c9" class="tk">rtmGetSolverShapePreserveControl</a>   <a id="57c44" class="tk">ssGetSolverShapePreserveControl</a></td></tr>
+<tr name="58" id="58">
+<td><a id="l58" class='ln'>58</a></td><td><span class="pp">#define</span> <a id="58c9" class="tk">rtmSetSolverShapePreserveControl</a>   <a id="58c44" class="tk">ssSetSolverShapePreserveControl</a></td></tr>
+<tr name="59" id="59">
+<td><a id="l59" class='ln'>59</a></td><td><span class="pp">#define</span> <a id="59c9" class="tk">rtmGetModelMappingInfo</a>          <a id="59c41" class="tk">ssGetModelMappingInfo</a></td></tr>
+<tr name="60" id="60">
+<td><a id="l60" class='ln'>60</a></td><td><span class="pp">#define</span> <a id="60c9" class="tk">rtmSetModelMappingInfo</a>          <a id="60c41" class="tk">ssSetModelMappingInfo</a></td></tr>
+<tr name="61" id="61">
+<td><a id="l61" class='ln'>61</a></td><td><span class="pp">#define</span> <a id="61c9" class="tk">rtmGetOffsetTimePtr</a>             <a id="61c41" class="tk">ssGetOffsetTimePtr</a></td></tr>
+<tr name="62" id="62">
+<td><a id="l62" class='ln'>62</a></td><td><span class="pp">#define</span> <a id="62c9" class="tk">rtmSetOffsetTimePtr</a>             <a id="62c41" class="tk">ssSetOffsetTimePtr</a></td></tr>
+<tr name="63" id="63">
+<td><a id="l63" class='ln'>63</a></td><td><span class="pp">#define</span> <a id="63c9" class="tk">rtmGetPerTaskSampleHitsPtr</a>      <a id="63c41" class="tk">ssGetPerTaskSampleHitsPtr</a></td></tr>
+<tr name="64" id="64">
+<td><a id="l64" class='ln'>64</a></td><td><span class="pp">#define</span> <a id="64c9" class="tk">rtmSetPerTaskSampleHitsPtr</a>      <a id="64c41" class="tk">ssSetPerTaskSampleHitsPtr</a></td></tr>
+<tr name="65" id="65">
+<td><a id="l65" class='ln'>65</a></td><td><span class="pp">#define</span> <a id="65c9" class="tk">rtmIsSampleHit</a>                  <a id="65c41" class="tk">ssIsSampleHit</a></td></tr>
+<tr name="66" id="66">
+<td><a id="l66" class='ln'>66</a></td><td><span class="pp">#define</span> <a id="66c9" class="tk">rtmSetSampleHitInTask</a>           <a id="66c41" class="tk">ssSetSampleHitInTask</a></td></tr>
+<tr name="67" id="67">
+<td><a id="l67" class='ln'>67</a></td><td><span class="pp">#define</span> <a id="67c9" class="tk">rtmGetSampleHitPtr</a>              <a id="67c41" class="tk">ssGetSampleHitPtr</a></td></tr>
+<tr name="68" id="68">
+<td><a id="l68" class='ln'>68</a></td><td><span class="pp">#define</span> <a id="68c9" class="tk">rtmSetSampleHitPtr</a>              <a id="68c41" class="tk">ssSetSampleHitPtr</a></td></tr>
+<tr name="69" id="69">
+<td><a id="l69" class='ln'>69</a></td><td><span class="pp">#define</span> <a id="69c9" class="tk">rtmGetSampleTime</a>                <a id="69c41" class="tk">ssGetSampleTime</a></td></tr>
+<tr name="70" id="70">
+<td><a id="l70" class='ln'>70</a></td><td><span class="pp">#define</span> <a id="70c9" class="tk">rtmSetSampleTime</a>                <a id="70c41" class="tk">ssSetSampleTime</a></td></tr>
+<tr name="71" id="71">
+<td><a id="l71" class='ln'>71</a></td><td><span class="pp">#define</span> <a id="71c9" class="tk">rtmGetSampleTimePtr</a>             <a id="71c41" class="tk">ssGetSampleTimePtr</a></td></tr>
+<tr name="72" id="72">
+<td><a id="l72" class='ln'>72</a></td><td><span class="pp">#define</span> <a id="72c9" class="tk">rtmSetSampleTimePtr</a>             <a id="72c41" class="tk">ssSetSampleTimePtr</a></td></tr>
+<tr name="73" id="73">
+<td><a id="l73" class='ln'>73</a></td><td><span class="pp">#define</span> <a id="73c9" class="tk">rtmGetSampleTimeTaskIDPtr</a>       <a id="73c41" class="tk">ssGetSampleTimeTaskIDPtr</a></td></tr>
+<tr name="74" id="74">
+<td><a id="l74" class='ln'>74</a></td><td><span class="pp">#define</span> <a id="74c9" class="tk">rtmSetSampleTimeTaskIDPtr</a>       <a id="74c41" class="tk">ssSetSampleTimeTaskIDPtr</a></td></tr>
+<tr name="75" id="75">
+<td><a id="l75" class='ln'>75</a></td><td><span class="pp">#define</span> <a id="75c9" class="tk">rtmGetSimMode</a>                   <a id="75c41" class="tk">ssGetSimMode</a></td></tr>
+<tr name="76" id="76">
+<td><a id="l76" class='ln'>76</a></td><td><span class="pp">#define</span> <a id="76c9" class="tk">rtmSetSimMode</a>                   <a id="76c41" class="tk">ssSetSimMode</a></td></tr>
+<tr name="77" id="77">
+<td><a id="l77" class='ln'>77</a></td><td><span class="pp">#define</span> <a id="77c9" class="tk">rtmGetSimTimeStep</a>               <a id="77c41" class="tk">ssGetSimTimeStep</a></td></tr>
+<tr name="78" id="78">
+<td><a id="l78" class='ln'>78</a></td><td><span class="pp">#define</span> <a id="78c9" class="tk">rtmSetSimTimeStep</a>               <a id="78c41" class="tk">ssSetSimTimeStep</a></td></tr>
+<tr name="79" id="79">
+<td><a id="l79" class='ln'>79</a></td><td><span class="pp">#define</span> <a id="79c9" class="tk">rtmGetSolverAbsTol</a>              <a id="79c41" class="tk">ssGetSolverAbsTol</a></td></tr>
+<tr name="80" id="80">
+<td><a id="l80" class='ln'>80</a></td><td><span class="pp">#define</span> <a id="80c9" class="tk">rtmSetSolverAbsTol</a>              <a id="80c41" class="tk">ssSetSolverAbsTol</a></td></tr>
+<tr name="81" id="81">
+<td><a id="l81" class='ln'>81</a></td><td><span class="pp">#define</span> <a id="81c9" class="tk">rtmGetSolverData</a>                <a id="81c41" class="tk">ssGetSolverData</a></td></tr>
+<tr name="82" id="82">
+<td><a id="l82" class='ln'>82</a></td><td><span class="pp">#define</span> <a id="82c9" class="tk">rtmSetSolverData</a>                <a id="82c41" class="tk">ssSetSolverData</a></td></tr>
+<tr name="83" id="83">
+<td><a id="l83" class='ln'>83</a></td><td><span class="pp">#define</span> <a id="83c9" class="tk">rtmGetSolverMaxOrder</a>            <a id="83c41" class="tk">ssGetSolverMaxOrder</a></td></tr>
+<tr name="84" id="84">
+<td><a id="l84" class='ln'>84</a></td><td><span class="pp">#define</span> <a id="84c9" class="tk">rtmSetSolverMaxOrder</a>            <a id="84c41" class="tk">ssSetSolverMaxOrder</a></td></tr>
+<tr name="85" id="85">
+<td><a id="l85" class='ln'>85</a></td><td><span class="pp">#define</span> <a id="85c9" class="tk">rtmGetSolverConsecutiveZCsStepRelTol</a>   <a id="85c48" class="tk">ssGetSolverConsecutiveZCsStepRelTol</a></td></tr>
+<tr name="86" id="86">
+<td><a id="l86" class='ln'>86</a></td><td><span class="pp">#define</span> <a id="86c9" class="tk">rtmSetSolverConsecutiveZCsStepRelTol</a>   <a id="86c48" class="tk">ssSetSolverConsecutiveZCsStepRelTol</a></td></tr>
+<tr name="87" id="87">
+<td><a id="l87" class='ln'>87</a></td><td><span class="pp">#define</span> <a id="87c9" class="tk">rtmGetSolverMaxConsecutiveZCs</a>   <a id="87c41" class="tk">ssGetSolverMaxConsecutiveZCs</a></td></tr>
+<tr name="88" id="88">
+<td><a id="l88" class='ln'>88</a></td><td><span class="pp">#define</span> <a id="88c9" class="tk">rtmSetSolverMaxConsecutiveZCs</a>   <a id="88c41" class="tk">ssSetSolverMaxConsecutiveZCs</a></td></tr>
+<tr name="89" id="89">
+<td><a id="l89" class='ln'>89</a></td><td><span class="pp">#define</span> <a id="89c9" class="tk">rtmGetSolverExtrapolationOrder</a>  <a id="89c41" class="tk">ssGetSolverExtrapolationOrder</a></td></tr>
+<tr name="90" id="90">
+<td><a id="l90" class='ln'>90</a></td><td><span class="pp">#define</span> <a id="90c9" class="tk">rtmSetSolverExtrapolationOrder</a>  <a id="90c41" class="tk">ssSetSolverExtrapolationOrder</a></td></tr>
+<tr name="91" id="91">
+<td><a id="l91" class='ln'>91</a></td><td><span class="pp">#define</span> <a id="91c9" class="tk">rtmGetSolverNumberNewtonIterations</a>   <a id="91c46" class="tk">ssGetSolverNumberNewtonIterations</a></td></tr>
+<tr name="92" id="92">
+<td><a id="l92" class='ln'>92</a></td><td><span class="pp">#define</span> <a id="92c9" class="tk">rtmSetSolverNumberNewtonIterations</a>   <a id="92c46" class="tk">ssSetSolverNumberNewtonIterations</a></td></tr>
+<tr name="93" id="93">
+<td><a id="l93" class='ln'>93</a></td><td><span class="pp">#define</span> <a id="93c9" class="tk">rtmGetSolverMode</a>                <a id="93c41" class="tk">ssGetSolverMode</a></td></tr>
+<tr name="94" id="94">
+<td><a id="l94" class='ln'>94</a></td><td><span class="pp">#define</span> <a id="94c9" class="tk">rtmSetSolverMode</a>                <a id="94c41" class="tk">ssSetSolverMode</a></td></tr>
+<tr name="95" id="95">
+<td><a id="l95" class='ln'>95</a></td><td><span class="pp">#define</span> <a id="95c9" class="tk">rtmGetSolverName</a>                <a id="95c41" class="tk">ssGetSolverName</a></td></tr>
+<tr name="96" id="96">
+<td><a id="l96" class='ln'>96</a></td><td><span class="pp">#define</span> <a id="96c9" class="tk">rtmSetSolverName</a>                <a id="96c41" class="tk">ssSetSolverName</a></td></tr>
+<tr name="97" id="97">
+<td><a id="l97" class='ln'>97</a></td><td><span class="pp">#define</span> <a id="97c9" class="tk">rtmGetSolverNeedsReset</a>          <a id="97c41" class="tk">ssGetSolverNeedsReset</a></td></tr>
+<tr name="98" id="98">
+<td><a id="l98" class='ln'>98</a></td><td><span class="pp">#define</span> <a id="98c9" class="tk">rtmSetSolverNeedsReset</a>          <a id="98c41" class="tk">ssSetSolverNeedsReset</a></td></tr>
+<tr name="99" id="99">
+<td><a id="l99" class='ln'>99</a></td><td><span class="pp">#define</span> <a id="99c9" class="tk">rtmGetSolverRefineFactor</a>        <a id="99c41" class="tk">ssGetSolverRefineFactor</a></td></tr>
+<tr name="100" id="100">
+<td><a id="l100" class='ln'>100</a></td><td><span class="pp">#define</span> <a id="100c9" class="tk">rtmSetSolverRefineFactor</a>        <a id="100c41" class="tk">ssSetSolverRefineFactor</a></td></tr>
+<tr name="101" id="101">
+<td><a id="l101" class='ln'>101</a></td><td><span class="pp">#define</span> <a id="101c9" class="tk">rtmGetSolverRelTol</a>              <a id="101c41" class="tk">ssGetSolverRelTol</a></td></tr>
+<tr name="102" id="102">
+<td><a id="l102" class='ln'>102</a></td><td><span class="pp">#define</span> <a id="102c9" class="tk">rtmSetSolverRelTol</a>              <a id="102c41" class="tk">ssSetSolverRelTol</a></td></tr>
+<tr name="103" id="103">
+<td><a id="l103" class='ln'>103</a></td><td><span class="pp">#define</span> <a id="103c9" class="tk">rtmGetSolverStopTime</a>            <a id="103c41" class="tk">ssGetSolverStopTime</a></td></tr>
+<tr name="104" id="104">
+<td><a id="l104" class='ln'>104</a></td><td><span class="pp">#define</span> <a id="104c9" class="tk">rtmSetSolverStopTime</a>            <a id="104c41" class="tk">ssSetSolverStopTime</a></td></tr>
+<tr name="105" id="105">
+<td><a id="l105" class='ln'>105</a></td><td><span class="pp">#define</span> <a id="105c9" class="tk">rtmGetSolverRobustResetMethod</a>   <a id="105c41" class="tk">ssGetSolverRobustResetMethod</a></td></tr>
+<tr name="106" id="106">
+<td><a id="l106" class='ln'>106</a></td><td><span class="pp">#define</span> <a id="106c9" class="tk">rtmSetSolverRobustResetMethod</a>   <a id="106c41" class="tk">ssSetSolverRobustResetMethod</a></td></tr>
+<tr name="107" id="107">
+<td><a id="l107" class='ln'>107</a></td><td><span class="pp">#define</span> <a id="107c9" class="tk">rtmIsSpecialSampleHit</a>           <a id="107c41" class="tk">ssIsSpecialSampleHit</a></td></tr>
+<tr name="108" id="108">
+<td><a id="l108" class='ln'>108</a></td><td><span class="pp">#define</span> <a id="108c9" class="tk">rtmGetStepSize</a>                  <a id="108c41" class="tk">ssGetStepSize</a></td></tr>
+<tr name="109" id="109">
+<td><a id="l109" class='ln'>109</a></td><td><span class="pp">#define</span> <a id="109c9" class="tk">rtmSetStepSize</a>                  <a id="109c41" class="tk">ssSetStepSize</a></td></tr>
+<tr name="110" id="110">
+<td><a id="l110" class='ln'>110</a></td><td><span class="pp">#define</span> <a id="110c9" class="tk">rtmGetStopRequested</a>             <a id="110c41" class="tk">ssGetStopRequested</a></td></tr>
+<tr name="111" id="111">
+<td><a id="l111" class='ln'>111</a></td><td><span class="pp">#define</span> <a id="111c9" class="tk">rtmSetStopRequested</a>             <a id="111c41" class="tk">ssSetStopRequested</a></td></tr>
+<tr name="112" id="112">
+<td><a id="l112" class='ln'>112</a></td><td><span class="pp">#define</span> <a id="112c9" class="tk">rtmGetT</a>                         <a id="112c41" class="tk">ssGetT</a></td></tr>
+<tr name="113" id="113">
+<td><a id="l113" class='ln'>113</a></td><td><span class="pp">#define</span> <a id="113c9" class="tk">rtmSetT</a>                         <a id="113c41" class="tk">ssSetT</a></td></tr>
+<tr name="114" id="114">
+<td><a id="l114" class='ln'>114</a></td><td><span class="pp">#define</span> <a id="114c9" class="tk">rtmGetTFinal</a>                    <a id="114c41" class="tk">ssGetTFinal</a></td></tr>
+<tr name="115" id="115">
+<td><a id="l115" class='ln'>115</a></td><td><span class="pp">#define</span> <a id="115c9" class="tk">rtmSetTFinal</a>                    <a id="115c41" class="tk">ssSetTFinal</a></td></tr>
+<tr name="116" id="116">
+<td><a id="l116" class='ln'>116</a></td><td><span class="pp">#define</span> <a id="116c9" class="tk">rtmGetTPtr</a>                      <a id="116c41" class="tk">ssGetTPtr</a></td></tr>
+<tr name="117" id="117">
+<td><a id="l117" class='ln'>117</a></td><td><span class="pp">#define</span> <a id="117c9" class="tk">rtmSetTPtr</a>                      <a id="117c41" class="tk">ssSetTPtr</a></td></tr>
+<tr name="118" id="118">
+<td><a id="l118" class='ln'>118</a></td><td><span class="pp">#define</span> <a id="118c9" class="tk">rtmGetTStart</a>                    <a id="118c41" class="tk">ssGetTStart</a></td></tr>
+<tr name="119" id="119">
+<td><a id="l119" class='ln'>119</a></td><td><span class="pp">#define</span> <a id="119c9" class="tk">rtmSetTStart</a>                    <a id="119c41" class="tk">ssSetTStart</a></td></tr>
+<tr name="120" id="120">
+<td><a id="l120" class='ln'>120</a></td><td><span class="pp">#define</span> <a id="120c9" class="tk">rtmGetTaskTime</a>                  <a id="120c41" class="tk">ssGetTaskTime</a></td></tr>
+<tr name="121" id="121">
+<td><a id="l121" class='ln'>121</a></td><td><span class="pp">#define</span> <a id="121c9" class="tk">rtmSetTaskTime</a>                  <a id="121c41" class="tk">ssSetTaskTime</a></td></tr>
+<tr name="122" id="122">
+<td><a id="l122" class='ln'>122</a></td><td><span class="pp">#define</span> <a id="122c9" class="tk">rtmGetTimeOfLastOutput</a>          <a id="122c41" class="tk">ssGetTimeOfLastOutput</a></td></tr>
+<tr name="123" id="123">
+<td><a id="l123" class='ln'>123</a></td><td><span class="pp">#define</span> <a id="123c9" class="tk">rtmSetTimeOfLastOutput</a>          <a id="123c41" class="tk">ssSetTimeOfLastOutput</a></td></tr>
+<tr name="124" id="124">
+<td><a id="l124" class='ln'>124</a></td><td><span class="pp">#define</span> <a id="124c9" class="tk">rtmGetTimingData</a>                <a id="124c41" class="tk">ssGetTimingData</a></td></tr>
+<tr name="125" id="125">
+<td><a id="l125" class='ln'>125</a></td><td><span class="pp">#define</span> <a id="125c9" class="tk">rtmSetTimingData</a>                <a id="125c41" class="tk">ssSetTimingData</a></td></tr>
+<tr name="126" id="126">
+<td><a id="l126" class='ln'>126</a></td><td><span class="pp">#define</span> <a id="126c9" class="tk">rtmGetU</a>                         <a id="126c41" class="tk">ssGetU</a></td></tr>
+<tr name="127" id="127">
+<td><a id="l127" class='ln'>127</a></td><td><span class="pp">#define</span> <a id="127c9" class="tk">rtmSetU</a>                         <a id="127c41" class="tk">ssSetU</a></td></tr>
+<tr name="128" id="128">
+<td><a id="l128" class='ln'>128</a></td><td><span class="pp">#define</span> <a id="128c9" class="tk">rtmGetVariableStepSolver</a>        <a id="128c41" class="tk">ssGetVariableStepSolver</a></td></tr>
+<tr name="129" id="129">
+<td><a id="l129" class='ln'>129</a></td><td><span class="pp">#define</span> <a id="129c9" class="tk">rtmSetVariableStepSolver</a>        <a id="129c41" class="tk">ssSetVariableStepSolver</a></td></tr>
+<tr name="130" id="130">
+<td><a id="l130" class='ln'>130</a></td><td><span class="pp">#define</span> <a id="130c9" class="tk">rtmGetY</a>                         <a id="130c41" class="tk">ssGetY</a></td></tr>
+<tr name="131" id="131">
+<td><a id="l131" class='ln'>131</a></td><td><span class="pp">#define</span> <a id="131c9" class="tk">rtmSetY</a>                         <a id="131c41" class="tk">ssSetY</a></td></tr>
+<tr name="132" id="132">
+<td><a id="l132" class='ln'>132</a></td><td><span class="pp">#define</span> <a id="132c9" class="tk">rtmGetZCCacheNeedsReset</a>         <a id="132c41" class="tk">ssGetZCCacheNeedsReset</a></td></tr>
+<tr name="133" id="133">
+<td><a id="l133" class='ln'>133</a></td><td><span class="pp">#define</span> <a id="133c9" class="tk">rtmSetZCCacheNeedsReset</a>         <a id="133c41" class="tk">ssSetZCCacheNeedsReset</a></td></tr>
+<tr name="134" id="134">
+<td><a id="l134" class='ln'>134</a></td><td><span class="pp">#define</span> <a id="134c9" class="tk">rtmGetdX</a>                        <a id="134c41" class="tk">ssGetdX</a></td></tr>
+<tr name="135" id="135">
+<td><a id="l135" class='ln'>135</a></td><td><span class="pp">#define</span> <a id="135c9" class="tk">rtmSetdX</a>                        <a id="135c41" class="tk">ssSetdX</a></td></tr>
+<tr name="136" id="136">
+<td><a id="l136" class='ln'>136</a></td><td><span class="pp">#define</span> <a id="136c9" class="tk">rtmOutputs</a>                      <a id="136c41" class="tk">sfcnOutputs</a></td></tr>
+<tr name="137" id="137">
+<td><a id="l137" class='ln'>137</a></td><td><span class="pp">#define</span> <a id="137c9" class="tk">rtmTerminate</a>                    <a id="137c41" class="tk">sfcnTerminate</a></td></tr>
+<tr name="138" id="138">
+<td><a id="l138" class='ln'>138</a></td><td><span class="pp">#define</span> <a id="138c9" class="tk">rtmInitializeSampleTimes</a>        <a id="138c41" class="tk">sfcnInitializeSampleTimes</a></td></tr>
+<tr name="139" id="139">
+<td><a id="l139" class='ln'>139</a></td><td><span class="pp">#define</span> <a id="139c9" class="tk">rtmInitializeSizes</a>              <a id="139c41" class="tk">sfcnInitializeSizes</a></td></tr>
+<tr name="140" id="140">
+<td><a id="l140" class='ln'>140</a></td><td><span class="pp">#define</span> <a id="140c9" class="tk">rtmUpdate</a>                       <a id="140c41" class="tk">sfcnUpdate</a></td></tr>
+<tr name="141" id="141">
+<td><a id="l141" class='ln'>141</a></td><td><span class="pp">#define</span> <a id="141c9" class="tk">rtmDerivatives</a>                  <a id="141c41" class="tk">sfcnDerivatives</a></td></tr>
+<tr name="142" id="142">
+<td><a id="l142" class='ln'>142</a></td><td><span class="pp">#define</span> <a id="142c9" class="tk">rtmStart</a>                        <a id="142c41" class="tk">sfcnStart</a></td></tr>
+<tr name="143" id="143">
+<td><a id="l143" class='ln'>143</a></td><td><span class="pp">#endif</span>                                  <span class="ct">/* _RTW_HEADER_rtmmacros_h_ */</span></td></tr>
+<tr name="144" id="144">
+<td><a id="l144" class='ln'>144</a></td><td></td></tr>
+<tr name="145" id="145">
+<td><a id="l145" class='ln'>145</a></td><td><span class="ct">/* [EOF] rtmmacros.h */</span></td></tr>
+<tr name="146" id="146">
+<td><a id="l146" class='ln'>146</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

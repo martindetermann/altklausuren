@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="ct">/* Copyright 1997-2016 The MathWorks, Inc. */</span></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="pp">#ifndef</span> <a id="3c9" class="tk">_debugger_codegen_interface_h</a></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td><span class="pp">#define</span> <a id="4c9" class="tk">_debugger_codegen_interface_h</a></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td></td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="pp">#ifdef</span> <a id="6c8" class="tk">SUPPORTS_PRAGMA_ONCE</a></td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td><span class="pp">#pragma</span> <a id="7c9" class="tk">once</a></td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td></td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td><span class="pp">#if</span> <a id="10c5" class="tk">defined</a>(<a id="10c13" class="tk">S_FUNCTION_NAME</a>)</td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td><span class="pp">#include "mwmathutil.h"</span></td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td></td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td><span class="pp">#include "sf_runtime/sf_runtime_spec.h"</span></td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td><span class="pp">#ifndef</span> <a id="15c9" class="tk">_SIMSTRUCT</a></td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td><span class="pp">#  define</span> <a id="16c11" class="tk">_SIMSTRUCT</a></td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td><span class="kw">typedef</span> <span class="kw">struct</span> <a id="17c16" class="tk">SimStruct_tag</a> <a id="17c30" class="tk">SimStruct</a>;</td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td></td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td><a id="20c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span><a id="20c25" class="tk">*</a> <a id="20c27" class="tk">sfListenerInitializeUsingSimStruct</a>(<a id="20c62" class="tk">SimStruct</a><a id="20c71" class="tk">*</a> <a id="20c73" class="tk">S</a>);</td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td><a id="21c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span><a id="21c25" class="tk">*</a> <a id="21c27" class="tk">sfListenerInitializeUsingBlockPath</a>(<span class="kw">char</span><a id="21c66" class="tk">*</a> <a id="21c68" class="tk">blkPath</a>);</td></tr>
+<tr name="22" id="22">
+<td><a id="l22" class='ln'>22</a></td><td></td></tr>
+<tr name="23" id="23">
+<td><a id="l23" class='ln'>23</a></td><td><a id="23c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="23c26" class="tk">sfListenerTerminate</a>(<span class="kw">void</span><a id="23c50" class="tk">*</a> <a id="23c52" class="tk">rt</a>);</td></tr>
+<tr name="24" id="24">
+<td><a id="l24" class='ln'>24</a></td><td><a id="24c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="24c26" class="tk">sfListenerInitializeRuntimeVars</a>(<span class="kw">void</span><a id="24c62" class="tk">*</a> <a id="24c64" class="tk">rt</a>, <span class="kw">int</span><a id="24c71" class="tk">*</a> <a id="24c73" class="tk">areListenersActive</a>, <span class="kw">bool</span> <a id="24c98" class="tk">isJitCompliantDebuggerOn</a>, <span class="kw">bool</span> <a id="24c129" class="tk">isSequenceViewerVisible</a>, <span class="kw">int</span><a id="24c157" class="tk">*</a> <a id="24c159" class="tk">numFcnVars</a>, <span class="kw">char</span><a id="24c175" class="tk">*</a><a id="24c176" class="tk">*</a> <a id="24c178" class="tk">dataNames</a>[],<span class="kw">void</span><a id="24c194" class="tk">*</a><a id="24c195" class="tk">*</a> <a id="24c197" class="tk">dataPtrs</a>[], <span class="kw">char</span><a id="24c213" class="tk">*</a><a id="24c214" class="tk">*</a> <a id="24c216" class="tk">marshallingOutFcns</a>[], <span class="kw">char</span><a id="24c242" class="tk">*</a><a id="24c243" class="tk">*</a> <a id="24c245" class="tk">marshallingInFcns</a>[],  <span class="kw">int</span><a id="24c270" class="tk">*</a> <a id="24c272" class="tk">statuses</a>[], <span class="kw">int</span><a id="24c287" class="tk">*</a> <a id="24c289" class="tk">lineNumber</a>);</td></tr>
+<tr name="25" id="25">
+<td><a id="l25" class='ln'>25</a></td><td></td></tr>
+<tr name="26" id="26">
+<td><a id="l26" class='ln'>26</a></td><td><a id="26c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="26c26" class="tk">sfListenerReportScriptName</a>(<span class="kw">void</span><a id="26c57" class="tk">*</a> <a id="26c59" class="tk">rt</a>, <span class="kw">char</span><a id="26c67" class="tk">*</a> <a id="26c69" class="tk">aScriptName</a>);</td></tr>
+<tr name="27" id="27">
+<td><a id="l27" class='ln'>27</a></td><td></td></tr>
+<tr name="28" id="28">
+<td><a id="l28" class='ln'>28</a></td><td><a id="28c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="28c26" class="tk">sfListenerReportStartingSection</a>(<span class="kw">void</span><a id="28c62" class="tk">*</a> <a id="28c64" class="tk">rt</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="28c81" class="tk">aSSIDNumber</a>, <span class="kw">int</span> <a id="28c98" class="tk">aSectionId</a>);</td></tr>
+<tr name="29" id="29">
+<td><a id="l29" class='ln'>29</a></td><td><a id="29c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="29c26" class="tk">sfListenerReportEndingSection</a>(<span class="kw">void</span><a id="29c60" class="tk">*</a> <a id="29c62" class="tk">rt</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="29c79" class="tk">aSSIDNumber</a>, <span class="kw">int</span> <a id="29c96" class="tk">aSectionId</a>);</td></tr>
+<tr name="30" id="30">
+<td><a id="l30" class='ln'>30</a></td><td></td></tr>
+<tr name="31" id="31">
+<td><a id="l31" class='ln'>31</a></td><td><a id="31c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="31c26" class="tk">sfListenerPushScope</a>(<span class="kw">void</span><a id="31c50" class="tk">*</a> <a id="31c52" class="tk">rt</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="31c69" class="tk">aSSIDNumber</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="31c95" class="tk">N</a>, <span class="kw">char</span><a id="31c102" class="tk">*</a> <a id="31c104" class="tk">aVarNames</a>[], <span class="kw">void</span><a id="31c121" class="tk">*</a> <a id="31c123" class="tk">aDataPtr</a>[], <span class="kw">char</span><a id="31c139" class="tk">*</a> <a id="31c141" class="tk">aMarchallingOutFunctions</a>[], <span class="kw">char</span><a id="31c173" class="tk">*</a> <a id="31c175" class="tk">aMarshallingInFunctions</a>[], <span class="kw">int</span> <a id="31c206" class="tk">aStatus</a>[]);</td></tr>
+<tr name="32" id="32">
+<td><a id="l32" class='ln'>32</a></td><td><a id="32c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="32c26" class="tk">sfListenerPopScope</a>(<span class="kw">void</span><a id="32c49" class="tk">*</a> <a id="32c51" class="tk">rt</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="32c68" class="tk">aSSIDNumber</a>);</td></tr>
+<tr name="33" id="33">
+<td><a id="l33" class='ln'>33</a></td><td></td></tr>
+<tr name="34" id="34">
+<td><a id="l34" class='ln'>34</a></td><td><a id="34c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="34c26" class="tk">sfListenerPushScopeForChart</a>(<span class="kw">void</span><a id="34c58" class="tk">*</a> <a id="34c60" class="tk">rt</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="34c77" class="tk">aSSIDNumber</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="34c103" class="tk">N</a>, <span class="kw">char</span><a id="34c110" class="tk">*</a> <a id="34c112" class="tk">aVarNames</a>[], <span class="kw">void</span><a id="34c129" class="tk">*</a> <a id="34c131" class="tk">aDataPtr</a>[], <span class="kw">char</span><a id="34c147" class="tk">*</a> <a id="34c149" class="tk">aMarshallingOutFunctions</a>[], <span class="kw">char</span><a id="34c181" class="tk">*</a> <a id="34c183" class="tk">aMarshallingInFunctions</a>[], <span class="kw">int</span> <a id="34c214" class="tk">aStatus</a>[]);</td></tr>
+<tr name="35" id="35">
+<td><a id="l35" class='ln'>35</a></td><td><a id="35c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="35c26" class="tk">sfListenerPopScopeForChart</a>(<span class="kw">void</span><a id="35c57" class="tk">*</a> <a id="35c59" class="tk">rt</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="35c76" class="tk">aSSIDNumber</a>);</td></tr>
+<tr name="36" id="36">
+<td><a id="l36" class='ln'>36</a></td><td></td></tr>
+<tr name="37" id="37">
+<td><a id="l37" class='ln'>37</a></td><td><a id="37c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="37c26" class="tk">sfListenerReportStartingEventBroadcast</a>(<span class="kw">void</span><a id="37c69" class="tk">*</a> <a id="37c71" class="tk">rt</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="37c88" class="tk">aEventSSIDNumber</a>, <span class="kw">int</span> <a id="37c110" class="tk">aSectionId</a>);</td></tr>
+<tr name="38" id="38">
+<td><a id="l38" class='ln'>38</a></td><td><a id="38c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="38c26" class="tk">sfListenerReportEndingEventBroadcast</a>(<span class="kw">void</span><a id="38c67" class="tk">*</a> <a id="38c69" class="tk">rt</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="38c86" class="tk">aEventSSIDNumber</a>, <span class="kw">int</span> <a id="38c108" class="tk">aSectionId</a>);</td></tr>
+<tr name="39" id="39">
+<td><a id="l39" class='ln'>39</a></td><td><a id="39c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="39c26" class="tk">sfListenerReportLineNumber</a>(<span class="kw">void</span><a id="39c57" class="tk">*</a> <a id="39c59" class="tk">rt</a>, <span class="kw">unsigned</span> <span class="kw">int</span> <a id="39c76" class="tk">aSSIDNumber</a>,<span class="kw">int</span> <a id="39c92" class="tk">aLineNumber</a>);</td></tr>
+<tr name="40" id="40">
+<td><a id="l40" class='ln'>40</a></td><td></td></tr>
+<tr name="41" id="41">
+<td><a id="l41" class='ln'>41</a></td><td><a id="41c1" class="tk">LIBMWSF_RUNTIME_API</a> <span class="kw">void</span> <a id="41c26" class="tk">sfListenerReportScriptName</a>(<span class="kw">void</span><a id="41c57" class="tk">*</a> <a id="41c59" class="tk">rt</a>, <span class="kw">char</span><a id="41c67" class="tk">*</a> <a id="41c69" class="tk">scriptName</a>);</td></tr>
+<tr name="42" id="42">
+<td><a id="l42" class='ln'>42</a></td><td></td></tr>
+<tr name="43" id="43">
+<td><a id="l43" class='ln'>43</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="44" id="44">
+<td><a id="l44" class='ln'>44</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

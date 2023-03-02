@@ -1,0 +1,1197 @@
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 1
+
+
+   1              	# 1 "startup_stm32f4xx.s"
+   1              	/* File: startup_stm32f4xx.s
+   0              	
+   0              	
+   2              	 * Purpose: startup file for Cortex-M4 devices. Should use with
+   3              	 *   GCC for ARM Embedded Processors
+   4              	 * Version: V1.4
+   5              	 * Date: 09 July 2012
+   6              	 *
+   7              	 * Copyright (c) 2011, 2012, ARM Limited
+   8              	 * All rights reserved.
+   9              	 *
+  10              	 * Redistribution and use in source and binary forms, with or without
+  11              	 * modification, are permitted provided that the following conditions are met:
+  12              	    * Redistributions of source code must retain the above copyright
+  13              	      notice, this list of conditions and the following disclaimer.
+  14              	    * Redistributions in binary form must reproduce the above copyright
+  15              	      notice, this list of conditions and the following disclaimer in the
+  16              	      documentation and/or other materials provided with the distribution.
+  17              	    * Neither the name of the ARM Limited nor the
+  18              	      names of its contributors may be used to endorse or promote products
+  19              	      derived from this software without specific prior written permission.
+  20              	 *
+  21              	 * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+  22              	 * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  23              	 * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  24              	 * DISCLAIMED. IN NO EVENT SHALL ARM LIMITED BE LIABLE FOR ANY
+  25              	 * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+  26              	 * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  27              	 * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+  28              	 * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  29              	 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  30              	 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  31              	 */
+  32              	    .syntax unified
+  33              	    .arch armv7-m
+  34              	
+  35              	    .section .stack
+  36              	    .align 3
+  37              		
+  38              		.equ __initial_spTop, 0x20000400
+  39              	#ifdef __STACK_SIZE
+  40              	    .equ    Stack_Size, __STACK_SIZE
+  41              	#else
+  42              	    .equ    Stack_Size, 0x2000
+  43              	#endif
+  44              	    .globl    __StackTop
+  45              	    .globl    __StackLimit
+  46              	__StackLimit:
+  47 0000 00000000 	    .space    Stack_Size
+  47      00000000 
+  47      00000000 
+  47      00000000 
+  47      00000000 
+  48              	    .size __StackLimit, . - __StackLimit
+  49              	__StackTop:
+  50              	    .size __StackTop, . - __StackTop
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 2
+
+
+  51              	
+  52              	    .section .heap
+  53              	    .align 3
+  54              	#ifdef __HEAP_SIZE
+  55              	    .equ    Heap_Size, __HEAP_SIZE
+  56              	#else
+  57              	    .equ    Heap_Size, 0x2000
+  58              	#endif
+  59              	    .globl    __HeapBase
+  60              	    .globl    __HeapLimit
+  61              	__HeapBase:
+  62              	    .if    Heap_Size
+  63 0000 00000000 	    .space    Heap_Size
+  63      00000000 
+  63      00000000 
+  63      00000000 
+  63      00000000 
+  64              	    .endif
+  65              	    .size __HeapBase, . - __HeapBase
+  66              	__HeapLimit:
+  67              	    .size __HeapLimit, . - __HeapLimit
+  68              	
+  69              	    .section .isr_vector
+  70              	    .align 2
+  71              	    .globl __isr_vector
+  72              	__isr_vector:
+  73 0000 00000000 	    .long    __StackTop            /* Top of Stack */
+  74 0004 00000000 	    .long    Reset_Handler         /* Reset Handler */
+  75 0008 00000000 	    .long    NMI_Handler           /* NMI Handler */
+  76 000c 00000000 	    .long    HardFault_Handler     /* Hard Fault Handler */
+  77 0010 00000000 	    .long    MemManage_Handler     /* MPU Fault Handler */
+  78 0014 00000000 	    .long    BusFault_Handler      /* Bus Fault Handler */
+  79 0018 00000000 	    .long    UsageFault_Handler    /* Usage Fault Handler */
+  80 001c 00000000 	    .long    0                     /* Reserved */
+  81 0020 00000000 	    .long    0                     /* Reserved */
+  82 0024 00000000 	    .long    0                     /* Reserved */
+  83 0028 00000000 	    .long    0                     /* Reserved */
+  84 002c 00000000 	    .long    SVC_Handler           /* SVCall Handler */
+  85 0030 00000000 	    .long    DebugMon_Handler      /* Debug Monitor Handler */
+  86 0034 00000000 	    .long    0                     /* Reserved */
+  87 0038 00000000 	    .long    PendSV_Handler        /* PendSV Handler */
+  88 003c 00000000 	    .long    SysTick_Handler       /* SysTick Handler */
+  89              	
+  90              	    /* External interrupts */
+  91 0040 00000000 	    .long    WWDG_IRQHandler                /* Window WatchDog */
+  92 0044 00000000 	    .long    PVD_IRQHandler                 /* PVD through EXTI Line detection */
+  93 0048 00000000 	    .long    TAMP_STAMP_IRQHandler          /* Tamper and TimeStamps through the EXTI line */
+  94 004c 00000000 	    .long    RTC_WKUP_IRQHandler           /* RTC Wakeup through the EXTI line */
+  95 0050 00000000 	    .long    FLASH_IRQHandler              /* FLASH */
+  96 0054 00000000 	    .long    RCC_IRQHandler                /* RCC */
+  97 0058 00000000 	    .long    EXTI0_IRQHandler              /* EXTI Line0 */
+  98 005c 00000000 	    .long    EXTI1_IRQHandler              /* EXTI Line1 */
+  99 0060 00000000 	    .long    EXTI2_IRQHandler              /* EXTI Line2 */
+ 100 0064 00000000 	    .long    EXTI3_IRQHandler              /* EXTI Line3 */
+ 101 0068 00000000 	    .long    EXTI4_IRQHandler              /* EXTI Line4 */
+ 102 006c 00000000 	    .long    DMA1_Stream0_IRQHandler       /* DMA1 Stream 0 */
+ 103 0070 00000000 	    .long    DMA1_Stream1_IRQHandler       /* DMA1 Stream 1 */
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 3
+
+
+ 104 0074 00000000 	    .long    DMA1_Stream2_IRQHandler       /* DMA1 Stream 2 */
+ 105 0078 00000000 	    .long    DMA1_Stream3_IRQHandler       /* DMA1 Stream 3 */
+ 106 007c 00000000 	    .long    DMA1_Stream4_IRQHandler       /* DMA1 Stream 4 */
+ 107 0080 00000000 	    .long    DMA1_Stream5_IRQHandler       /* DMA1 Stream 5 */
+ 108 0084 00000000 	    .long    DMA1_Stream6_IRQHandler       /* DMA1 Stream 6 */
+ 109 0088 00000000 	    .long    ADC_IRQHandler                /* ADC1, ADC2 and ADC3s */
+ 110 008c 00000000 	    .long    CAN1_TX_IRQHandler            /* CAN1 TX */
+ 111 0090 00000000 	    .long    CAN1_RX0_IRQHandler           /* CAN1 RX0 */
+ 112 0094 00000000 	    .long    CAN1_RX1_IRQHandler           /* CAN1 RX1 */
+ 113 0098 00000000 	    .long    CAN1_SCE_IRQHandler           /* CAN1 SCE */
+ 114 009c 00000000 	    .long    EXTI9_5_IRQHandler            /* External Line[9:5]s */
+ 115 00a0 00000000 	    .long    TIM1_BRK_TIM9_IRQHandler      /* TIM1 Break and TIM9 */
+ 116 00a4 00000000 	    .long    TIM1_UP_TIM10_IRQHandler      /* TIM1 Update and TIM10 */
+ 117 00a8 00000000 	    .long    TIM1_TRG_COM_TIM11_IRQHandler /* TIM1 Trigger and Commutation and TIM11 */
+ 118 00ac 00000000 	    .long    TIM1_CC_IRQHandler            /* TIM1 Capture Compare */
+ 119 00b0 00000000 	    .long    TIM2_IRQHandler               /* TIM2 */
+ 120 00b4 00000000 	    .long    TIM3_IRQHandler               /* TIM3 */
+ 121 00b8 00000000 	    .long    TIM4_IRQHandler               /* TIM4 */
+ 122 00bc 00000000 	    .long    I2C1_EV_IRQHandler            /* I2C1 Event */
+ 123 00c0 00000000 	    .long    I2C1_ER_IRQHandler            /* I2C1 Error */
+ 124 00c4 00000000 	    .long    I2C2_EV_IRQHandler            /* I2C2 Event */
+ 125 00c8 00000000 	    .long    I2C2_ER_IRQHandler            /* I2C2 Error */
+ 126 00cc 00000000 	    .long    SPI1_IRQHandler               /* SPI1 */
+ 127 00d0 00000000 	    .long    SPI2_IRQHandler               /* SPI2 */
+ 128 00d4 00000000 	    .long    USART1_IRQHandler             /* USART1 */
+ 129 00d8 00000000 	    .long    USART2_IRQHandler             /* USART2 */
+ 130 00dc 00000000 	    .long    USART3_IRQHandler             /* USART3 */
+ 131 00e0 00000000 	    .long    EXTI15_10_IRQHandler          /* External Line[15:10]s */
+ 132 00e4 00000000 	    .long    RTC_Alarm_IRQHandler          /* RTC Alarm (A and B) through EXTI Line */
+ 133 00e8 00000000 	    .long    OTG_FS_WKUP_IRQHandler        /* USB OTG FS Wakeup through EXTI line */
+ 134 00ec 00000000 	    .long    TIM8_BRK_TIM12_IRQHandler     /* TIM8 Break and TIM12 */
+ 135 00f0 00000000 	    .long    TIM8_UP_TIM13_IRQHandler      /* TIM8 Update and TIM13 */
+ 136 00f4 00000000 	    .long    TIM8_TRG_COM_TIM14_IRQHandler /* TIM8 Trigger and Commutation and TIM14 */
+ 137 00f8 00000000 	    .long    TIM8_CC_IRQHandler            /* TIM8 Capture Compare */
+ 138 00fc 00000000 	    .long    DMA1_Stream7_IRQHandler       /* DMA1 Stream7 */
+ 139 0100 00000000 	    .long    FSMC_IRQHandler               /* FSMC */
+ 140 0104 00000000 	    .long    SDIO_IRQHandler               /* SDIO */
+ 141 0108 00000000 	    .long    TIM5_IRQHandler               /* TIM5 */
+ 142 010c 00000000 	    .long    SPI3_IRQHandler               /* SPI3 */
+ 143 0110 00000000 	    .long    UART4_IRQHandler              /* UART4 */
+ 144 0114 00000000 	    .long    UART5_IRQHandler              /* UART5 */
+ 145 0118 00000000 	    .long    TIM6_DAC_IRQHandler           /* TIM6 and DAC1&2 underrun errors */
+ 146 011c 00000000 	    .long    TIM7_IRQHandler               /* TIM7 */
+ 147 0120 00000000 	    .long    DMA2_Stream0_IRQHandler       /* DMA2 Stream 0 */
+ 148 0124 00000000 	    .long    DMA2_Stream1_IRQHandler       /* DMA2 Stream 1 */
+ 149 0128 00000000 	    .long    DMA2_Stream2_IRQHandler       /* DMA2 Stream 2 */
+ 150 012c 00000000 	    .long    DMA2_Stream3_IRQHandler       /* DMA2 Stream 3 */
+ 151 0130 00000000 	    .long    DMA2_Stream4_IRQHandler       /* DMA2 Stream 4 */
+ 152 0134 00000000 	    .long    ETH_IRQHandler                /* Ethernet */
+ 153 0138 00000000 	    .long    ETH_WKUP_IRQHandler           /* Ethernet Wakeup through EXTI line */
+ 154 013c 00000000 	    .long    CAN2_TX_IRQHandler            /* CAN2 TX */
+ 155 0140 00000000 	    .long    CAN2_RX0_IRQHandler           /* CAN2 RX0 */
+ 156 0144 00000000 	    .long    CAN2_RX1_IRQHandler           /* CAN2 RX1 */
+ 157 0148 00000000 	    .long    CAN2_SCE_IRQHandler           /* CAN2 SCE */
+ 158 014c 00000000 	    .long    OTG_FS_IRQHandler             /* USB OTG FS */
+ 159 0150 00000000 	    .long    DMA2_Stream5_IRQHandler       /* DMA2 Stream 5 */
+ 160 0154 00000000 	    .long    DMA2_Stream6_IRQHandler       /* DMA2 Stream 6 */
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 4
+
+
+ 161 0158 00000000 	    .long    DMA2_Stream7_IRQHandler       /* DMA2 Stream 7 */
+ 162 015c 00000000 	    .long    USART6_IRQHandler             /* USART6 */
+ 163 0160 00000000 	    .long    I2C3_EV_IRQHandler            /* I2C3 event */
+ 164 0164 00000000 	    .long    I2C3_ER_IRQHandler            /* I2C3 error */
+ 165 0168 00000000 	    .long    OTG_HS_EP1_OUT_IRQHandler     /* USB OTG HS End Point 1 Out */
+ 166 016c 00000000 	    .long    OTG_HS_EP1_IN_IRQHandler      /* USB OTG HS End Point 1 In */
+ 167 0170 00000000 	    .long    OTG_HS_WKUP_IRQHandler        /* USB OTG HS Wakeup through EXTI */
+ 168 0174 00000000 	    .long    OTG_HS_IRQHandler             /* USB OTG HS */
+ 169 0178 00000000 	    .long    DCMI_IRQHandler               /* DCMI */
+ 170 017c 00000000 	    .long    CRYP_IRQHandler               /* CRYP crypto */
+ 171 0180 00000000 	    .long    HASH_RNG_IRQHandler           /* Hash and Rng */
+ 172 0184 00000000 	    .long    FPU_IRQHandler                /* FPU */
+ 173              	
+ 174              	    .size    __isr_vector, . - __isr_vector
+ 175              	
+ 176              	    .text
+ 177              	    .thumb
+ 178              	    .thumb_func
+ 179              	    .align 2
+ 180              	    .globl    Reset_Handler
+ 181              	    .type    Reset_Handler, %function
+ 182              	Reset_Handler:
+ 183              	
+ 184              	#ifndef __NO_SYSTEM_INIT
+ 185 0000 FFF7FEFF 	    bl    SystemInit
+ 186 0004 0B48     		ldr r0, =__StackTop
+ 187 0006 80F30888 		msr msp, r0
+ 188              	#endif
+ 189              	
+ 190              	/*     Loop to copy data from read only memory to RAM. The ranges
+ 191              	 *      of copy from/to are specified by following symbols evaluated in
+ 192              	 *      linker script.
+ 193              	 *      __etext: End of code section, i.e., begin of data sections to copy from.
+ 194              	 *      __data_start__/__data_end__: RAM address range that data should be
+ 195              	 *      copied to. Both must be aligned to 4 bytes boundary.  */
+ 196              	
+ 197 000a 0B49     	    ldr    r1, =__etext
+ 198 000c 0B4A     	    ldr    r2, =__data_start__
+ 199 000e 0C4B     	    ldr    r3, =__data_end__
+ 200              	
+ 201              	#if 1
+ 202              	/* Here are two copies of loop implementations. First one favors code size
+ 203              	 * and the second one favors performance. Default uses the first one.
+ 204              	 * Change to "#if 0" to use the second one */
+ 205              	.LC0:
+ 206 0010 9A42     	    cmp     r2, r3
+ 207 0012 BEBF     	    ittt    lt
+ 208 0014 51F8040B 	    ldrlt   r0, [r1], #4
+ 209 0018 42F8040B 	    strlt   r0, [r2], #4
+ 210 001c F8E7     	    blt    .LC0
+ 211              	#else
+ 212              	    subs    r3, r2
+ 213              	    ble    .LC1
+ 214              	.LC0:
+ 215              	    subs    r3, #4
+ 216              	    ldr    r0, [r1, r3]
+ 217              	    str    r0, [r2, r3]
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 5
+
+
+ 218              	    bgt    .LC0
+ 219              	.LC1:
+ 220              	#endif
+ 221              	
+ 222              	STARTUP_CLEAR_BSS:
+ 223              	/*     This part of work usually is done in C library startup code. Otherwise,
+ 224              	 *     define this macro to enable it in this startup.
+ 225              	 *
+ 226              	 *     Loop to zero out BSS section, which uses following symbols
+ 227              	 *     in linker script:
+ 228              	 *      __bss_start__: start of BSS section. Must align to 4
+ 229              	 *      __bss_end__: end of BSS section. Must align to 4
+ 230              	 */
+ 231 001e 0949     	    ldr r1, =__bss_start__
+ 232 0020 094A     	    ldr r2, =__bss_end__
+ 233              	
+ 234 0022 0020     	    movs    r0, 0
+ 235              	.LC2:
+ 236 0024 9142     	    cmp     r1, r2
+ 237 0026 BCBF     	    itt    lt
+ 238 0028 41F8040B 	    strlt   r0, [r1], #4
+ 239 002c FAE7     	    blt    .LC2
+ 240              	/* End STARTUP_CLEAR_BSS */
+ 241              	
+ 242              	/* 
+ 243              	#ifndef __NO_SYSTEM_INIT
+ 244              	    bl    SystemInit
+ 245              	#endif
+ 246              	*/
+ 247              	
+ 248              	#ifndef __START
+ 249              	#define __START main
+ 250              	#endif
+ 251 002e FFF7FEFF 	    bl    __START
+ 252 0032 00000000 	    .pool
+ 252      00000000 
+ 252      00000000 
+ 252      00000000 
+ 252      00000000 
+ 253              	    .size Reset_Handler, . - Reset_Handler
+ 254              	
+ 255              	/*    Macro to define default handlers. Default handler
+ 256              	 *    will be weak symbol and just dead loops. They can be
+ 257              	 *    overwritten by other handlers */
+ 258              	    .macro    def_default_handler    handler_name
+ 259              	    .align 1
+ 260              	    .thumb_func
+ 261              	    .weak    \handler_name
+ 262              	    .type    \handler_name, %function
+ 263              	\handler_name :
+ 264              	    b    .
+ 265              	    .size    \handler_name, . - \handler_name
+ 266              	    .endm
+ 267              	
+ 268              	    def_default_handler    NMI_Handler
+ 268              	>  .align 1
+ 268              	>  .thumb_func
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 6
+
+
+ 268              	>  .weak NMI_Handler
+ 268              	>  .type NMI_Handler,%function
+ 268              	> NMI_Handler:
+ 268 004c FEE7     	>  b .
+ 268              	>  .size NMI_Handler,.-NMI_Handler
+ 269              	    def_default_handler    HardFault_Handler
+ 269              	>  .align 1
+ 269              	>  .thumb_func
+ 269              	>  .weak HardFault_Handler
+ 269              	>  .type HardFault_Handler,%function
+ 269              	> HardFault_Handler:
+ 269 004e FEE7     	>  b .
+ 269              	>  .size HardFault_Handler,.-HardFault_Handler
+ 270              	    def_default_handler    MemManage_Handler
+ 270              	>  .align 1
+ 270              	>  .thumb_func
+ 270              	>  .weak MemManage_Handler
+ 270              	>  .type MemManage_Handler,%function
+ 270              	> MemManage_Handler:
+ 270 0050 FEE7     	>  b .
+ 270              	>  .size MemManage_Handler,.-MemManage_Handler
+ 271              	    def_default_handler    BusFault_Handler
+ 271              	>  .align 1
+ 271              	>  .thumb_func
+ 271              	>  .weak BusFault_Handler
+ 271              	>  .type BusFault_Handler,%function
+ 271              	> BusFault_Handler:
+ 271 0052 FEE7     	>  b .
+ 271              	>  .size BusFault_Handler,.-BusFault_Handler
+ 272              	    def_default_handler    UsageFault_Handler
+ 272              	>  .align 1
+ 272              	>  .thumb_func
+ 272              	>  .weak UsageFault_Handler
+ 272              	>  .type UsageFault_Handler,%function
+ 272              	> UsageFault_Handler:
+ 272 0054 FEE7     	>  b .
+ 272              	>  .size UsageFault_Handler,.-UsageFault_Handler
+ 273              	    def_default_handler    SVC_Handler
+ 273              	>  .align 1
+ 273              	>  .thumb_func
+ 273              	>  .weak SVC_Handler
+ 273              	>  .type SVC_Handler,%function
+ 273              	> SVC_Handler:
+ 273 0056 FEE7     	>  b .
+ 273              	>  .size SVC_Handler,.-SVC_Handler
+ 274              	    def_default_handler    DebugMon_Handler
+ 274              	>  .align 1
+ 274              	>  .thumb_func
+ 274              	>  .weak DebugMon_Handler
+ 274              	>  .type DebugMon_Handler,%function
+ 274              	> DebugMon_Handler:
+ 274 0058 FEE7     	>  b .
+ 274              	>  .size DebugMon_Handler,.-DebugMon_Handler
+ 275              	    def_default_handler    PendSV_Handler
+ 275              	>  .align 1
+ 275              	>  .thumb_func
+ 275              	>  .weak PendSV_Handler
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 7
+
+
+ 275              	>  .type PendSV_Handler,%function
+ 275              	> PendSV_Handler:
+ 275 005a FEE7     	>  b .
+ 275              	>  .size PendSV_Handler,.-PendSV_Handler
+ 276              	    def_default_handler    SysTick_Handler
+ 276              	>  .align 1
+ 276              	>  .thumb_func
+ 276              	>  .weak SysTick_Handler
+ 276              	>  .type SysTick_Handler,%function
+ 276              	> SysTick_Handler:
+ 276 005c FEE7     	>  b .
+ 276              	>  .size SysTick_Handler,.-SysTick_Handler
+ 277              	    def_default_handler    WWDG_IRQHandler
+ 277              	>  .align 1
+ 277              	>  .thumb_func
+ 277              	>  .weak WWDG_IRQHandler
+ 277              	>  .type WWDG_IRQHandler,%function
+ 277              	> WWDG_IRQHandler:
+ 277 005e FEE7     	>  b .
+ 277              	>  .size WWDG_IRQHandler,.-WWDG_IRQHandler
+ 278              	    def_default_handler    PVD_IRQHandler
+ 278              	>  .align 1
+ 278              	>  .thumb_func
+ 278              	>  .weak PVD_IRQHandler
+ 278              	>  .type PVD_IRQHandler,%function
+ 278              	> PVD_IRQHandler:
+ 278 0060 FEE7     	>  b .
+ 278              	>  .size PVD_IRQHandler,.-PVD_IRQHandler
+ 279              	    def_default_handler    TAMP_STAMP_IRQHandler
+ 279              	>  .align 1
+ 279              	>  .thumb_func
+ 279              	>  .weak TAMP_STAMP_IRQHandler
+ 279              	>  .type TAMP_STAMP_IRQHandler,%function
+ 279              	> TAMP_STAMP_IRQHandler:
+ 279 0062 FEE7     	>  b .
+ 279              	>  .size TAMP_STAMP_IRQHandler,.-TAMP_STAMP_IRQHandler
+ 280              	    def_default_handler    RTC_WKUP_IRQHandler
+ 280              	>  .align 1
+ 280              	>  .thumb_func
+ 280              	>  .weak RTC_WKUP_IRQHandler
+ 280              	>  .type RTC_WKUP_IRQHandler,%function
+ 280              	> RTC_WKUP_IRQHandler:
+ 280 0064 FEE7     	>  b .
+ 280              	>  .size RTC_WKUP_IRQHandler,.-RTC_WKUP_IRQHandler
+ 281              	    def_default_handler    FLASH_IRQHandler
+ 281              	>  .align 1
+ 281              	>  .thumb_func
+ 281              	>  .weak FLASH_IRQHandler
+ 281              	>  .type FLASH_IRQHandler,%function
+ 281              	> FLASH_IRQHandler:
+ 281 0066 FEE7     	>  b .
+ 281              	>  .size FLASH_IRQHandler,.-FLASH_IRQHandler
+ 282              	    def_default_handler    RCC_IRQHandler
+ 282              	>  .align 1
+ 282              	>  .thumb_func
+ 282              	>  .weak RCC_IRQHandler
+ 282              	>  .type RCC_IRQHandler,%function
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 8
+
+
+ 282              	> RCC_IRQHandler:
+ 282 0068 FEE7     	>  b .
+ 282              	>  .size RCC_IRQHandler,.-RCC_IRQHandler
+ 283              	    def_default_handler    EXTI0_IRQHandler
+ 283              	>  .align 1
+ 283              	>  .thumb_func
+ 283              	>  .weak EXTI0_IRQHandler
+ 283              	>  .type EXTI0_IRQHandler,%function
+ 283              	> EXTI0_IRQHandler:
+ 283 006a FEE7     	>  b .
+ 283              	>  .size EXTI0_IRQHandler,.-EXTI0_IRQHandler
+ 284              	    def_default_handler    EXTI1_IRQHandler
+ 284              	>  .align 1
+ 284              	>  .thumb_func
+ 284              	>  .weak EXTI1_IRQHandler
+ 284              	>  .type EXTI1_IRQHandler,%function
+ 284              	> EXTI1_IRQHandler:
+ 284 006c FEE7     	>  b .
+ 284              	>  .size EXTI1_IRQHandler,.-EXTI1_IRQHandler
+ 285              	    def_default_handler    EXTI2_IRQHandler
+ 285              	>  .align 1
+ 285              	>  .thumb_func
+ 285              	>  .weak EXTI2_IRQHandler
+ 285              	>  .type EXTI2_IRQHandler,%function
+ 285              	> EXTI2_IRQHandler:
+ 285 006e FEE7     	>  b .
+ 285              	>  .size EXTI2_IRQHandler,.-EXTI2_IRQHandler
+ 286              	    def_default_handler    EXTI3_IRQHandler
+ 286              	>  .align 1
+ 286              	>  .thumb_func
+ 286              	>  .weak EXTI3_IRQHandler
+ 286              	>  .type EXTI3_IRQHandler,%function
+ 286              	> EXTI3_IRQHandler:
+ 286 0070 FEE7     	>  b .
+ 286              	>  .size EXTI3_IRQHandler,.-EXTI3_IRQHandler
+ 287              	    def_default_handler    EXTI4_IRQHandler
+ 287              	>  .align 1
+ 287              	>  .thumb_func
+ 287              	>  .weak EXTI4_IRQHandler
+ 287              	>  .type EXTI4_IRQHandler,%function
+ 287              	> EXTI4_IRQHandler:
+ 287 0072 FEE7     	>  b .
+ 287              	>  .size EXTI4_IRQHandler,.-EXTI4_IRQHandler
+ 288              	    def_default_handler    DMA1_Stream0_IRQHandler
+ 288              	>  .align 1
+ 288              	>  .thumb_func
+ 288              	>  .weak DMA1_Stream0_IRQHandler
+ 288              	>  .type DMA1_Stream0_IRQHandler,%function
+ 288              	> DMA1_Stream0_IRQHandler:
+ 288 0074 FEE7     	>  b .
+ 288              	>  .size DMA1_Stream0_IRQHandler,.-DMA1_Stream0_IRQHandler
+ 289              	    def_default_handler    DMA1_Stream1_IRQHandler
+ 289              	>  .align 1
+ 289              	>  .thumb_func
+ 289              	>  .weak DMA1_Stream1_IRQHandler
+ 289              	>  .type DMA1_Stream1_IRQHandler,%function
+ 289              	> DMA1_Stream1_IRQHandler:
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 9
+
+
+ 289 0076 FEE7     	>  b .
+ 289              	>  .size DMA1_Stream1_IRQHandler,.-DMA1_Stream1_IRQHandler
+ 290              	    def_default_handler    DMA1_Stream2_IRQHandler
+ 290              	>  .align 1
+ 290              	>  .thumb_func
+ 290              	>  .weak DMA1_Stream2_IRQHandler
+ 290              	>  .type DMA1_Stream2_IRQHandler,%function
+ 290              	> DMA1_Stream2_IRQHandler:
+ 290 0078 FEE7     	>  b .
+ 290              	>  .size DMA1_Stream2_IRQHandler,.-DMA1_Stream2_IRQHandler
+ 291              	    def_default_handler    DMA1_Stream3_IRQHandler
+ 291              	>  .align 1
+ 291              	>  .thumb_func
+ 291              	>  .weak DMA1_Stream3_IRQHandler
+ 291              	>  .type DMA1_Stream3_IRQHandler,%function
+ 291              	> DMA1_Stream3_IRQHandler:
+ 291 007a FEE7     	>  b .
+ 291              	>  .size DMA1_Stream3_IRQHandler,.-DMA1_Stream3_IRQHandler
+ 292              	    def_default_handler    DMA1_Stream4_IRQHandler
+ 292              	>  .align 1
+ 292              	>  .thumb_func
+ 292              	>  .weak DMA1_Stream4_IRQHandler
+ 292              	>  .type DMA1_Stream4_IRQHandler,%function
+ 292              	> DMA1_Stream4_IRQHandler:
+ 292 007c FEE7     	>  b .
+ 292              	>  .size DMA1_Stream4_IRQHandler,.-DMA1_Stream4_IRQHandler
+ 293              	    def_default_handler    DMA1_Stream5_IRQHandler
+ 293              	>  .align 1
+ 293              	>  .thumb_func
+ 293              	>  .weak DMA1_Stream5_IRQHandler
+ 293              	>  .type DMA1_Stream5_IRQHandler,%function
+ 293              	> DMA1_Stream5_IRQHandler:
+ 293 007e FEE7     	>  b .
+ 293              	>  .size DMA1_Stream5_IRQHandler,.-DMA1_Stream5_IRQHandler
+ 294              	    def_default_handler    DMA1_Stream6_IRQHandler
+ 294              	>  .align 1
+ 294              	>  .thumb_func
+ 294              	>  .weak DMA1_Stream6_IRQHandler
+ 294              	>  .type DMA1_Stream6_IRQHandler,%function
+ 294              	> DMA1_Stream6_IRQHandler:
+ 294 0080 FEE7     	>  b .
+ 294              	>  .size DMA1_Stream6_IRQHandler,.-DMA1_Stream6_IRQHandler
+ 295              	    def_default_handler    ADC_IRQHandler
+ 295              	>  .align 1
+ 295              	>  .thumb_func
+ 295              	>  .weak ADC_IRQHandler
+ 295              	>  .type ADC_IRQHandler,%function
+ 295              	> ADC_IRQHandler:
+ 295 0082 FEE7     	>  b .
+ 295              	>  .size ADC_IRQHandler,.-ADC_IRQHandler
+ 296              	    def_default_handler    CAN1_TX_IRQHandler
+ 296              	>  .align 1
+ 296              	>  .thumb_func
+ 296              	>  .weak CAN1_TX_IRQHandler
+ 296              	>  .type CAN1_TX_IRQHandler,%function
+ 296              	> CAN1_TX_IRQHandler:
+ 296 0084 FEE7     	>  b .
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 10
+
+
+ 296              	>  .size CAN1_TX_IRQHandler,.-CAN1_TX_IRQHandler
+ 297              	    def_default_handler    CAN1_RX0_IRQHandler
+ 297              	>  .align 1
+ 297              	>  .thumb_func
+ 297              	>  .weak CAN1_RX0_IRQHandler
+ 297              	>  .type CAN1_RX0_IRQHandler,%function
+ 297              	> CAN1_RX0_IRQHandler:
+ 297 0086 FEE7     	>  b .
+ 297              	>  .size CAN1_RX0_IRQHandler,.-CAN1_RX0_IRQHandler
+ 298              	    def_default_handler    CAN1_RX1_IRQHandler
+ 298              	>  .align 1
+ 298              	>  .thumb_func
+ 298              	>  .weak CAN1_RX1_IRQHandler
+ 298              	>  .type CAN1_RX1_IRQHandler,%function
+ 298              	> CAN1_RX1_IRQHandler:
+ 298 0088 FEE7     	>  b .
+ 298              	>  .size CAN1_RX1_IRQHandler,.-CAN1_RX1_IRQHandler
+ 299              	    def_default_handler    CAN1_SCE_IRQHandler
+ 299              	>  .align 1
+ 299              	>  .thumb_func
+ 299              	>  .weak CAN1_SCE_IRQHandler
+ 299              	>  .type CAN1_SCE_IRQHandler,%function
+ 299              	> CAN1_SCE_IRQHandler:
+ 299 008a FEE7     	>  b .
+ 299              	>  .size CAN1_SCE_IRQHandler,.-CAN1_SCE_IRQHandler
+ 300              	    def_default_handler    EXTI9_5_IRQHandler
+ 300              	>  .align 1
+ 300              	>  .thumb_func
+ 300              	>  .weak EXTI9_5_IRQHandler
+ 300              	>  .type EXTI9_5_IRQHandler,%function
+ 300              	> EXTI9_5_IRQHandler:
+ 300 008c FEE7     	>  b .
+ 300              	>  .size EXTI9_5_IRQHandler,.-EXTI9_5_IRQHandler
+ 301              	    def_default_handler    TIM1_BRK_TIM9_IRQHandler
+ 301              	>  .align 1
+ 301              	>  .thumb_func
+ 301              	>  .weak TIM1_BRK_TIM9_IRQHandler
+ 301              	>  .type TIM1_BRK_TIM9_IRQHandler,%function
+ 301              	> TIM1_BRK_TIM9_IRQHandler:
+ 301 008e FEE7     	>  b .
+ 301              	>  .size TIM1_BRK_TIM9_IRQHandler,.-TIM1_BRK_TIM9_IRQHandler
+ 302              	    def_default_handler    TIM1_UP_TIM10_IRQHandler
+ 302              	>  .align 1
+ 302              	>  .thumb_func
+ 302              	>  .weak TIM1_UP_TIM10_IRQHandler
+ 302              	>  .type TIM1_UP_TIM10_IRQHandler,%function
+ 302              	> TIM1_UP_TIM10_IRQHandler:
+ 302 0090 FEE7     	>  b .
+ 302              	>  .size TIM1_UP_TIM10_IRQHandler,.-TIM1_UP_TIM10_IRQHandler
+ 303              	    def_default_handler    TIM1_TRG_COM_TIM11_IRQHandler
+ 303              	>  .align 1
+ 303              	>  .thumb_func
+ 303              	>  .weak TIM1_TRG_COM_TIM11_IRQHandler
+ 303              	>  .type TIM1_TRG_COM_TIM11_IRQHandler,%function
+ 303              	> TIM1_TRG_COM_TIM11_IRQHandler:
+ 303 0092 FEE7     	>  b .
+ 303              	>  .size TIM1_TRG_COM_TIM11_IRQHandler,.-TIM1_TRG_COM_TIM11_IRQHandler
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 11
+
+
+ 304              	    def_default_handler    TIM1_CC_IRQHandler
+ 304              	>  .align 1
+ 304              	>  .thumb_func
+ 304              	>  .weak TIM1_CC_IRQHandler
+ 304              	>  .type TIM1_CC_IRQHandler,%function
+ 304              	> TIM1_CC_IRQHandler:
+ 304 0094 FEE7     	>  b .
+ 304              	>  .size TIM1_CC_IRQHandler,.-TIM1_CC_IRQHandler
+ 305              	    def_default_handler    TIM2_IRQHandler
+ 305              	>  .align 1
+ 305              	>  .thumb_func
+ 305              	>  .weak TIM2_IRQHandler
+ 305              	>  .type TIM2_IRQHandler,%function
+ 305              	> TIM2_IRQHandler:
+ 305 0096 FEE7     	>  b .
+ 305              	>  .size TIM2_IRQHandler,.-TIM2_IRQHandler
+ 306              	    def_default_handler    TIM3_IRQHandler
+ 306              	>  .align 1
+ 306              	>  .thumb_func
+ 306              	>  .weak TIM3_IRQHandler
+ 306              	>  .type TIM3_IRQHandler,%function
+ 306              	> TIM3_IRQHandler:
+ 306 0098 FEE7     	>  b .
+ 306              	>  .size TIM3_IRQHandler,.-TIM3_IRQHandler
+ 307              	    def_default_handler    TIM4_IRQHandler
+ 307              	>  .align 1
+ 307              	>  .thumb_func
+ 307              	>  .weak TIM4_IRQHandler
+ 307              	>  .type TIM4_IRQHandler,%function
+ 307              	> TIM4_IRQHandler:
+ 307 009a FEE7     	>  b .
+ 307              	>  .size TIM4_IRQHandler,.-TIM4_IRQHandler
+ 308              	    def_default_handler    I2C1_EV_IRQHandler
+ 308              	>  .align 1
+ 308              	>  .thumb_func
+ 308              	>  .weak I2C1_EV_IRQHandler
+ 308              	>  .type I2C1_EV_IRQHandler,%function
+ 308              	> I2C1_EV_IRQHandler:
+ 308 009c FEE7     	>  b .
+ 308              	>  .size I2C1_EV_IRQHandler,.-I2C1_EV_IRQHandler
+ 309              	    def_default_handler    I2C1_ER_IRQHandler
+ 309              	>  .align 1
+ 309              	>  .thumb_func
+ 309              	>  .weak I2C1_ER_IRQHandler
+ 309              	>  .type I2C1_ER_IRQHandler,%function
+ 309              	> I2C1_ER_IRQHandler:
+ 309 009e FEE7     	>  b .
+ 309              	>  .size I2C1_ER_IRQHandler,.-I2C1_ER_IRQHandler
+ 310              	    def_default_handler    I2C2_EV_IRQHandler
+ 310              	>  .align 1
+ 310              	>  .thumb_func
+ 310              	>  .weak I2C2_EV_IRQHandler
+ 310              	>  .type I2C2_EV_IRQHandler,%function
+ 310              	> I2C2_EV_IRQHandler:
+ 310 00a0 FEE7     	>  b .
+ 310              	>  .size I2C2_EV_IRQHandler,.-I2C2_EV_IRQHandler
+ 311              	    def_default_handler    I2C2_ER_IRQHandler
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 12
+
+
+ 311              	>  .align 1
+ 311              	>  .thumb_func
+ 311              	>  .weak I2C2_ER_IRQHandler
+ 311              	>  .type I2C2_ER_IRQHandler,%function
+ 311              	> I2C2_ER_IRQHandler:
+ 311 00a2 FEE7     	>  b .
+ 311              	>  .size I2C2_ER_IRQHandler,.-I2C2_ER_IRQHandler
+ 312              	    def_default_handler    SPI1_IRQHandler
+ 312              	>  .align 1
+ 312              	>  .thumb_func
+ 312              	>  .weak SPI1_IRQHandler
+ 312              	>  .type SPI1_IRQHandler,%function
+ 312              	> SPI1_IRQHandler:
+ 312 00a4 FEE7     	>  b .
+ 312              	>  .size SPI1_IRQHandler,.-SPI1_IRQHandler
+ 313              	    def_default_handler    SPI2_IRQHandler
+ 313              	>  .align 1
+ 313              	>  .thumb_func
+ 313              	>  .weak SPI2_IRQHandler
+ 313              	>  .type SPI2_IRQHandler,%function
+ 313              	> SPI2_IRQHandler:
+ 313 00a6 FEE7     	>  b .
+ 313              	>  .size SPI2_IRQHandler,.-SPI2_IRQHandler
+ 314              	    def_default_handler    USART1_IRQHandler
+ 314              	>  .align 1
+ 314              	>  .thumb_func
+ 314              	>  .weak USART1_IRQHandler
+ 314              	>  .type USART1_IRQHandler,%function
+ 314              	> USART1_IRQHandler:
+ 314 00a8 FEE7     	>  b .
+ 314              	>  .size USART1_IRQHandler,.-USART1_IRQHandler
+ 315              	    def_default_handler    USART2_IRQHandler
+ 315              	>  .align 1
+ 315              	>  .thumb_func
+ 315              	>  .weak USART2_IRQHandler
+ 315              	>  .type USART2_IRQHandler,%function
+ 315              	> USART2_IRQHandler:
+ 315 00aa FEE7     	>  b .
+ 315              	>  .size USART2_IRQHandler,.-USART2_IRQHandler
+ 316              	    def_default_handler    USART3_IRQHandler
+ 316              	>  .align 1
+ 316              	>  .thumb_func
+ 316              	>  .weak USART3_IRQHandler
+ 316              	>  .type USART3_IRQHandler,%function
+ 316              	> USART3_IRQHandler:
+ 316 00ac FEE7     	>  b .
+ 316              	>  .size USART3_IRQHandler,.-USART3_IRQHandler
+ 317              	    def_default_handler    EXTI15_10_IRQHandler
+ 317              	>  .align 1
+ 317              	>  .thumb_func
+ 317              	>  .weak EXTI15_10_IRQHandler
+ 317              	>  .type EXTI15_10_IRQHandler,%function
+ 317              	> EXTI15_10_IRQHandler:
+ 317 00ae FEE7     	>  b .
+ 317              	>  .size EXTI15_10_IRQHandler,.-EXTI15_10_IRQHandler
+ 318              	    def_default_handler    RTC_Alarm_IRQHandler
+ 318              	>  .align 1
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 13
+
+
+ 318              	>  .thumb_func
+ 318              	>  .weak RTC_Alarm_IRQHandler
+ 318              	>  .type RTC_Alarm_IRQHandler,%function
+ 318              	> RTC_Alarm_IRQHandler:
+ 318 00b0 FEE7     	>  b .
+ 318              	>  .size RTC_Alarm_IRQHandler,.-RTC_Alarm_IRQHandler
+ 319              	    def_default_handler    OTG_FS_WKUP_IRQHandler
+ 319              	>  .align 1
+ 319              	>  .thumb_func
+ 319              	>  .weak OTG_FS_WKUP_IRQHandler
+ 319              	>  .type OTG_FS_WKUP_IRQHandler,%function
+ 319              	> OTG_FS_WKUP_IRQHandler:
+ 319 00b2 FEE7     	>  b .
+ 319              	>  .size OTG_FS_WKUP_IRQHandler,.-OTG_FS_WKUP_IRQHandler
+ 320              	    def_default_handler    TIM8_BRK_TIM12_IRQHandler
+ 320              	>  .align 1
+ 320              	>  .thumb_func
+ 320              	>  .weak TIM8_BRK_TIM12_IRQHandler
+ 320              	>  .type TIM8_BRK_TIM12_IRQHandler,%function
+ 320              	> TIM8_BRK_TIM12_IRQHandler:
+ 320 00b4 FEE7     	>  b .
+ 320              	>  .size TIM8_BRK_TIM12_IRQHandler,.-TIM8_BRK_TIM12_IRQHandler
+ 321              	    def_default_handler    TIM8_UP_TIM13_IRQHandler
+ 321              	>  .align 1
+ 321              	>  .thumb_func
+ 321              	>  .weak TIM8_UP_TIM13_IRQHandler
+ 321              	>  .type TIM8_UP_TIM13_IRQHandler,%function
+ 321              	> TIM8_UP_TIM13_IRQHandler:
+ 321 00b6 FEE7     	>  b .
+ 321              	>  .size TIM8_UP_TIM13_IRQHandler,.-TIM8_UP_TIM13_IRQHandler
+ 322              	    def_default_handler    TIM8_TRG_COM_TIM14_IRQHandler
+ 322              	>  .align 1
+ 322              	>  .thumb_func
+ 322              	>  .weak TIM8_TRG_COM_TIM14_IRQHandler
+ 322              	>  .type TIM8_TRG_COM_TIM14_IRQHandler,%function
+ 322              	> TIM8_TRG_COM_TIM14_IRQHandler:
+ 322 00b8 FEE7     	>  b .
+ 322              	>  .size TIM8_TRG_COM_TIM14_IRQHandler,.-TIM8_TRG_COM_TIM14_IRQHandler
+ 323              	    def_default_handler    TIM8_CC_IRQHandler
+ 323              	>  .align 1
+ 323              	>  .thumb_func
+ 323              	>  .weak TIM8_CC_IRQHandler
+ 323              	>  .type TIM8_CC_IRQHandler,%function
+ 323              	> TIM8_CC_IRQHandler:
+ 323 00ba FEE7     	>  b .
+ 323              	>  .size TIM8_CC_IRQHandler,.-TIM8_CC_IRQHandler
+ 324              	    def_default_handler    DMA1_Stream7_IRQHandler
+ 324              	>  .align 1
+ 324              	>  .thumb_func
+ 324              	>  .weak DMA1_Stream7_IRQHandler
+ 324              	>  .type DMA1_Stream7_IRQHandler,%function
+ 324              	> DMA1_Stream7_IRQHandler:
+ 324 00bc FEE7     	>  b .
+ 324              	>  .size DMA1_Stream7_IRQHandler,.-DMA1_Stream7_IRQHandler
+ 325              	    def_default_handler    FSMC_IRQHandler
+ 325              	>  .align 1
+ 325              	>  .thumb_func
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 14
+
+
+ 325              	>  .weak FSMC_IRQHandler
+ 325              	>  .type FSMC_IRQHandler,%function
+ 325              	> FSMC_IRQHandler:
+ 325 00be FEE7     	>  b .
+ 325              	>  .size FSMC_IRQHandler,.-FSMC_IRQHandler
+ 326              	    def_default_handler    SDIO_IRQHandler
+ 326              	>  .align 1
+ 326              	>  .thumb_func
+ 326              	>  .weak SDIO_IRQHandler
+ 326              	>  .type SDIO_IRQHandler,%function
+ 326              	> SDIO_IRQHandler:
+ 326 00c0 FEE7     	>  b .
+ 326              	>  .size SDIO_IRQHandler,.-SDIO_IRQHandler
+ 327              	    def_default_handler    TIM5_IRQHandler
+ 327              	>  .align 1
+ 327              	>  .thumb_func
+ 327              	>  .weak TIM5_IRQHandler
+ 327              	>  .type TIM5_IRQHandler,%function
+ 327              	> TIM5_IRQHandler:
+ 327 00c2 FEE7     	>  b .
+ 327              	>  .size TIM5_IRQHandler,.-TIM5_IRQHandler
+ 328              	    def_default_handler    SPI3_IRQHandler
+ 328              	>  .align 1
+ 328              	>  .thumb_func
+ 328              	>  .weak SPI3_IRQHandler
+ 328              	>  .type SPI3_IRQHandler,%function
+ 328              	> SPI3_IRQHandler:
+ 328 00c4 FEE7     	>  b .
+ 328              	>  .size SPI3_IRQHandler,.-SPI3_IRQHandler
+ 329              	    def_default_handler    UART4_IRQHandler
+ 329              	>  .align 1
+ 329              	>  .thumb_func
+ 329              	>  .weak UART4_IRQHandler
+ 329              	>  .type UART4_IRQHandler,%function
+ 329              	> UART4_IRQHandler:
+ 329 00c6 FEE7     	>  b .
+ 329              	>  .size UART4_IRQHandler,.-UART4_IRQHandler
+ 330              	    def_default_handler    UART5_IRQHandler
+ 330              	>  .align 1
+ 330              	>  .thumb_func
+ 330              	>  .weak UART5_IRQHandler
+ 330              	>  .type UART5_IRQHandler,%function
+ 330              	> UART5_IRQHandler:
+ 330 00c8 FEE7     	>  b .
+ 330              	>  .size UART5_IRQHandler,.-UART5_IRQHandler
+ 331              	    def_default_handler    TIM6_DAC_IRQHandler
+ 331              	>  .align 1
+ 331              	>  .thumb_func
+ 331              	>  .weak TIM6_DAC_IRQHandler
+ 331              	>  .type TIM6_DAC_IRQHandler,%function
+ 331              	> TIM6_DAC_IRQHandler:
+ 331 00ca FEE7     	>  b .
+ 331              	>  .size TIM6_DAC_IRQHandler,.-TIM6_DAC_IRQHandler
+ 332              	    def_default_handler    TIM7_IRQHandler
+ 332              	>  .align 1
+ 332              	>  .thumb_func
+ 332              	>  .weak TIM7_IRQHandler
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 15
+
+
+ 332              	>  .type TIM7_IRQHandler,%function
+ 332              	> TIM7_IRQHandler:
+ 332 00cc FEE7     	>  b .
+ 332              	>  .size TIM7_IRQHandler,.-TIM7_IRQHandler
+ 333              	    def_default_handler    DMA2_Stream0_IRQHandler
+ 333              	>  .align 1
+ 333              	>  .thumb_func
+ 333              	>  .weak DMA2_Stream0_IRQHandler
+ 333              	>  .type DMA2_Stream0_IRQHandler,%function
+ 333              	> DMA2_Stream0_IRQHandler:
+ 333 00ce FEE7     	>  b .
+ 333              	>  .size DMA2_Stream0_IRQHandler,.-DMA2_Stream0_IRQHandler
+ 334              	    def_default_handler    DMA2_Stream1_IRQHandler
+ 334              	>  .align 1
+ 334              	>  .thumb_func
+ 334              	>  .weak DMA2_Stream1_IRQHandler
+ 334              	>  .type DMA2_Stream1_IRQHandler,%function
+ 334              	> DMA2_Stream1_IRQHandler:
+ 334 00d0 FEE7     	>  b .
+ 334              	>  .size DMA2_Stream1_IRQHandler,.-DMA2_Stream1_IRQHandler
+ 335              	    def_default_handler    DMA2_Stream2_IRQHandler
+ 335              	>  .align 1
+ 335              	>  .thumb_func
+ 335              	>  .weak DMA2_Stream2_IRQHandler
+ 335              	>  .type DMA2_Stream2_IRQHandler,%function
+ 335              	> DMA2_Stream2_IRQHandler:
+ 335 00d2 FEE7     	>  b .
+ 335              	>  .size DMA2_Stream2_IRQHandler,.-DMA2_Stream2_IRQHandler
+ 336              	    def_default_handler    DMA2_Stream3_IRQHandler
+ 336              	>  .align 1
+ 336              	>  .thumb_func
+ 336              	>  .weak DMA2_Stream3_IRQHandler
+ 336              	>  .type DMA2_Stream3_IRQHandler,%function
+ 336              	> DMA2_Stream3_IRQHandler:
+ 336 00d4 FEE7     	>  b .
+ 336              	>  .size DMA2_Stream3_IRQHandler,.-DMA2_Stream3_IRQHandler
+ 337              	    def_default_handler    DMA2_Stream4_IRQHandler
+ 337              	>  .align 1
+ 337              	>  .thumb_func
+ 337              	>  .weak DMA2_Stream4_IRQHandler
+ 337              	>  .type DMA2_Stream4_IRQHandler,%function
+ 337              	> DMA2_Stream4_IRQHandler:
+ 337 00d6 FEE7     	>  b .
+ 337              	>  .size DMA2_Stream4_IRQHandler,.-DMA2_Stream4_IRQHandler
+ 338              	    def_default_handler    ETH_IRQHandler
+ 338              	>  .align 1
+ 338              	>  .thumb_func
+ 338              	>  .weak ETH_IRQHandler
+ 338              	>  .type ETH_IRQHandler,%function
+ 338              	> ETH_IRQHandler:
+ 338 00d8 FEE7     	>  b .
+ 338              	>  .size ETH_IRQHandler,.-ETH_IRQHandler
+ 339              	    def_default_handler    ETH_WKUP_IRQHandler
+ 339              	>  .align 1
+ 339              	>  .thumb_func
+ 339              	>  .weak ETH_WKUP_IRQHandler
+ 339              	>  .type ETH_WKUP_IRQHandler,%function
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 16
+
+
+ 339              	> ETH_WKUP_IRQHandler:
+ 339 00da FEE7     	>  b .
+ 339              	>  .size ETH_WKUP_IRQHandler,.-ETH_WKUP_IRQHandler
+ 340              	    def_default_handler    CAN2_TX_IRQHandler
+ 340              	>  .align 1
+ 340              	>  .thumb_func
+ 340              	>  .weak CAN2_TX_IRQHandler
+ 340              	>  .type CAN2_TX_IRQHandler,%function
+ 340              	> CAN2_TX_IRQHandler:
+ 340 00dc FEE7     	>  b .
+ 340              	>  .size CAN2_TX_IRQHandler,.-CAN2_TX_IRQHandler
+ 341              	    def_default_handler    CAN2_RX0_IRQHandler
+ 341              	>  .align 1
+ 341              	>  .thumb_func
+ 341              	>  .weak CAN2_RX0_IRQHandler
+ 341              	>  .type CAN2_RX0_IRQHandler,%function
+ 341              	> CAN2_RX0_IRQHandler:
+ 341 00de FEE7     	>  b .
+ 341              	>  .size CAN2_RX0_IRQHandler,.-CAN2_RX0_IRQHandler
+ 342              	    def_default_handler    CAN2_RX1_IRQHandler
+ 342              	>  .align 1
+ 342              	>  .thumb_func
+ 342              	>  .weak CAN2_RX1_IRQHandler
+ 342              	>  .type CAN2_RX1_IRQHandler,%function
+ 342              	> CAN2_RX1_IRQHandler:
+ 342 00e0 FEE7     	>  b .
+ 342              	>  .size CAN2_RX1_IRQHandler,.-CAN2_RX1_IRQHandler
+ 343              	    def_default_handler    CAN2_SCE_IRQHandler
+ 343              	>  .align 1
+ 343              	>  .thumb_func
+ 343              	>  .weak CAN2_SCE_IRQHandler
+ 343              	>  .type CAN2_SCE_IRQHandler,%function
+ 343              	> CAN2_SCE_IRQHandler:
+ 343 00e2 FEE7     	>  b .
+ 343              	>  .size CAN2_SCE_IRQHandler,.-CAN2_SCE_IRQHandler
+ 344              	    def_default_handler    OTG_FS_IRQHandler
+ 344              	>  .align 1
+ 344              	>  .thumb_func
+ 344              	>  .weak OTG_FS_IRQHandler
+ 344              	>  .type OTG_FS_IRQHandler,%function
+ 344              	> OTG_FS_IRQHandler:
+ 344 00e4 FEE7     	>  b .
+ 344              	>  .size OTG_FS_IRQHandler,.-OTG_FS_IRQHandler
+ 345              	    def_default_handler    DMA2_Stream5_IRQHandler
+ 345              	>  .align 1
+ 345              	>  .thumb_func
+ 345              	>  .weak DMA2_Stream5_IRQHandler
+ 345              	>  .type DMA2_Stream5_IRQHandler,%function
+ 345              	> DMA2_Stream5_IRQHandler:
+ 345 00e6 FEE7     	>  b .
+ 345              	>  .size DMA2_Stream5_IRQHandler,.-DMA2_Stream5_IRQHandler
+ 346              	    def_default_handler    DMA2_Stream6_IRQHandler
+ 346              	>  .align 1
+ 346              	>  .thumb_func
+ 346              	>  .weak DMA2_Stream6_IRQHandler
+ 346              	>  .type DMA2_Stream6_IRQHandler,%function
+ 346              	> DMA2_Stream6_IRQHandler:
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 17
+
+
+ 346 00e8 FEE7     	>  b .
+ 346              	>  .size DMA2_Stream6_IRQHandler,.-DMA2_Stream6_IRQHandler
+ 347              	    def_default_handler    DMA2_Stream7_IRQHandler
+ 347              	>  .align 1
+ 347              	>  .thumb_func
+ 347              	>  .weak DMA2_Stream7_IRQHandler
+ 347              	>  .type DMA2_Stream7_IRQHandler,%function
+ 347              	> DMA2_Stream7_IRQHandler:
+ 347 00ea FEE7     	>  b .
+ 347              	>  .size DMA2_Stream7_IRQHandler,.-DMA2_Stream7_IRQHandler
+ 348              	    def_default_handler    USART6_IRQHandler
+ 348              	>  .align 1
+ 348              	>  .thumb_func
+ 348              	>  .weak USART6_IRQHandler
+ 348              	>  .type USART6_IRQHandler,%function
+ 348              	> USART6_IRQHandler:
+ 348 00ec FEE7     	>  b .
+ 348              	>  .size USART6_IRQHandler,.-USART6_IRQHandler
+ 349              	    def_default_handler    I2C3_EV_IRQHandler
+ 349              	>  .align 1
+ 349              	>  .thumb_func
+ 349              	>  .weak I2C3_EV_IRQHandler
+ 349              	>  .type I2C3_EV_IRQHandler,%function
+ 349              	> I2C3_EV_IRQHandler:
+ 349 00ee FEE7     	>  b .
+ 349              	>  .size I2C3_EV_IRQHandler,.-I2C3_EV_IRQHandler
+ 350              	    def_default_handler    I2C3_ER_IRQHandler
+ 350              	>  .align 1
+ 350              	>  .thumb_func
+ 350              	>  .weak I2C3_ER_IRQHandler
+ 350              	>  .type I2C3_ER_IRQHandler,%function
+ 350              	> I2C3_ER_IRQHandler:
+ 350 00f0 FEE7     	>  b .
+ 350              	>  .size I2C3_ER_IRQHandler,.-I2C3_ER_IRQHandler
+ 351              	    def_default_handler    OTG_HS_EP1_OUT_IRQHandler
+ 351              	>  .align 1
+ 351              	>  .thumb_func
+ 351              	>  .weak OTG_HS_EP1_OUT_IRQHandler
+ 351              	>  .type OTG_HS_EP1_OUT_IRQHandler,%function
+ 351              	> OTG_HS_EP1_OUT_IRQHandler:
+ 351 00f2 FEE7     	>  b .
+ 351              	>  .size OTG_HS_EP1_OUT_IRQHandler,.-OTG_HS_EP1_OUT_IRQHandler
+ 352              	    def_default_handler    OTG_HS_EP1_IN_IRQHandler
+ 352              	>  .align 1
+ 352              	>  .thumb_func
+ 352              	>  .weak OTG_HS_EP1_IN_IRQHandler
+ 352              	>  .type OTG_HS_EP1_IN_IRQHandler,%function
+ 352              	> OTG_HS_EP1_IN_IRQHandler:
+ 352 00f4 FEE7     	>  b .
+ 352              	>  .size OTG_HS_EP1_IN_IRQHandler,.-OTG_HS_EP1_IN_IRQHandler
+ 353              	    def_default_handler    OTG_HS_WKUP_IRQHandler
+ 353              	>  .align 1
+ 353              	>  .thumb_func
+ 353              	>  .weak OTG_HS_WKUP_IRQHandler
+ 353              	>  .type OTG_HS_WKUP_IRQHandler,%function
+ 353              	> OTG_HS_WKUP_IRQHandler:
+ 353 00f6 FEE7     	>  b .
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 18
+
+
+ 353              	>  .size OTG_HS_WKUP_IRQHandler,.-OTG_HS_WKUP_IRQHandler
+ 354              	    def_default_handler    OTG_HS_IRQHandler
+ 354              	>  .align 1
+ 354              	>  .thumb_func
+ 354              	>  .weak OTG_HS_IRQHandler
+ 354              	>  .type OTG_HS_IRQHandler,%function
+ 354              	> OTG_HS_IRQHandler:
+ 354 00f8 FEE7     	>  b .
+ 354              	>  .size OTG_HS_IRQHandler,.-OTG_HS_IRQHandler
+ 355              	    def_default_handler    DCMI_IRQHandler
+ 355              	>  .align 1
+ 355              	>  .thumb_func
+ 355              	>  .weak DCMI_IRQHandler
+ 355              	>  .type DCMI_IRQHandler,%function
+ 355              	> DCMI_IRQHandler:
+ 355 00fa FEE7     	>  b .
+ 355              	>  .size DCMI_IRQHandler,.-DCMI_IRQHandler
+ 356              	    def_default_handler    CRYP_IRQHandler
+ 356              	>  .align 1
+ 356              	>  .thumb_func
+ 356              	>  .weak CRYP_IRQHandler
+ 356              	>  .type CRYP_IRQHandler,%function
+ 356              	> CRYP_IRQHandler:
+ 356 00fc FEE7     	>  b .
+ 356              	>  .size CRYP_IRQHandler,.-CRYP_IRQHandler
+ 357              	    def_default_handler    HASH_RNG_IRQHandler
+ 357              	>  .align 1
+ 357              	>  .thumb_func
+ 357              	>  .weak HASH_RNG_IRQHandler
+ 357              	>  .type HASH_RNG_IRQHandler,%function
+ 357              	> HASH_RNG_IRQHandler:
+ 357 00fe FEE7     	>  b .
+ 357              	>  .size HASH_RNG_IRQHandler,.-HASH_RNG_IRQHandler
+ 358              	    def_default_handler    FPU_IRQHandler
+ 358              	>  .align 1
+ 358              	>  .thumb_func
+ 358              	>  .weak FPU_IRQHandler
+ 358              	>  .type FPU_IRQHandler,%function
+ 358              	> FPU_IRQHandler:
+ 358 0100 FEE7     	>  b .
+ 358              	>  .size FPU_IRQHandler,.-FPU_IRQHandler
+ 359              	
+ 360              	    .weak    DEF_IRQHandler
+ 361              	    .set    DEF_IRQHandler, Default_Handler
+ 362              	
+ 363 0102 00BF     	    .end
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 19
+
+
+DEFINED SYMBOLS
+ startup_stm32f4xx.s:36     .stack:00000000 $d
+ startup_stm32f4xx.s:38     *ABS*:20000400 __initial_spTop
+ startup_stm32f4xx.s:40     *ABS*:00002000 Stack_Size
+ startup_stm32f4xx.s:49     .stack:00002000 __StackTop
+ startup_stm32f4xx.s:46     .stack:00000000 __StackLimit
+ startup_stm32f4xx.s:53     .heap:00000000 $d
+ startup_stm32f4xx.s:55     *ABS*:00002000 Heap_Size
+ startup_stm32f4xx.s:61     .heap:00000000 __HeapBase
+ startup_stm32f4xx.s:66     .heap:00002000 __HeapLimit
+ startup_stm32f4xx.s:70     .isr_vector:00000000 $d
+ startup_stm32f4xx.s:72     .isr_vector:00000000 __isr_vector
+ startup_stm32f4xx.s:182    .text:00000000 Reset_Handler
+ startup_stm32f4xx.s:268    .text:0000004c NMI_Handler
+ startup_stm32f4xx.s:269    .text:0000004e HardFault_Handler
+ startup_stm32f4xx.s:270    .text:00000050 MemManage_Handler
+ startup_stm32f4xx.s:271    .text:00000052 BusFault_Handler
+ startup_stm32f4xx.s:272    .text:00000054 UsageFault_Handler
+ startup_stm32f4xx.s:273    .text:00000056 SVC_Handler
+ startup_stm32f4xx.s:274    .text:00000058 DebugMon_Handler
+ startup_stm32f4xx.s:275    .text:0000005a PendSV_Handler
+ startup_stm32f4xx.s:276    .text:0000005c SysTick_Handler
+ startup_stm32f4xx.s:277    .text:0000005e WWDG_IRQHandler
+ startup_stm32f4xx.s:278    .text:00000060 PVD_IRQHandler
+ startup_stm32f4xx.s:279    .text:00000062 TAMP_STAMP_IRQHandler
+ startup_stm32f4xx.s:280    .text:00000064 RTC_WKUP_IRQHandler
+ startup_stm32f4xx.s:281    .text:00000066 FLASH_IRQHandler
+ startup_stm32f4xx.s:282    .text:00000068 RCC_IRQHandler
+ startup_stm32f4xx.s:283    .text:0000006a EXTI0_IRQHandler
+ startup_stm32f4xx.s:284    .text:0000006c EXTI1_IRQHandler
+ startup_stm32f4xx.s:285    .text:0000006e EXTI2_IRQHandler
+ startup_stm32f4xx.s:286    .text:00000070 EXTI3_IRQHandler
+ startup_stm32f4xx.s:287    .text:00000072 EXTI4_IRQHandler
+ startup_stm32f4xx.s:288    .text:00000074 DMA1_Stream0_IRQHandler
+ startup_stm32f4xx.s:289    .text:00000076 DMA1_Stream1_IRQHandler
+ startup_stm32f4xx.s:290    .text:00000078 DMA1_Stream2_IRQHandler
+ startup_stm32f4xx.s:291    .text:0000007a DMA1_Stream3_IRQHandler
+ startup_stm32f4xx.s:292    .text:0000007c DMA1_Stream4_IRQHandler
+ startup_stm32f4xx.s:293    .text:0000007e DMA1_Stream5_IRQHandler
+ startup_stm32f4xx.s:294    .text:00000080 DMA1_Stream6_IRQHandler
+ startup_stm32f4xx.s:295    .text:00000082 ADC_IRQHandler
+ startup_stm32f4xx.s:296    .text:00000084 CAN1_TX_IRQHandler
+ startup_stm32f4xx.s:297    .text:00000086 CAN1_RX0_IRQHandler
+ startup_stm32f4xx.s:298    .text:00000088 CAN1_RX1_IRQHandler
+ startup_stm32f4xx.s:299    .text:0000008a CAN1_SCE_IRQHandler
+ startup_stm32f4xx.s:300    .text:0000008c EXTI9_5_IRQHandler
+ startup_stm32f4xx.s:301    .text:0000008e TIM1_BRK_TIM9_IRQHandler
+ startup_stm32f4xx.s:302    .text:00000090 TIM1_UP_TIM10_IRQHandler
+ startup_stm32f4xx.s:303    .text:00000092 TIM1_TRG_COM_TIM11_IRQHandler
+ startup_stm32f4xx.s:304    .text:00000094 TIM1_CC_IRQHandler
+ startup_stm32f4xx.s:305    .text:00000096 TIM2_IRQHandler
+ startup_stm32f4xx.s:306    .text:00000098 TIM3_IRQHandler
+ startup_stm32f4xx.s:307    .text:0000009a TIM4_IRQHandler
+ startup_stm32f4xx.s:308    .text:0000009c I2C1_EV_IRQHandler
+ startup_stm32f4xx.s:309    .text:0000009e I2C1_ER_IRQHandler
+ startup_stm32f4xx.s:310    .text:000000a0 I2C2_EV_IRQHandler
+ startup_stm32f4xx.s:311    .text:000000a2 I2C2_ER_IRQHandler
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 20
+
+
+ startup_stm32f4xx.s:312    .text:000000a4 SPI1_IRQHandler
+ startup_stm32f4xx.s:313    .text:000000a6 SPI2_IRQHandler
+ startup_stm32f4xx.s:314    .text:000000a8 USART1_IRQHandler
+ startup_stm32f4xx.s:315    .text:000000aa USART2_IRQHandler
+ startup_stm32f4xx.s:316    .text:000000ac USART3_IRQHandler
+ startup_stm32f4xx.s:317    .text:000000ae EXTI15_10_IRQHandler
+ startup_stm32f4xx.s:318    .text:000000b0 RTC_Alarm_IRQHandler
+ startup_stm32f4xx.s:319    .text:000000b2 OTG_FS_WKUP_IRQHandler
+ startup_stm32f4xx.s:320    .text:000000b4 TIM8_BRK_TIM12_IRQHandler
+ startup_stm32f4xx.s:321    .text:000000b6 TIM8_UP_TIM13_IRQHandler
+ startup_stm32f4xx.s:322    .text:000000b8 TIM8_TRG_COM_TIM14_IRQHandler
+ startup_stm32f4xx.s:323    .text:000000ba TIM8_CC_IRQHandler
+ startup_stm32f4xx.s:324    .text:000000bc DMA1_Stream7_IRQHandler
+ startup_stm32f4xx.s:325    .text:000000be FSMC_IRQHandler
+ startup_stm32f4xx.s:326    .text:000000c0 SDIO_IRQHandler
+ startup_stm32f4xx.s:327    .text:000000c2 TIM5_IRQHandler
+ startup_stm32f4xx.s:328    .text:000000c4 SPI3_IRQHandler
+ startup_stm32f4xx.s:329    .text:000000c6 UART4_IRQHandler
+ startup_stm32f4xx.s:330    .text:000000c8 UART5_IRQHandler
+ startup_stm32f4xx.s:331    .text:000000ca TIM6_DAC_IRQHandler
+ startup_stm32f4xx.s:332    .text:000000cc TIM7_IRQHandler
+ startup_stm32f4xx.s:333    .text:000000ce DMA2_Stream0_IRQHandler
+ startup_stm32f4xx.s:334    .text:000000d0 DMA2_Stream1_IRQHandler
+ startup_stm32f4xx.s:335    .text:000000d2 DMA2_Stream2_IRQHandler
+ startup_stm32f4xx.s:336    .text:000000d4 DMA2_Stream3_IRQHandler
+ startup_stm32f4xx.s:337    .text:000000d6 DMA2_Stream4_IRQHandler
+ startup_stm32f4xx.s:338    .text:000000d8 ETH_IRQHandler
+ startup_stm32f4xx.s:339    .text:000000da ETH_WKUP_IRQHandler
+ startup_stm32f4xx.s:340    .text:000000dc CAN2_TX_IRQHandler
+ startup_stm32f4xx.s:341    .text:000000de CAN2_RX0_IRQHandler
+ startup_stm32f4xx.s:342    .text:000000e0 CAN2_RX1_IRQHandler
+ startup_stm32f4xx.s:343    .text:000000e2 CAN2_SCE_IRQHandler
+ startup_stm32f4xx.s:344    .text:000000e4 OTG_FS_IRQHandler
+ startup_stm32f4xx.s:345    .text:000000e6 DMA2_Stream5_IRQHandler
+ startup_stm32f4xx.s:346    .text:000000e8 DMA2_Stream6_IRQHandler
+ startup_stm32f4xx.s:347    .text:000000ea DMA2_Stream7_IRQHandler
+ startup_stm32f4xx.s:348    .text:000000ec USART6_IRQHandler
+ startup_stm32f4xx.s:349    .text:000000ee I2C3_EV_IRQHandler
+ startup_stm32f4xx.s:350    .text:000000f0 I2C3_ER_IRQHandler
+ startup_stm32f4xx.s:351    .text:000000f2 OTG_HS_EP1_OUT_IRQHandler
+ startup_stm32f4xx.s:352    .text:000000f4 OTG_HS_EP1_IN_IRQHandler
+ startup_stm32f4xx.s:353    .text:000000f6 OTG_HS_WKUP_IRQHandler
+ startup_stm32f4xx.s:354    .text:000000f8 OTG_HS_IRQHandler
+ startup_stm32f4xx.s:355    .text:000000fa DCMI_IRQHandler
+ startup_stm32f4xx.s:356    .text:000000fc CRYP_IRQHandler
+ startup_stm32f4xx.s:357    .text:000000fe HASH_RNG_IRQHandler
+ startup_stm32f4xx.s:358    .text:00000100 FPU_IRQHandler
+ startup_stm32f4xx.s:179    .text:00000000 $t
+ startup_stm32f4xx.s:222    .text:0000001e STARTUP_CLEAR_BSS
+ startup_stm32f4xx.s:252    .text:00000032 $d
+ startup_stm32f4xx.s:252    .text:00000034 $d
+ startup_stm32f4xx.s:268    .text:0000004c $t
+
+UNDEFINED SYMBOLS
+SystemInit
+__etext
+__data_start__
+ARM GAS  C:\Users\labuser\AppData\Local\Temp\ccVbPe8E.s 			page 21
+
+
+__data_end__
+__bss_start__
+__bss_end__
+main
+Default_Handler

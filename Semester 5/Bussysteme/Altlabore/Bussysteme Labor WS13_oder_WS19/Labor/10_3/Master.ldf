@@ -1,0 +1,20 @@
+LIN_description_file ;
+LIN_protocol_version = "2.0" ;
+LIN_language_version = "2.0" ;
+LIN_speed = 19.200 kbps ;
+Nodes {
+    Master:master,1.0000 ms,0.0000 ms ;
+    Slaves:Slave;
+}
+Signals {
+    Farbe:16,{0x00,0x00},master,Slave;
+}
+Frames {
+    farbe:0x05,master,2{
+    }
+}
+Schedule_tables {
+    Farbsignal {
+        farbe delay 50.0000 ms ;
+    }
+}

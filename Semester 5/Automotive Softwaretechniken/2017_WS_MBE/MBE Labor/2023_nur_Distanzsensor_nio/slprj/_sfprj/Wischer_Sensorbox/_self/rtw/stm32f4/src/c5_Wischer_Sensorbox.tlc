@@ -1,0 +1,110 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   13 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "is_active_c5_Wischer_Sensorbox"\
+      Description  "StateIsActive"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_c5_Wischer_Sensorbox"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Wischer_Vor_WW"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "WischWasch.Wischer_Vor_WW"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Wischer_Rueck_WW"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "WischWasch.Wischer_Rueck_WW"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Wischer1"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Wischer1"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Wischer_Vor"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Wischer1.Wischer_Vor"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Wischer_Rueck"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Wischer1.Wischer_Rueck"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "Steps"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "Steps"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "StepTime"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "StepTime"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "Count"\
+      Description  "ChartLocal"\
+      SFName       "Count"\
+      Path         "Count"\
+      SrcLocation  ""\
+      IsTestPoint  1\
+    }\
+    ChartData {\
+      Name         "BreakTime"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "BreakTime"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "WischWaschCount"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "WischWaschCount"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i1"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

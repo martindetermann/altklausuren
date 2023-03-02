@@ -1,0 +1,109 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   13 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "is_active_c5_WS_Box_App_01_Template"\
+      Description  "StateIsActive"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_c5_WS_Box_App_01_Template"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_Wischer"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "Wischer"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "was_Wischer"\
+      Description  "StatePrevActiveChild"\
+      SFName       ""\
+      Path         "Wischer"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "time"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "time"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "pause"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "pause"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "zaehler"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "zaehler"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "intervall_1"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "intervall_1"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "intervall_2"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "intervall_2"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "WiWa_aktiv"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "WiWa_aktiv"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "WiWa_Zaehler"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "WiWa_Zaehler"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i1"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i2"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td><span class="ct"> * Copyright 1994-2009 The MathWorks, Inc.</span></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td><span class="ct"> * File: rt_sim.h     </span></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="ct"> * Abstract:</span></td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td><span class="ct"> *	Function prototypes for routines which perform one time step of</span></td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="ct"> *	a real-time single tasking or multitasking system.</span></td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td></td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td><span class="pp">#ifndef</span> <a id="11c9" class="tk">__RT_SIM__</a></td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td><span class="pp">#define</span> <a id="12c9" class="tk">__RT_SIM__</a></td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td></td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td><span class="pp">#ifdef</span> <a id="14c8" class="tk">__cplusplus</a></td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td><span class="kw">extern</span> "C" <span class="br">{</span></td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td></td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td><span class="ct"> * Functions that do not require the SimStruct as an arg</span></td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td><span class="pp">#define</span> <a id="21c9" class="tk">rttiSetTaskTime</a>(<a id="21c25" class="tk">tPtr</a>,<a id="21c30" class="tk">sti</a>,<a id="21c34" class="tk">time</a>) (<a id="21c41" class="tk">tPtr</a>)[<a id="21c47" class="tk">sti</a>]=(<a id="21c53" class="tk">time</a>)</td></tr>
+<tr name="22" id="22">
+<td><a id="l22" class='ln'>22</a></td><td></td></tr>
+<tr name="23" id="23">
+<td><a id="l23" class='ln'>23</a></td><td><span class="pp">#define</span> <a id="23c9" class="tk">rttiSetSampleHitInTask</a>(<a id="23c32" class="tk">perTaskSampHits</a>,<a id="23c48" class="tk">numSampTimes</a>,<a id="23c61" class="tk">task_j</a>,<a id="23c68" class="tk">task_i</a>,<a id="23c75" class="tk">hit</a>) \</td></tr>
+<tr name="24" id="24">
+<td><a id="l24" class='ln'>24</a></td><td>    (<a id="24c85" class="tk">perTaskSampHits</a>)[(<a id="24c103" class="tk">task_j</a>) <a id="24c111" class="tk">+</a> ((<a id="24c115" class="tk">task_i</a>) <a id="24c123" class="tk">*</a> (<a id="24c126" class="tk">numSampTimes</a>))] = (<a id="24c145" class="tk">hit</a>)</td></tr>
+<tr name="25" id="25">
+<td><a id="l25" class='ln'>25</a></td><td></td></tr>
+<tr name="26" id="26">
+<td><a id="l26" class='ln'>26</a></td><td><span class="kw">extern</span> <span class="kw">const</span> <span class="kw">char</span> <a id="26c19" class="tk">*</a><a id="26c20" class="tk">rt_SimInitTimingEngine</a>(<a id="26c43" class="tk">int_T</a>       <a id="26c55" class="tk">rtmNumSampTimes</a>,</td></tr>
+<tr name="27" id="27">
+<td><a id="l27" class='ln'>27</a></td><td>                                          <a id="27c43" class="tk">real_T</a>      <a id="27c55" class="tk">rtmStepSize</a>,</td></tr>
+<tr name="28" id="28">
+<td><a id="l28" class='ln'>28</a></td><td>                                          <a id="28c43" class="tk">real_T</a>      <a id="28c55" class="tk">*</a><a id="28c56" class="tk">rtmSampleTimePtr</a>,</td></tr>
+<tr name="29" id="29">
+<td><a id="l29" class='ln'>29</a></td><td>                                          <a id="29c43" class="tk">real_T</a>      <a id="29c55" class="tk">*</a><a id="29c56" class="tk">rtmOffsetTimePtr</a>,</td></tr>
+<tr name="30" id="30">
+<td><a id="l30" class='ln'>30</a></td><td>                                          <a id="30c43" class="tk">int_T</a>       <a id="30c55" class="tk">*</a><a id="30c56" class="tk">rtmSampleHitPtr</a>,</td></tr>
+<tr name="31" id="31">
+<td><a id="l31" class='ln'>31</a></td><td>                                          <a id="31c43" class="tk">int_T</a>       <a id="31c55" class="tk">*</a><a id="31c56" class="tk">rtmSampleTimeTaskIDPtr</a>,</td></tr>
+<tr name="32" id="32">
+<td><a id="l32" class='ln'>32</a></td><td>                                          <a id="32c43" class="tk">real_T</a>      <a id="32c55" class="tk">rtmTStart</a>,</td></tr>
+<tr name="33" id="33">
+<td><a id="l33" class='ln'>33</a></td><td>                                          <a id="33c43" class="tk">SimTimeStep</a> <a id="33c55" class="tk">*</a><a id="33c56" class="tk">rtmSimTimeStepPtr</a>,</td></tr>
+<tr name="34" id="34">
+<td><a id="l34" class='ln'>34</a></td><td>                                          <span class="kw">void</span>        <a id="34c55" class="tk">*</a><a id="34c56" class="tk">*</a><a id="34c57" class="tk">rtmTimingDataPtr</a>);</td></tr>
+<tr name="35" id="35">
+<td><a id="l35" class='ln'>35</a></td><td><span class="pp">#ifdef</span> <a id="35c8" class="tk">RT_MALLOC</a></td></tr>
+<tr name="36" id="36">
+<td><a id="l36" class='ln'>36</a></td><td><span class="kw">extern</span> <span class="kw">void</span> <a id="36c13" class="tk">rt_SimDestroyTimingEngine</a>(<span class="kw">void</span> <a id="36c44" class="tk">*</a><a id="36c45" class="tk">rtmTimingData</a>);</td></tr>
+<tr name="37" id="37">
+<td><a id="l37" class='ln'>37</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="38" id="38">
+<td><a id="l38" class='ln'>38</a></td><td></td></tr>
+<tr name="39" id="39">
+<td><a id="l39" class='ln'>39</a></td><td><span class="pp">#if</span> <a id="39c5" class="tk">!</a><a id="39c6" class="tk">defined</a>(<a id="39c14" class="tk">MULTITASKING</a>)</td></tr>
+<tr name="40" id="40">
+<td><a id="l40" class='ln'>40</a></td><td>  <span class="kw">extern</span> <span class="kw">void</span>  <a id="40c16" class="tk">rt_SimUpdateDiscreteTaskSampleHits</a>(<a id="40c51" class="tk">int_T</a>  <a id="40c58" class="tk">rtmNumSampTimes</a>,</td></tr>
+<tr name="41" id="41">
+<td><a id="l41" class='ln'>41</a></td><td>                                                  <span class="kw">void</span>   <a id="41c58" class="tk">*</a><a id="41c59" class="tk">rtmTimingData</a>,</td></tr>
+<tr name="42" id="42">
+<td><a id="l42" class='ln'>42</a></td><td>                                                  <a id="42c51" class="tk">int_T</a>  <a id="42c58" class="tk">*</a><a id="42c59" class="tk">rtmSampleHitPtr</a>,</td></tr>
+<tr name="43" id="43">
+<td><a id="l43" class='ln'>43</a></td><td>                                                  <a id="43c51" class="tk">real_T</a> <a id="43c58" class="tk">*</a><a id="43c59" class="tk">rtmTPtr</a>);</td></tr>
+<tr name="44" id="44">
+<td><a id="l44" class='ln'>44</a></td><td><span class="pp">#  ifndef</span> <a id="44c11" class="tk">RT_MALLOC</a></td></tr>
+<tr name="45" id="45">
+<td><a id="l45" class='ln'>45</a></td><td>     <span class="kw">extern</span> <a id="45c13" class="tk">time_T</a> <a id="45c20" class="tk">rt_SimGetNextSampleHit</a>(<span class="kw">void</span>);</td></tr>
+<tr name="46" id="46">
+<td><a id="l46" class='ln'>46</a></td><td><span class="pp">#  else</span></td></tr>
+<tr name="47" id="47">
+<td><a id="l47" class='ln'>47</a></td><td>     <span class="kw">extern</span> <a id="47c13" class="tk">time_T</a> <a id="47c20" class="tk">rt_SimGetNextSampleHit</a>(<span class="kw">void</span>   <a id="47c50" class="tk">*</a><a id="47c51" class="tk">rtmTimingData</a>,</td></tr>
+<tr name="48" id="48">
+<td><a id="l48" class='ln'>48</a></td><td>                                          <a id="48c43" class="tk">int_T</a> <a id="48c49" class="tk">rtmNumSampTimes</a>);</td></tr>
+<tr name="49" id="49">
+<td><a id="l49" class='ln'>49</a></td><td><span class="pp">#  endif</span></td></tr>
+<tr name="50" id="50">
+<td><a id="l50" class='ln'>50</a></td><td><span class="pp">#else</span></td></tr>
+<tr name="51" id="51">
+<td><a id="l51" class='ln'>51</a></td><td><span class="pp">#  ifndef</span> <a id="51c11" class="tk">USE_RTMODEL</a></td></tr>
+<tr name="52" id="52">
+<td><a id="l52" class='ln'>52</a></td><td>     <span class="kw">extern</span> <a id="52c13" class="tk">time_T</a> <a id="52c20" class="tk">rt_SimUpdateDiscreteEvents</a>(<a id="52c47" class="tk">int_T</a>  <a id="52c54" class="tk">rtmNumSampTimes</a>,</td></tr>
+<tr name="53" id="53">
+<td><a id="l53" class='ln'>53</a></td><td>                                              <span class="kw">void</span>   <a id="53c54" class="tk">*</a><a id="53c55" class="tk">rtmTimingData</a>,</td></tr>
+<tr name="54" id="54">
+<td><a id="l54" class='ln'>54</a></td><td>                                              <a id="54c47" class="tk">int_T</a>  <a id="54c54" class="tk">*</a><a id="54c55" class="tk">rtmSampleHitPtr</a>,</td></tr>
+<tr name="55" id="55">
+<td><a id="l55" class='ln'>55</a></td><td>                                              <a id="55c47" class="tk">int_T</a>  <a id="55c54" class="tk">*</a><a id="55c55" class="tk">rtmPerTaskSampleHits</a>);</td></tr>
+<tr name="56" id="56">
+<td><a id="l56" class='ln'>56</a></td><td><span class="pp">#  endif</span></td></tr>
+<tr name="57" id="57">
+<td><a id="l57" class='ln'>57</a></td><td>  <span class="kw">extern</span> <span class="kw">void</span>   <a id="57c17" class="tk">rt_SimUpdateDiscreteTaskTime</a>(<a id="57c46" class="tk">real_T</a> <a id="57c53" class="tk">*</a><a id="57c54" class="tk">rtmTPtr</a>,</td></tr>
+<tr name="58" id="58">
+<td><a id="l58" class='ln'>58</a></td><td>                                             <span class="kw">void</span>   <a id="58c53" class="tk">*</a><a id="58c54" class="tk">rtmTimingData</a>,</td></tr>
+<tr name="59" id="59">
+<td><a id="l59" class='ln'>59</a></td><td>                                             <span class="kw">int</span>    <a id="59c53" class="tk">tid</a>);</td></tr>
+<tr name="60" id="60">
+<td><a id="l60" class='ln'>60</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="61" id="61">
+<td><a id="l61" class='ln'>61</a></td><td></td></tr>
+<tr name="62" id="62">
+<td><a id="l62" class='ln'>62</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="63" id="63">
+<td><a id="l63" class='ln'>63</a></td><td><span class="ct"> * Functions maintained for backwards compatibility</span></td></tr>
+<tr name="64" id="64">
+<td><a id="l64" class='ln'>64</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="65" id="65">
+<td><a id="l65" class='ln'>65</a></td><td><span class="pp">#ifndef</span> <a id="65c9" class="tk">USE_RTMODEL</a></td></tr>
+<tr name="66" id="66">
+<td><a id="l66" class='ln'>66</a></td><td>  <span class="kw">extern</span> <span class="kw">const</span> <span class="kw">char</span> <a id="66c21" class="tk">*</a><a id="66c22" class="tk">rt_InitTimingEngine</a>(<a id="66c42" class="tk">SimStruct</a> <a id="66c52" class="tk">*</a><a id="66c53" class="tk">S</a>);</td></tr>
+<tr name="67" id="67">
+<td><a id="l67" class='ln'>67</a></td><td><span class="pp"># ifdef</span> <a id="67c9" class="tk">RT_MALLOC</a></td></tr>
+<tr name="68" id="68">
+<td><a id="l68" class='ln'>68</a></td><td>    <span class="kw">extern</span> <span class="kw">void</span>   <a id="68c19" class="tk">rt_DestroyTimingEngine</a>(<a id="68c42" class="tk">SimStruct</a> <a id="68c52" class="tk">*</a><a id="68c53" class="tk">S</a>);</td></tr>
+<tr name="69" id="69">
+<td><a id="l69" class='ln'>69</a></td><td><span class="pp"># endif</span></td></tr>
+<tr name="70" id="70">
+<td><a id="l70" class='ln'>70</a></td><td></td></tr>
+<tr name="71" id="71">
+<td><a id="l71" class='ln'>71</a></td><td><span class="pp"># if</span> <a id="71c6" class="tk">!</a><a id="71c7" class="tk">defined</a>(<a id="71c15" class="tk">MULTITASKING</a>)</td></tr>
+<tr name="72" id="72">
+<td><a id="l72" class='ln'>72</a></td><td>    <span class="kw">extern</span> <span class="kw">void</span>   <a id="72c19" class="tk">rt_UpdateDiscreteTaskSampleHits</a>(<a id="72c51" class="tk">SimStruct</a> <a id="72c61" class="tk">*</a><a id="72c62" class="tk">S</a>);</td></tr>
+<tr name="73" id="73">
+<td><a id="l73" class='ln'>73</a></td><td><span class="pp">#   ifndef</span> <a id="73c12" class="tk">RT_MALLOC</a></td></tr>
+<tr name="74" id="74">
+<td><a id="l74" class='ln'>74</a></td><td>      <span class="kw">extern</span> <a id="74c14" class="tk">time_T</a> <a id="74c21" class="tk">rt_GetNextSampleHit</a>(<span class="kw">void</span>);</td></tr>
+<tr name="75" id="75">
+<td><a id="l75" class='ln'>75</a></td><td><span class="pp">#   else</span></td></tr>
+<tr name="76" id="76">
+<td><a id="l76" class='ln'>76</a></td><td>      <span class="kw">extern</span> <a id="76c14" class="tk">time_T</a> <a id="76c21" class="tk">rt_GetNextSampleHit</a>(<a id="76c41" class="tk">SimStruct</a> <a id="76c51" class="tk">*</a><a id="76c52" class="tk">S</a>);</td></tr>
+<tr name="77" id="77">
+<td><a id="l77" class='ln'>77</a></td><td><span class="pp">#   endif</span></td></tr>
+<tr name="78" id="78">
+<td><a id="l78" class='ln'>78</a></td><td></td></tr>
+<tr name="79" id="79">
+<td><a id="l79" class='ln'>79</a></td><td><span class="pp"># else</span></td></tr>
+<tr name="80" id="80">
+<td><a id="l80" class='ln'>80</a></td><td>    <span class="kw">extern</span> <a id="80c12" class="tk">time_T</a> <a id="80c19" class="tk">rt_UpdateDiscreteEvents</a>(<a id="80c43" class="tk">SimStruct</a> <a id="80c53" class="tk">*</a><a id="80c54" class="tk">S</a>);</td></tr>
+<tr name="81" id="81">
+<td><a id="l81" class='ln'>81</a></td><td>    <span class="kw">extern</span> <span class="kw">void</span>   <a id="81c19" class="tk">rt_UpdateDiscreteTaskTime</a>(<a id="81c45" class="tk">SimStruct</a> <a id="81c55" class="tk">*</a><a id="81c56" class="tk">S</a>, <span class="kw">int</span> <a id="81c63" class="tk">tid</a>);</td></tr>
+<tr name="82" id="82">
+<td><a id="l82" class='ln'>82</a></td><td><span class="pp"># endif</span></td></tr>
+<tr name="83" id="83">
+<td><a id="l83" class='ln'>83</a></td><td><span class="pp">#endif</span> <span class="ct">/* !(USE_RTMODEL) */</span></td></tr>
+<tr name="84" id="84">
+<td><a id="l84" class='ln'>84</a></td><td></td></tr>
+<tr name="85" id="85">
+<td><a id="l85" class='ln'>85</a></td><td><span class="pp">#ifdef</span> <a id="85c8" class="tk">__cplusplus</a></td></tr>
+<tr name="86" id="86">
+<td><a id="l86" class='ln'>86</a></td><td><span class="br">}</span></td></tr>
+<tr name="87" id="87">
+<td><a id="l87" class='ln'>87</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="88" id="88">
+<td><a id="l88" class='ln'>88</a></td><td></td></tr>
+<tr name="89" id="89">
+<td><a id="l89" class='ln'>89</a></td><td><span class="pp">#endif</span> <span class="ct">/* __RT_SIM__ */</span></td></tr>
+<tr name="90" id="90">
+<td><a id="l90" class='ln'>90</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

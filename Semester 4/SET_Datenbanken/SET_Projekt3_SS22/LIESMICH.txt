@@ -1,0 +1,6 @@
+SET Projekt Gruppe 09: Ahmed Sabti, Bland Azad Saleem, Martin Determann und Othmane Kribia
+
+Übersicht der enthaltenen Dateien:
+
+-Ausarbeitung als PDF
+-fitbridge Folder mit dem Code sowie die Datenbank an sich (Folder beinhaltet README.md mit Installierungsanweisungen)

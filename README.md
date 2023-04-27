@@ -1,5 +1,7 @@
 # altklausuren
 der Altklausuren Ordner für das Studium FMI an der Ostfalia.
+-technische WPF bei Köhring sind geschenkt (nimmt immer die selbe Klausur bis dato, eine davon sogar online)
+-Nicht technische WPF am besten Englisch 1+2, klausuren bleiben sehr ähnlich und die klausuren sind bis dato auch online
 
 # Die Semester sind nach Regelstudienzeit für nicht-StiPs bennant. Für Stips gilt:
 
